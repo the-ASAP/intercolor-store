@@ -1,0 +1,536 @@
+openapi: 3.0.1
+info:
+  version: 1.1.1
+  title: Intercolor Rest API
+  description: Intercolor Rest API
+servers:
+  - url: https://managers.intercolor.asap-lp.ru/api/
+    description: DEMO server
+  - url: https://intercolor.ru/api/
+    description: PROD server
+
+tags:
+  - name: Auth
+    description: Авторизации пользователя
+  - name: User
+    description: Текущий пользователь
+  - name: Catalog
+    description: Катадог
+  - name: Sale
+    description: Акции
+  - name: Storage
+    description: Склад
+
+paths:
+  /v1/auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Запрос  авторизации на сайте
+      requestBody:
+        required: true
+        description: .
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "400":
+          $ref: "#/components/responses/HTTPStatus400Response"
+        "401":
+          $ref: "#/components/responses/HTTPStatus401Response"
+        "500":
+          $ref: "#/components/responses/HTTPStatus500Response"
+
+  /v1/auth/logout:
+    get:
+      tags:
+        - Auth
+      summary: Запрос  разлогинивания на сайте
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: урл для редиректа пользователя по нему
+        "400":
+          $ref: "#/components/responses/HTTPStatus400Response"
+        "401":
+          $ref: "#/components/responses/HTTPStatus401Response"
+        "500":
+          $ref: "#/components/responses/HTTPStatus500Response"
+
+  /v1/catalog/:
+    get:
+      tags:
+        - Catalog
+      summary: Запрос  получения каталога
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: урл для редиректа пользователя по нему
+        "400":
+          $ref: "#/components/responses/HTTPStatus400Response"
+        "401":
+          $ref: "#/components/responses/HTTPStatus401Response"
+        "500":
+          $ref: "#/components/responses/HTTPStatus500Response"
+
+  /v1/catalog/section/{param}/:
+    get:
+      tags:
+        - Catalog
+      summary: Запрос  получения каталога
+      parameters:
+        - name: param
+          in: path
+          required: true
+          description: ID или Символьный код раздела каталога
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: Количество элементов на странице
+          schema:
+            type: integer    
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: урл для редиректа пользователя по нему
+        "400":
+          $ref: "#/components/responses/HTTPStatus400Response"
+        "401":
+          $ref: "#/components/responses/HTTPStatus401Response"
+        "500":
+          $ref: "#/components/responses/HTTPStatus500Response"
+
+  /v1/catalog/element/{id}/:
+    get:
+      tags:
+        - Catalog
+      summary: Запрос  получения элемента каталога
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID элемента каталога
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID элемента каталога
+                    example: 1
+                  name:
+                    type: string
+                    description: Название элемента каталога
+                    example: "Тестовый элемент"
+                  preview:
+                    type: string
+                    description: Ссылка на изображение элемента каталога
+                    example: "https://example.com/image.jpg"
+                  detail:
+                    type: string
+                    description: Ссылка на детальное изображение элемента каталога
+                    example: "https://example.com/detail.jpg"
+                  image:
+                    type: string
+                    nullable: true
+                    description: Ссылка на изображение элемента каталога
+                    example: "https://example.com/image.jpg"
+                  sku:
+                    type: string
+                    description: Артикул элемента каталога
+                    example: "Тестовый артикул"
+                  unit:
+                    type: string
+                    description: Единица измерения элемента каталога
+                    example: "шт"
+                  delivery:
+                    type: string
+                    description: Срок доставки элемента каталога
+                    example: "3-5 дней"
+                  documents:
+                    summary: Документы
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Название документа
+                          example: "Тестовый документ"
+                        url:
+                          type: string
+                          format: uri
+                          description: Ссылка на документ
+                          example: "https://example.com/document.pdf"
+                  storages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Название склада
+                          example: "Тестовый склад"
+                        stock:
+                          type: integer
+                          description: Количество на складе
+                          example: 10
+                  characteristics:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Название характеристики
+                          example: "Тестовая характеристика"
+                        value:
+                          type: string
+                          description: Значение характеристики
+                          example: "Тестовое значение"
+                  analogues:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Название аналога
+                          example: "Тестовый аналог"
+                        sku:
+                          type: string
+                          description: Артикул аналога
+                          example: "Тестовый артикул"
+                        price:
+                          type: number
+                          description: Цена аналога
+                          example: 100.50
+                        image:
+                          type: string
+                          description: Ссылка на изображение аналога
+                          example: "https://example.com/analogue.jpg"
+                          format: uri
+                        storage:
+                          type: string
+                          description: Склад, на котором находится аналог
+                          example: "Тестовый склад"
+                        stock:
+                          type: integer
+                          description: Количество аналога на складе
+                          example: 5                      
+  /v1/sale/list/:
+    get:
+      tags:
+        - Sale
+      summary: Запрос  получения списка распродаж
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: ID распродажи
+                          example: 1
+                        code: 
+                          type: string
+                          description: Символьный код распродажи
+                          example: "sale-code"
+                        name:
+                          type: string
+                          description: Название распродажи
+                          example: "Тестовая распродажа"
+                        dateTill:
+                          type: string
+                          description: Дата окончания распродажи
+                          example: "2023-10-01"     
+                        url:
+                          type: string
+                          description: Ссылка на страницу распродажи
+                          example: "https://example.com/sale"       
+                                
+        "400":
+          $ref: "#/components/responses/HTTPStatus400Response"
+        "401":
+          $ref: "#/components/responses/HTTPStatus401Response"
+        "500":
+          $ref: "#/components/responses/HTTPStatus500Response" 
+
+  /v1/sale/{id}/elements/:
+    get:
+      tags:
+        - Sale
+      summary: Запрос  получения элементов распродажи
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID или Символьный код распродажи
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: Количество элементов на странице
+          schema:
+            type: integer    
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID элемента распродажи
+                    example: 1
+                  name:
+                    type: string
+                    description: Название элемента распродажи
+                    example: "Тестовый элемент"
+                  code: 
+                    type: string
+                    description: Символьный код распродажи
+                    example: "sale-code"
+                  dateFrom:
+                    type: string
+                    description: Дата начала распродажи
+                    example: "2023-10-01"
+                  dateTill:
+                    type: string
+                    description: Дата окончания распродажи
+                    example: "2023-10-01"
+                  type:
+                    type: string
+                    description: Тип акции
+                    example: "Тестовый тип"
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:      
+                        price:
+                          type: number
+                          description: Цена элемента распродажи
+                          example: 100.50
+                        oldprice:
+                          type: number
+                          description: Старая цена на элемент распродажи
+                          example: 20.00
+                        sku:
+                          type: string
+                          description: Артикул элемента распродажи
+                          example: "Тестовый артикул"  
+                        storage:
+                          type: string
+                          description: Склад, на котором находится элемент распродажи
+                          example: "Тестовый склад"
+                        stock:
+                          type: integer
+                          description: Количество элементов распродажи на складе
+                          example: 10  
+                        image:
+                          type: string
+                          description: Ссылка на изображение элемента распродажи
+                          example: "https://example.com/image.jpg"
+  
+  /v1/storages/list/:
+    get:
+      tags:
+        - Storage
+      summary: Запрос  получения списка складов
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: ID склада
+                          example: 1
+                        name:
+                          type: string
+                          description: Название склада
+                          example: "Тестовый склад"
+                        city:
+                          type: string
+                          description: Город, в котором находится склад
+                          example: "Тестовый город"  
+                        address:
+                          type: string
+                          description: Адрес склада
+                          example: "Тестовый адрес"
+                        phone:
+                          type: string
+                          description: Телефон склада
+                          example: "+7 (123) 456-78-90"
+                        email:
+                          type: string
+                          description: Email склада
+                          example: "test@test.com"
+                        url:
+                          type: string
+                          description: Ссылка на страницу товаров склада
+                          example: "https://example.com/storage"    
+        "400":
+          $ref: "#/components/responses/HTTPStatus400Response"
+        "401":
+          $ref: "#/components/responses/HTTPStatus401Response"
+        "500":
+          $ref: "#/components/responses/HTTPStatus500Response"
+                                  
+
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      properties:
+        login:
+          type: string
+          description: Логин пользователя
+        password:
+          type: string
+          description: Пароль пользователя
+    UserResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Статус авторизации OK/Fail
+        url:
+          type: string
+          description: url редиректа
+        message:
+          type: string
+          description: Сообщение об ошибке
+
+  responses:
+    HTTPStatus400Response:
+      description: Bad Request
+      content:
+        application/json:
+          #          {"errors": [{"id": "common","messages": ["Bad Request"] }] }
+          schema:
+            type: object
+            properties:
+              errors:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                  status:
+                    type: string
+                    description: Статус Fail
+                  message:
+                      type: string
+                      description: Сообщение об ошибке
+
+    HTTPStatus401Response:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: "string"
+                example: Unauthorized
+              status:
+                type: "string"
+                example: "401"
+
+    HTTPStatus403Response:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: "string"
+                example: Forbbidden
+              status:
+                type: "string"
+                example: "403"
+
+    HTTPStatus404Response:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: "string"
+                example: 404 Not Found
+              status:
+                type: "string"
+                example: "404"
+
+    HTTPStatus500Response:
+      description: An unexpected error occured.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: "string"
+                example: 404 Not Found
+              status:
+                type: "string"
+                example: "404"
