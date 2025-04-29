@@ -1,0 +1,18 @@
+.radio-input {
+  width: var(--icon-24);
+  height: var(--icon-24);
+  background-color: var(--color-bg-white);
+  cursor: pointer;
+  border: var(--border-1) solid var(--color-stroke-medium);
+  border-radius: 50%;
+}
+
+.radio-input:checked {
+  background-color: var(--color-bg-dark);
+  border-color: var(--color-stroke-dark);
+}
+
+.radio-input:disabled {
+  border-color: var(--color-stroke-light);
+  cursor: not-allowed;
+}

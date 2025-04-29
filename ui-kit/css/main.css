@@ -1,0 +1,18 @@
+/* переменные */
+@import url("variables.css");
+
+/* сброс стилей */
+@import url("base.css");
+
+/* стили компонентов */
+@import url("components/selector.css");
+@import url("components/input.css");
+@import url("components/checkbox.css");
+@import url("components/radiobutton.css");
+/* утилиты */
+/* @import url('utilities.css'); */
+
+/* глобальные переопределения */
+/* body {
+  color: var(--color-text-dark);
+} */

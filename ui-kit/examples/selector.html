@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selector</title>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body style="background-color: #d5d5d5">
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
+        padding: var(--spacing-4);
+        align-items: center;
+      "
+    >
+      <!-- Селектор сортировки -->
+      <div class="selector">
+        <button class="selector__trigger" aria-haspopup="listbox">
+          Сортировка
+        </button>
+        <div class="selector__options" role="listbox">
+          <div
+            class="selector__option selector__option--selected"
+            role="option"
+            data-value="popularity"
+          >
+            По популярности
+          </div>
+          <div class="selector__option" role="option" data-value="ascending">
+            По возрастанию
+          </div>
+          <div class="selector__option" role="option" data-value="descending">
+            По убыванию
+          </div>
+        </div>
+      </div>
+
+      <!-- Селектор статуса -->
+      <div class="selector">
+        <button class="selector__trigger" aria-haspopup="listbox">
+          Выберите статус
+        </button>
+        <div class="selector__options" role="listbox">
+          <div
+            class="selector__option selector__option--disabled selector__option--color-bg-blue"
+            role="option"
+            data-value="unreserved"
+          >
+            Незарезервированный
+          </div>
+          <div
+            class="selector__option selector__option--selected selector__option--color-bg-violet"
+            role="option"
+            data-value="reserved"
+          >
+            Зарезервированный
+          </div>
+          <div
+            class="selector__option selector__option--color-bg-green"
+            role="option"
+            data-value="closed"
+          >
+            Закрыт
+          </div>
+          <div
+            class="selector__option selector__option--color-bg-orange"
+            role="option"
+            data-value="cancelled"
+          >
+            Отменен
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/index.js" type="module"></script>
+  </body>
+</html>
