@@ -7,6 +7,7 @@ use Api\GetSaleList;
 use Api\GetSaleElements;
 use Api\GetStoragesList;
 use Api\PostAuth;
+use Api\GetCatalog;
 
 header("Referrer-Policy: no-referrer-when-downgrade");
 header("Content-type: application/json");
@@ -22,6 +23,7 @@ header('Content-Type: application/json');
         'Api\GetElementById' => '/api/classes/GetElementById.php',
         'Api\PostAuth' => '/api/classes/PostAuth.php',
         'Api\GetSaleList' => '/api/classes/GetSaleList.php',
+        'Api\GetCatalog' => '/api/classes/GetCatalog.php',
         'Api\GetSaleElements' => '/api/classes/GetSaleElements.php',
         'Api\GetStoragesList' => '/api/classes/GetStorageList.php',
         'Faker\Provider\Base' => '/api/classes/FakerBase.php',
@@ -31,6 +33,7 @@ header('Content-Type: application/json');
 
 return function (RoutingConfigurator $routes)
 { 
+    $routes->get('/api/v1/catalog/', [GetCatalog::class, 'view']);
     $routes->get('/api/v1/catalog/section/{param}/', [GetElementBySection::class, 'view']);
     $routes->get('/api/v1/catalog/element/{id}/', [GetElementById::class, 'view']);
 
