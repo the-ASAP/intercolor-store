@@ -76,6 +76,38 @@ paths:
       tags:
         - Catalog
       summary: Запрос  получения каталога
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: Количество элементов на странице
+          schema:
+            type: integer
+        - name: page
+          in: query
+          required: false
+          description: Номер страницы
+          schema:
+            type: integer
+        - name: sort
+          in: query
+          required: false
+          description: Параметр сортировки
+          schema:
+            type: string
+        - name: order
+          in: query
+          required: false
+          description: Порядок сортировки
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: false
+          description: Параметр фильтрации
+          schema:
+            type: string
+            
       responses:
         "200":
           description: OK
