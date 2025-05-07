@@ -1,0 +1,26 @@
+.breadcrumbs__list {
+  display: flex;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs__item + .breadcrumbs__item::before {
+  content: "";
+  background-image: url("../../assets/icons/breadcrumbs-dot.svg");
+  background-position: center;
+  width: 4px;
+  height: 4px;
+}
+
+.breadcrumbs__item a {
+  color: var(--color-text-dark-medium);
+  text-decoration: none;
+}
+
+.breadcrumbs__item--current {
+  color: var(--color-text-dark);
+  gap: var(--spacing-2);
+}

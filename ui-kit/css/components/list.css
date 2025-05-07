@@ -1,0 +1,116 @@
+.list_large {
+  width: 1088px;
+}
+.list_medium {
+  width: 800px;
+}
+.list_small {
+  width: 566px;
+}
+.cart-list {
+  width: 752px;
+}
+
+.list__item {
+  justify-content: space-between;
+  border-bottom: var(--border-1) solid var(--color-stroke-light);
+}
+
+.product-item__sku {
+  color: var(--color-text-dark-medium);
+}
+.product-item__stock {
+  min-width: 120px;
+  gap: var(--spacing-1);
+}
+.product-item__stock-storage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-item__price_old {
+  color: var(--color-text-dark-medium);
+}
+
+.category-item {
+  padding: var(--spacing-3) var(--spacing-4);
+  gap: var(--spacing-1);
+  width: 536px;
+}
+.category-item:hover {
+  background-color: var(--color-bg-light);
+}
+.category-item__sku {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: var(--color-icon-dark-medium);
+}
+
+.description-list {
+  gap: var(--spacing-2);
+}
+.description-item {
+  padding: var(--spacing-2) 0;
+}
+
+.promotions-item {
+  width: 1120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-bg-white);
+  border-radius: var(--radius-large-3);
+  padding: var(--spacing-3) var(--spacing-4);
+}
+.promotions-item__link {
+  gap: var(--spacing-4);
+  padding: 0;
+  text-decoration: none;
+}
+
+.orders-item {
+  gap: var(--spacing-5);
+}
+.orders-item__warehouse-name {
+  flex: 1;
+}
+
+.cart-item__block {
+  align-items: center;
+  gap: var(--spacing-1);
+}
+.cart-item__block .caption {
+  color: var(--color-text-dark-medium);
+}
+.cart-item__quantity {
+  width: 150px;
+  text-align: center;
+}
+
+.product-item,
+.warehouses-item,
+.orders-item,
+.cart-item {
+  padding: var(--spacing-4) 0;
+}
+
+.product-item__stock,
+.category-item,
+.description-list,
+.promotions-item__link,
+.cart-item__block {
+  display: flex;
+  flex-direction: column;
+}
+
+.list__item,
+.product-item__info,
+.product-item__price,
+.promotions-item__badges,
+.promotions-item__controllers,
+.cart-item__info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}

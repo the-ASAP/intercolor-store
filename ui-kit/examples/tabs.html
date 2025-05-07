@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs</title>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body style="background-color: #d5d5d5">
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
+        padding: var(--spacing-4);
+        align-items: center;
+      "
+    >
+      <div class="tabs" role="tablist" aria-label="Product Tabs">
+        <button
+          id="tab-1"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-1"
+          class="label-1"
+        >
+          В наличии на складах
+        </button>
+        <button
+          id="tab-2"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-2"
+          tabindex="-1"
+          class="label-1"
+        >
+          Характеристики
+        </button>
+        <button
+          id="tab-3"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-3"
+          tabindex="-1"
+          class="label-1"
+        >
+          Описание
+        </button>
+        <button
+          id="tab-4"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-4"
+          tabindex="-1"
+          class="label-1"
+        >
+          Документация
+        </button>
+      </div>
+
+      <div id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+        Содержимое первой вкладки
+      </div>
+      <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+        Содержимое второй вкладки
+      </div>
+      <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+        Содержимое третьей вкладки
+      </div>
+      <div id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
+        Содержимое четвертой вкладки
+      </div>
+    </div>
+    <script src="../js/index.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+.badge {
+  font-size: var(--font-text-caption-size);
+  line-height: var(--font-text-caption-line-height);
+  font-weight: var(--font-text-caption-weight);
+  letter-spacing: var(--font-text-caption-letter-spacing);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-large-3);
+  background-color: var(--color-bg-light);
+}
+
+.badge--status {
+  min-width: 123px;
+}
+
+.badge--dark,
+.badge--selected {
+  color: var(--color-text-white);
+  background-color: var(--color-bg-dark);
+}
+
+.badge--counter {
+  padding: 0 var(--spacing-1);
+  min-width: fit-content;
+}
+.badge--unreserved {
+  background-color: var(--color-bg-blue);
+}
+.badge--reserved {
+  background-color: var(--color-bg-violet);
+}
+.badge--closed {
+  background-color: var(--color-bg-green);
+}
+.badge--cancelled {
+  background-color: var(--color-bg-orange);
+}
+.badge--order-created {
+  background-color: var(--color-bg-pink-2);
+}
+.badge--bill-created {
+  background-color: var(--color-bg-pink);
+}
+.badge--not-selected {
+  color: var(--color-text-medium);
+  background-color: transparent;
+  border: var(--border-1) solid var(--color-stroke-medium);
+}
+.badge--selected {
+  gap: var(--spacing-2);
+}
