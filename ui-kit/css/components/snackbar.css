@@ -1,15 +1,15 @@
 .snackbar {
+  display: none;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-4);
   position: fixed;
   top: 0%;
   right: 0%;
-  min-width: 420px;
   padding: var(--spacing-4) var(--spacing-5);
   border-radius: var(--radius-large-2) 0 0 var(--radius-large-2);
   color: var(--color-text-white);
   background-color: var(--color-bg-dark);
-  display: none;
   z-index: 9999;
 }
 

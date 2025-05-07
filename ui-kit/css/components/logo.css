@@ -1,9 +1,5 @@
-.logo_full,
-.logo_cropped {
-  height: 68px;
-}
 .logo_full {
-  width: 300px;
+  width: 302px;
   content: url("../../assets/logos/logo-full.png");
 }
 .logo_cropped {

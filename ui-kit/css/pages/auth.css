@@ -1,0 +1,6 @@
+.container {
+  align-items: center;
+  height: 100vh;
+  gap: 118px;
+  background-color: var(--color-bg-white);
+}
