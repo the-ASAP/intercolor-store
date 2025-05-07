@@ -26,7 +26,7 @@ class Selector {
     if (this.selectedOption) {
       const bgClass = this.getBackgroundColor(this.selectedOption);
       if (bgClass) this.trigger.classList.add(bgClass);
-      this.updateTriggerText(this.selectedOption.textContent);
+      this.updateTriggerContent(this.selectedOption);
     }
   }
 
@@ -44,7 +44,7 @@ class Selector {
     option.classList.add("selector__option--selected");
     const bgClass = this.getBackgroundColor(option);
     if (bgClass) this.trigger.classList.add(bgClass);
-    this.updateTriggerText(option.textContent);
+    this.updateTriggerContent(option);
     this.toggle();
   }
 
@@ -54,8 +54,8 @@ class Selector {
     );
   }
 
-  updateTriggerText(text) {
-    this.trigger.textContent = text;
+  updateTriggerContent(option) {
+    this.trigger.innerHTML = option.innerHTML;
   }
 
   handleOutsideClick(e) {

@@ -1,18 +1,36 @@
-.radio-input {
+.radio {
   width: var(--icon-24);
   height: var(--icon-24);
   background-color: var(--color-bg-white);
   cursor: pointer;
   border: var(--border-1) solid var(--color-stroke-medium);
   border-radius: 50%;
+  position: relative;
 }
 
-.radio-input:checked {
+.radio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 58%;
+  height: 58%;
+  border-radius: 50%;
+  background-color: var(--color-bg-white);
+  opacity: 0;
+}
+
+.radio:checked::after {
+  opacity: 1;
+}
+
+.radio:checked {
   background-color: var(--color-bg-dark);
-  border-color: var(--color-stroke-dark);
+  border: none;
 }
 
-.radio-input:disabled {
+.radio:disabled {
   border-color: var(--color-stroke-light);
   cursor: not-allowed;
 }

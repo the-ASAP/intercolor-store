@@ -1,7 +1,7 @@
 /* переменные */
 @import url("variables.css");
 
-/* сброс стилей */
+/* сброс стилей и базовые стили*/
 @import url("base.css");
 
 /* стили компонентов */
@@ -9,10 +9,17 @@
 @import url("components/input.css");
 @import url("components/checkbox.css");
 @import url("components/radiobutton.css");
-/* утилиты */
-/* @import url('utilities.css'); */
+@import url("components/snackbar.css");
+@import url("components/pagination.css");
+@import url("components/breadcrumbs.css");
+@import url("components/badge.css");
+@import url("components/button.css");
+@import url("components/chips.css");
+@import url("components/tabs.css");
+@import url("components/cards.css");
+@import url("components/logo.css");
+@import url("components/list.css");
+@import url("components/side-sheet.css");
 
-/* глобальные переопределения */
-/* body {
-  color: var(--color-text-dark);
-} */
+/* вспомогательные классы как tailwind */
+@import url("utilities.css");

@@ -1,94 +1,33 @@
-/* Spacing */
-.m-1 {
-  margin: var(--spacing-1);
-}
-.m-2 {
-  margin: var(--spacing-2);
-}
-.m-3 {
-  margin: var(--spacing-3);
-}
-.m-4 {
-  margin: var(--spacing-4);
-}
-.m-5 {
-  margin: var(--spacing-5);
-}
-.m-6 {
-  margin: var(--spacing-6);
-}
-
-.p-3 {
-  padding: var(--spacing-3);
-}
-
-/* Display & Layout */
-.d-block {
-  display: block;
-}
-.d-inline {
-  display: inline;
-}
-.d-inline-block {
-  display: inline-block;
-}
-.d-flex {
+.flex {
   display: flex;
 }
-.flex-col {
+.column {
   flex-direction: column;
-}
-.items-center {
-  align-items: center;
 }
 .justify-between {
   justify-content: space-between;
 }
-
-/* Text */
-.text-center {
-  text-align: center;
+.align-center {
+  align-items: center;
 }
-.text-uppercase {
-  text-transform: uppercase;
+.gap-1 {
+  gap: var(--spacing-1);
 }
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.gap-2 {
+  gap: var(--spacing-2);
 }
-
-/* Visibility */
-.hidden {
-  display: none !important;
+.gap-3 {
+  gap: var(--spacing-3);
 }
-.visible {
-  visibility: visible !important;
+.gap-4 {
+  gap: var(--spacing-4);
 }
-
-/* Accessibility */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.gap-5 {
+  gap: var(--spacing-5);
 }
-
-/* Clearfix */
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+.gap-6 {
+  gap: var(--spacing-6);
 }
-
-/* Utility for full‐bleed backgrounds */
-.full-bleed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+.width-full {
+  width: 100%;
 }

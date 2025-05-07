@@ -164,6 +164,8 @@
   /* Semantic Colors-Button */
   --color-button-white: var(--color-neutral-100);
   --color-button-light: var(--color-neutral-200);
+  --color-button-medium: var(--color-neutral-300);
   --color-button-dark-medium: var(--color-neutral-400);
   --color-button-dark: var(--color-neutral-600);
+  --color-button-red: var(--color-red-100);
 }
