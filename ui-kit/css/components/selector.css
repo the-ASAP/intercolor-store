@@ -1,0 +1,96 @@
+.selector {
+  position: relative;
+  width: 100%;
+}
+
+.selector--small {
+  max-width: 217px;
+}
+.selector--large {
+  max-width: 268px;
+}
+
+.selector__trigger {
+  font-weight: var(--font-weight-regular);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  background-color: var(--color-bg-white);
+  border: var(--border-1) solid var(--color-stroke-light);
+  border-radius: var(--radius-large-2);
+}
+.selector__trigger--active {
+  border-radius: var(--radius-large-2) var(--radius-large-2) 0 0;
+  border-bottom: none;
+  box-shadow: 0px var(--spacing-1) var(--spacing-1) 0px rgba(0, 0, 0, 0.25);
+}
+.selector__trigger::after {
+  content: "";
+  position: absolute;
+  right: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--icon-24);
+  height: var(--icon-24);
+  background: url("../../assets/icons/arrow.svg");
+}
+.selector__trigger--active::after {
+  transform: rotate(180deg) translateY(50%);
+}
+
+.selector__options {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: var(--color-bg-white);
+  border: var(--border-1) solid var(--color-stroke-light);
+  border-top: none;
+  box-shadow: 0px var(--spacing-1) var(--spacing-1) 0px rgba(0, 0, 0, 0.25);
+  overflow-x: hidden;
+}
+.selector__options--visible {
+  display: block;
+}
+.selector__options--visible:last-child {
+  border-radius: 0 0 var(--radius-large-2) var(--radius-large-2);
+}
+
+.selector__option {
+  position: relative;
+  border-top: var(--border-1) solid var(--color-stroke-light);
+  padding: var(--spacing-2) var(--spacing-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+.selector__option--selected::after {
+  content: "";
+  position: absolute;
+  right: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--icon-24);
+  height: var(--icon-24);
+  background: url("../../assets/icons/check.svg");
+}
+.selector__option--disabled {
+  color: var(--color-text-medium);
+  cursor: not-allowed;
+}
+.selector__option--color-bg-blue {
+  background-color: var(--color-bg-blue);
+}
+.selector__option--color-bg-violet {
+  background-color: var(--color-bg-violet);
+}
+.selector__option--color-bg-green {
+  background-color: var(--color-bg-green);
+}
+.selector__option--color-bg-orange {
+  background-color: var(--color-bg-orange);
+}

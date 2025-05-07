@@ -1,0 +1,18 @@
+.tabs {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.tabs [role="tab"] {
+  position: relative;
+  padding-bottom: var(--spacing-1);
+}
+
+.tabs [role="tab"][aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  border-bottom: var(--border-2) solid var(--color-stroke-dark);
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}

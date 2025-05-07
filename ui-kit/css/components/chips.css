@@ -1,0 +1,8 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background-color: var(--color-bg-white);
+  border-radius: var(--radius-large-2);
+  padding: var(--spacing-1) var(--spacing-3);
+}

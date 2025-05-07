@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breadcrumbs</title>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body style="background-color: #d5d5d5">
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
+        padding: var(--spacing-4);
+        align-items: center;
+      "
+    >
+      <nav class="breadcrumbs">
+        <ol class="breadcrumbs__list">
+          <li class="breadcrumbs__item">
+            <a href="/" class="caption">Главная</a>
+          </li>
+          <li class="breadcrumbs__item">
+            <a href="/category" class="caption">Категория</a>
+          </li>
+          <li class="breadcrumbs__item">
+            <a href="/category/sub" class="caption">Подкатегория</a>
+          </li>
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="caption">Текущая страница</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </body>
+</html>
