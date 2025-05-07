@@ -21,7 +21,9 @@ export function initSideSheets(root = document) {
     btn.addEventListener("click", () => openSheet("filters"));
   });
 
-  overlay.addEventListener("click", closeSheets);
+  if (overlay) {
+    overlay.addEventListener("click", closeSheets);
+  }
   root.querySelectorAll("[data-close]").forEach((btn) => {
     btn.addEventListener("click", closeSheets);
   });

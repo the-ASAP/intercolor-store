@@ -41,6 +41,11 @@
   background-color: var(--color-button-white);
   color: var(--color-button-dark);
 }
+.btn--non-active {
+  background-color: unset;
+  color: var(--color-icon-medium);
+  border: var(--border-1) solid var(--color-stroke-medium);
+}
 .btn--dark {
   background-color: var(--color-button-dark);
   color: var(--color-button-white);
@@ -53,7 +58,6 @@
 .btn--with-icon {
   padding: var(--spacing-2) var(--spacing-3);
   font-weight: var(--font-text-base-weight);
-  min-width: 132px;
   justify-content: flex-start;
 }
 .btn--with-icon[aria-current] {
@@ -61,7 +65,7 @@
 }
 
 .btn--text {
-  padding: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-4);
 }
 .btn--text--large {
   padding: var(--spacing-4);

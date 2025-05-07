@@ -15,6 +15,9 @@
   min-width: 123px;
 }
 
+.badge--light {
+  background-color: var(--color-bg-white);
+}
 .badge--dark,
 .badge--selected {
   color: var(--color-text-white);

@@ -14,6 +14,7 @@
         gap: var(--spacing-4);
         padding: var(--spacing-4);
         align-items: center;
+        width: 100%;
       "
     >
       <!-- Крестик -->
@@ -146,9 +147,8 @@
 
       <!-- Бургер -->
       <button
-        class="btn btn--icon-only--medium btn--light"
+        class="btn btn--icon-only--medium btn--non-active"
         aria-label="Burger menu"
-        disabled
       >
         <svg
           width="20"
@@ -335,7 +335,7 @@
       </button>
 
       <!-- Заказы -->
-      <button class="btn btn--with-icon">
+      <button style="width: 132px" class="btn btn--with-icon">
         <svg
           width="20"
           height="20"
@@ -377,7 +377,11 @@
         Заказы
       </button>
 
-      <button class="btn btn--with-icon" aria-current="page">
+      <button
+        style="width: 132px"
+        class="btn btn--with-icon"
+        aria-current="page"
+      >
         <svg
           width="20"
           height="20"
@@ -420,7 +424,7 @@
       </button>
 
       <!-- Фильтрация -->
-      <button class="btn btn--with-icon btn--light">
+      <button style="width: 132px" class="btn btn--with-icon btn--light">
         <svg
           width="20"
           height="20"

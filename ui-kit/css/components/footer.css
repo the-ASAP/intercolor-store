@@ -1,0 +1,10 @@
+.footer {
+  width: 100%;
+  padding: var(--spacing-5) var(--spacing-6);
+}
+.footer__btn {
+  text-decoration: none;
+}
+.footer__btn:hover {
+  color: #000000;
+}
