@@ -33,7 +33,7 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
             $limit = isset($_GET['limit']) ?? null;
             $filter = [
                 'ACTIVE' => 'Y',
-                'IBLOCK_ID' => 20,
+                'IBLOCK_ID' => 24,
             ];
 
             if (is_numeric($param))
@@ -52,9 +52,10 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                         'NAME',
                         'PREVIEW_TEXT',
                         'DETAIL_TEXT',
-                        'SKU',
+                        'CML2_ARTICLE',
                         'PREVIEW_PICTURE',
-                        'UNIT'
+                        'CML2_BASE_UNIT',
+                        'CML2_MANUFACTURER',
                     ],
                     'filter' => $filter,
                     'limit' => $limit
@@ -69,8 +70,8 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                     'preview' => $arItem['PREVIEW_TEXT'],
                     'detail' => $arItem['DETAIL_TEXT'],
                     'image' => $arItem['PREVIEW_PICTURE'],
-                    'sku' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_SKU_VALUE'],
-                    'unit' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_UNIT_VALUE'],
+                    'sku' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_ARTICLE_VALUE'],
+                    'unit' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_BASE_UNIT_VALUE'],
                 ];
             }
         }
