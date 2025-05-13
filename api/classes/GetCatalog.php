@@ -29,7 +29,7 @@ class GetCatalog  extends \Bitrix\Main\Engine\Controller
     public function viewAction()
     {
 
-        $result =[];
+        $result = [];
         $catalogStructure = \Bitrix\Iblock\SectionTable::getList(
             [
                 'select' => [
@@ -39,11 +39,11 @@ class GetCatalog  extends \Bitrix\Main\Engine\Controller
                     'IBLOCK_SECTION_ID',
                     'CODE',
                     'LEFT_MARGIN',
-                    'ITEM_NAME'=>'ELEMENTS.NAME',
-                    'ITEM_PREVIEW_TEXT'=>'ELEMENTS.PREVIEW_TEXT',
-                    'ITEM_ID'=>'ELEMENTS.ID',
-                    'ITEM_CODE'=>'ELEMENTS.CODE',
-                    'ITEM_PREVIEW_PICTURE'=>'ELEMENTS.PREVIEW_PICTURE',
+                    'ITEM_NAME' => 'ELEMENTS.NAME',
+                    'ITEM_PREVIEW_TEXT' => 'ELEMENTS.PREVIEW_TEXT',
+                    'ITEM_ID' => 'ELEMENTS.ID',
+                    'ITEM_CODE' => 'ELEMENTS.CODE',
+                    'ITEM_PREVIEW_PICTURE' => 'ELEMENTS.PREVIEW_PICTURE',
                 ],
                 'filter' => [
                     '=IBLOCK_ID' => 20,
@@ -52,73 +52,74 @@ class GetCatalog  extends \Bitrix\Main\Engine\Controller
                 'order' => [
                     'SORT' => 'ASC'
                 ],
-                'runtime'=>
+                'runtime' =>
                 [
-                    'ELEMENTS'=>
+                    'ELEMENTS' =>
                     [
-                        'data_type'=>\Bitrix\Iblock\Elements\ElementServicecatalogTable::class,
+                        'data_type' => \Bitrix\Iblock\Elements\ElementServicecatalogTable::class,
                         'reference' => [
                             '=this.ID' => 'ref.IBLOCK_SECTION_ID',
                             '=ref.ACTIVE' =>  new \Bitrix\Main\DB\SqlExpression('?', 'Y'),
                             '=ref.IBLOCK_ID' => new \Bitrix\Main\DB\SqlExpression('?', 20),
                         ],
                         'join_type' => 'INNER',
+                        new \Bitrix\Main\DB\SqlExpression('?s', 'limit 5'),
                     ]
                 ]
             ]
         )->fetchAll();
 
         $filter = [
-            'characteristics'=>[
+            'characteristics' => [
                 [
-                    'color'=>[
-                        'name'=>'Цвет',
-                        'value'=>[
+                    'color' => [
+                        'name' => 'Цвет',
+                        'value' => [
                             [
-                                'id'=>1,
-                                'name'=>'Красный',
+                                'id' => 1,
+                                'name' => 'Красный',
                             ],
                             [
-                                'id'=>2,
-                                'name'=>'Синий',
+                                'id' => 2,
+                                'name' => 'Синий',
                             ],
                             [
-                                'id'=>3,
-                                'name'=>'Зеленый',
-                            ],
-                        ]
-                        ],
-                    'size'=>[
-                        'name'=>'Размер',
-                        'value'=>[
-                            [
-                                'id'=>1,
-                                'name'=>'Маленький',
-                            ],
-                            [
-                                'id'=>2,
-                                'name'=>'Средний',
-                            ],
-                            [
-                                'id'=>3,
-                                'name'=>'Большой',
+                                'id' => 3,
+                                'name' => 'Зеленый',
                             ],
                         ]
                     ],
-                    'material'=>[
-                        'name'=>'Материал',
-                        'value'=>[
+                    'size' => [
+                        'name' => 'Размер',
+                        'value' => [
                             [
-                                'id'=>1,
-                                'name'=>'Дерево',
+                                'id' => 1,
+                                'name' => 'Маленький',
                             ],
                             [
-                                'id'=>2,
-                                'name'=>'Металл',
+                                'id' => 2,
+                                'name' => 'Средний',
                             ],
                             [
-                                'id'=>3,
-                                'name'=>'Пластик',
+                                'id' => 3,
+                                'name' => 'Большой',
+                            ],
+                        ]
+                    ],
+                    'material' => [
+                        'name' => 'Материал',
+                        'value' => [
+                            [
+                                'id' => 1,
+                                'name' => 'Дерево',
+                            ],
+                            [
+                                'id' => 2,
+                                'name' => 'Металл',
+                            ],
+                            [
+                                'id' => 3,
+                                'name' => 'Пластик',
                             ],
                         ]
                     ],
@@ -144,73 +145,77 @@ class GetCatalog  extends \Bitrix\Main\Engine\Controller
             ]
 
         ];
-        foreach($catalogStructure as $struct)
+        foreach ($catalogStructure as $struct)
         {
-            $result['section'][$struct['IBLOCK_SECTION_ID']]['id'] = $struct['IBLOCK_SECTION_ID']??0;
+            $result['section'][$struct['IBLOCK_SECTION_ID']]['id'] = $struct['IBLOCK_SECTION_ID'] ?? 0;
             $result['section'][$struct['IBLOCK_SECTION_ID']]['name'] = $struct['NAME'];
-            $result['section'][$struct['IBLOCK_SECTION_ID']]['code'] = $struct['CODE']?? \CUtil::translit($struct['NAME'], 'ru',
+            $result['section'][$struct['IBLOCK_SECTION_ID']]['code'] = $struct['CODE'] ?? \CUtil::translit(
+                $struct['NAME'],
+                'ru',
                 [
                     'replace_space' => '-',
                     'replace_other' => '-',
                 ]
             );
-                $result['section'][$struct['IBLOCK_SECTION_ID']]['items'][] = [
+            $result['section'][$struct['IBLOCK_SECTION_ID']]['items'][] = [
                 'id' => $struct['ITEM_ID'],
                 'name' => $struct['ITEM_NAME'],
                 'preview' => $struct['ITEM_PREVIEW_TEXT'],
-                'code' => $struct['ITEM_CODE']?? \CUtil::translit($struct['ITEM_NAME'], 'ru',
+                'code' => $struct['ITEM_CODE'] ?? \CUtil::translit(
+                    $struct['ITEM_NAME'],
+                    'ru',
                     [
                         'replace_space' => '-',
                         'replace_other' => '-',
                     ]
                 ),
                 'image' => \CFile::GetPath($struct['ITEM_PREVIEW_PICTURE']),
-                'price'=>10500,
-                'old_price'=>15000,
-                'total_count'=>15,
-                'stocks'=>[
+                'price' => 10500,
+                'old_price' => 15000,
+                'total_count' => 15,
+                'stocks' => [
                     [
-                        'id'=>1,
-                        'name'=>'Склад 1',
-                        'count'=>10,
+                        'id' => 1,
+                        'name' => 'Склад 1',
+                        'count' => 10,
                     ],
                     [
-                        'id'=>2,
-                        'name'=>'Склад 2',
-                        'count'=>5,
+                        'id' => 2,
+                        'name' => 'Склад 2',
+                        'count' => 5,
                     ],
                 ]
             ];
         }
-        $result['filter']=$filter;
-        $result['pagination'] =[
-            'page'=>1,
-            'itemsPerPage'=>10,
-            'total'=>100,
+        $result['filter'] = $filter;
+        $result['pagination'] = [
+            'page' => 1,
+            'itemsPerPage' => 10,
+            'total' => 100,
         ];
         $result['sorting'] = [
-            'sort'=>[
+            'sort' => [
                 [
-                    'value'=>'name',
-                    'name'=>'По имени',
+                    'value' => 'name',
+                    'name' => 'По имени',
                 ],
                 [
-                    'value'=>'price',
-                    'name'=>'По цене',
+                    'value' => 'price',
+                    'name' => 'По цене',
                 ],
                 [
-                    'value'=>'date',
-                    'name'=>'По дате',
+                    'value' => 'date',
+                    'name' => 'По дате',
                 ],
             ],
-            'order'=>[
+            'order' => [
                 [
-                    'id'=>'asc',
-                    'name'=>'По возрастанию',
+                    'id' => 'asc',
+                    'name' => 'По возрастанию',
                 ],
                 [
-                    'id'=>'desc',
-                    'name'=>'По убыванию',
+                    'id' => 'desc',
+                    'name' => 'По убыванию',
                 ],
             ]
         ];

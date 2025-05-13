@@ -36,9 +36,11 @@ class GetElementById  extends \Bitrix\Main\Engine\Controller
                     'NAME',
                     'PREVIEW_TEXT',
                     'DETAIL_TEXT',
-                    'SKU',
+                    'CML2_ARTICLE',
                     'PREVIEW_PICTURE',
-                    'UNIT'
+                    'CML2_BASE_UNIT',
+                    'CML2_MANUFACTURER',
+
 
                 ],
                 'limit' => 1,
@@ -56,10 +58,10 @@ class GetElementById  extends \Bitrix\Main\Engine\Controller
             'preview' => $getElement['PREVIEW_TEXT'],
             'detail' => Lorem::text(1200),
             'image' => $getElement['PREVIEW_PICTURE'],
-            'sku' => $getElement['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_SKU_VALUE'],
-            'unit' => $getElement['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_UNIT_VALUE'],
-            'delivery'=>'Доставка 19 ноября',
-            'documents'=> [
+            'sku' => $getElement['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_ARTICLE_VALUE'],
+            'unit' => $getElement['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_BASE_UNIT_VALUE'],
+            'delivery' => 'Доставка 19 ноября',
+            'documents' => [
                 [
                     'name' => 'Тестовый документ 1',
                     'url' => 'https://example.com/doc1.pdf',
@@ -69,7 +71,7 @@ class GetElementById  extends \Bitrix\Main\Engine\Controller
                     'url' => 'https://example.com/doc2.pdf',
                 ],
             ],
-            'storages'=> [
+            'storages' => [
                 [
                     'name' => 'Склад 1',
                     'stock' => 10,
@@ -85,20 +87,20 @@ class GetElementById  extends \Bitrix\Main\Engine\Controller
             ],
             'characteristics' => [
                 [
-                    'name'=>'Бренд',
-                    'value'=>'Тестовый бренд',
+                    'name' => 'Бренд',
+                    'value' => 'Тестовый бренд',
                 ],
                 [
-                    'name'=>'Модель',
-                    'value'=>'Тестовая модель',
+                    'name' => 'Модель',
+                    'value' => 'Тестовая модель',
                 ],
                 [
-                    'name'=>'Гарантия',
-                    'value'=>'12 месяцев',
+                    'name' => 'Гарантия',
+                    'value' => '12 месяцев',
                 ],
                 [
-                    'name'=>'Страна производитель',
-                    'value'=>'Китай',
+                    'name' => 'Страна производитель',
+                    'value' => 'Китай',
                 ],
                 [
                     'name' => 'Тестовая характеристика 1',
