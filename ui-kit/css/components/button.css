@@ -1,0 +1,107 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.btn--icon-only--small,
+.btn--icon-only,
+.btn--icon-only--medium {
+  border-radius: var(--radius-large-1);
+}
+
+.btn--icon-only--small {
+  width: var(--icon-20);
+  height: var(--icon-20);
+}
+.btn--icon-only {
+  width: var(--icon-24);
+  height: var(--icon-24);
+}
+.btn--icon-only--medium {
+  width: var(--icon-36);
+  height: var(--icon-36);
+}
+.btn--icon-only--large {
+  width: var(--icon-40);
+  height: var(--icon-40);
+}
+.btn--icon-only--rounded {
+  border-radius: var(--radius-large-4);
+}
+.btn--icon-only:disabled {
+  background-color: transparent;
+  color: var(--color-icon-medium);
+  border: var(--border-2) solid var(--color-icon-medium);
+  cursor: not-allowed;
+}
+
+.btn--light {
+  background-color: var(--color-button-white);
+  color: var(--color-button-dark);
+}
+.btn--non-active {
+  background-color: unset;
+  color: var(--color-icon-medium);
+  border: var(--border-1) solid var(--color-stroke-medium);
+}
+.btn--dark {
+  background-color: var(--color-button-dark);
+  color: var(--color-button-white);
+}
+.btn--red {
+  background-color: var(--color-button-red);
+  color: var(--color-button-white);
+}
+
+.btn--with-icon {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-weight: var(--font-text-base-weight);
+  justify-content: flex-start;
+}
+.btn--with-icon[aria-current] {
+  background-color: var(--color-button-light);
+}
+
+.btn--text {
+  padding: var(--spacing-2) var(--spacing-4);
+}
+.btn--text--large {
+  padding: var(--spacing-4);
+}
+.btn--text:disabled,
+.btn--text--large:disabled {
+  background-color: var(--color-button-dark-medium);
+  color: var(--color-text-medium);
+  cursor: not-allowed;
+}
+.btn--with-icon,
+.btn--text,
+.btn--text--large {
+  gap: var(--spacing-2);
+}
+
+.btn--outline {
+  background-color: transparent;
+  border: var(--border-1) solid var(--color-button-dark);
+  color: var(--color-button-dark);
+}
+.btn--outline:disabled {
+  background-color: transparent;
+  border-color: var(--color-button-medium);
+  color: var(--color-button-medium);
+  cursor: not-allowed;
+}
+.btn--outline--red {
+  border: var(--border-1) solid var(--color-button-red);
+  color: var(--color-button-red);
+}
+
+.btn--icon-only--large,
+.btn--with-icon,
+.btn--text,
+.btn--text--large,
+.btn--outline {
+  border-radius: var(--radius-large-2);
+}

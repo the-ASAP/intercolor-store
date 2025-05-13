@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  /* Spacing */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+  --spacing-6: 40px;
+
+  /* Radius */
+  --radius-large-1: 4px;
+  --radius-large-2: 8px;
+  --radius-large-3: 16px;
+  --radius-large-4: 40px;
+
+  /* Icon */
+  --icon-20: 20px;
+  --icon-24: 24px;
+  --icon-36: 36px;
+  --icon-40: 40px;
+
+  /* Border */
+  --border-1: 1px;
+  --border-2: 1.5px;
+
+  /* Typography */
+  --font-family: "Inter", sans-serif;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Heading */
+  --font-heading-1-size: 24px;
+  --font-heading-1-line-height: 28px;
+  --font-heading-1-weight: var(--font-weight-semibold);
+  --font-heading-1-letter-spacing: 0;
+
+  --font-heading-2-size: 20px;
+  --font-heading-2-line-height: 24px;
+  --font-heading-2-weight: var(--font-weight-medium);
+  --font-heading-2-letter-spacing: -0.03em;
+
+  /* Text/Number */
+  --font-text-number-1-size: 20px;
+  --font-text-number-1-line-height: 24px;
+  --font-text-number-1-weight: var(--font-weight-semibold);
+  --font-text-number-1-letter-spacing: -0.03em;
+
+  --font-text-number-2-size: 16px;
+  --font-text-number-2-line-height: 20px;
+  --font-text-number-2-weight: var(--font-weight-regular);
+  --font-text-number-2-letter-spacing: -0.03em;
+
+  --font-text-number-3-size: 16px;
+  --font-text-number-3-line-height: 20px;
+  --font-text-number-3-weight: var(--font-weight-medium);
+  --font-text-number-3-letter-spacing: -0.03em;
+  --font-text-number-3-text-decoration-line: line-through;
+
+  /* Base Text */
+  --font-text-base-size: 16px;
+  --font-text-base-line-height: 24px;
+  --font-text-base-weight: var(--font-weight-regular);
+  --font-text-base-letter-spacing: -0.03em;
+
+  /* Label */
+  --font-text-label-size: 14px;
+  --font-text-label-line-height: 20px;
+  --font-text-label-weight: var(--font-weight-regular);
+  --font-text-label-letter-spacing: -0.03em;
+
+  /* Caption */
+  --font-text-caption-size: 12px;
+  --font-text-caption-line-height: 16px;
+  --font-text-caption-weight: var(--font-weight-regular);
+  --font-text-caption-letter-spacing: -0.03em;
+
+  /* Button */
+  --font-text-button-size: 16px;
+  --font-text-button-line-height: 24px;
+  --font-text-button-weight: var(--font-weight-semibold);
+  --font-text-button-letter-spacing: -0.03em;
+
+  /* Link */
+  --font-text-link-size: 16px;
+  --font-text-link-line-height: 24px;
+  --font-text-link-weight: var(--font-weight-medium);
+  --font-text-link-letter-spacing: -0.03em;
+  --font-text-link-text-decoration: underline solid 0%;
+  --font-text-link-text-underline-offset: 0%;
+
+  /* Colors */
+  /* BaseColors-Neutral */
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #e1e1e1;
+  --color-neutral-300: #999999;
+  --color-neutral-400: #696969;
+  --color-neutral-500: #4e4e4e;
+  --color-neutral-600: #323232;
+
+  /* BaseColors-Green */
+  --color-green-100: #b8efd0;
+  --color-green-200: #13924c;
+
+  /* BaseColors-Red */
+  --color-red-100: #c20e1a;
+
+  /* BaseColors-Blue */
+  --color-blue-100: #bcdef3;
+
+  /* BaseColors-Orange */
+  --color-orange-100: #ebb77b;
+
+  /* BaseColors-Violet */
+  --color-violet-100: #c5c7ed;
+
+  /* BaseColors-Pink */
+  --color-pink-100: #fdcaed;
+  --color-pink-200: #ffb2b2;
+
+  /* BaseColors-Transparent */
+  --color-transparent-100: rgba(0, 0, 0, 0.5);
+
+  /* Semantic Colors-Background */
+  --color-bg-white: var(--color-neutral-100);
+  --color-bg-light: var(--color-neutral-200);
+  --color-bg-dark: var(--color-neutral-600);
+  --color-bg-blue: var(--color-blue-100);
+  --color-bg-orange: var(--color-orange-100);
+  --color-bg-violet: var(--color-violet-100);
+  --color-bg-green: var(--color-green-100);
+  --color-bg-pink: var(--color-pink-100);
+  --color-bg-pink-2: var(--color-pink-200);
+
+  /* Semantic Colors-Text */
+  --color-text-white: var(--color-neutral-100);
+  --color-text-light: var(--color-neutral-200);
+  --color-text-medium: var(--color-neutral-300);
+  --color-text-dark-medium: var(--color-neutral-400);
+  --color-text-dark: var(--color-neutral-600);
+  --color-text-error: var(--color-red-100);
+
+  /* Semantic Colors-Stroke */
+  --color-stroke-light: var(--color-neutral-200);
+  --color-stroke-medium: var(--color-neutral-300);
+  --color-stroke-dark: var(--color-neutral-600);
+  --color-stroke-error: var(--color-red-100);
+
+  /* Semantic Colors-Icons */
+  --color-icon-white: var(--color-neutral-100);
+  --color-icon-light: var(--color-neutral-200);
+  --color-icon-medium: var(--color-neutral-300);
+  --color-icon-dark-medium: var(--color-neutral-400);
+  --color-icon-dark: var(--color-neutral-600);
+
+  /* Semantic Colors-States */
+  --color-state-error: var(--color-red-100);
+  --color-state-success: var(--color-green-200);
+
+  /* Semantic Colors-Button */
+  --color-button-white: var(--color-neutral-100);
+  --color-button-light: var(--color-neutral-200);
+  --color-button-medium: var(--color-neutral-300);
+  --color-button-dark-medium: var(--color-neutral-400);
+  --color-button-dark: var(--color-neutral-600);
+  --color-button-red: var(--color-red-100);
+}
