@@ -47,7 +47,7 @@ class GetElementById  extends \Bitrix\Main\Engine\Controller
                 'filter' => [
                     '=ID' => $id,
                     'ACTIVE' => 'Y',
-                    'IBLOCK_ID' => 20
+                    'IBLOCK_ID' => 24
                 ],
             ]
         )->fetch();
@@ -56,7 +56,7 @@ class GetElementById  extends \Bitrix\Main\Engine\Controller
             'id' => (int)$getElement['ID'],
             'name' => (string)$getElement['NAME'],
             'preview' => $getElement['PREVIEW_TEXT'],
-            'detail' => Lorem::text(1200),
+            'detail' => '',
             'image' => $getElement['PREVIEW_PICTURE'],
             'sku' => $getElement['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_ARTICLE_VALUE'],
             'unit' => $getElement['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_BASE_UNIT_VALUE'],
