@@ -316,65 +316,154 @@
     <div class="content-wrapper">
         <main>
             <h1>Склады</h1>
-            <ul class="warehouses-list">
+            <ul class="list warehouses-list">
                 <li class="list__item warehouses-item">
-                    <div class="warehouses-item__name">Центральный</div>
-                    <div class="warehouses-item__city">Санкт-Петербург</div>
-                    <div class="warehouses-item__phone">+7-812-325-37-53</div>
-                    <div class="warehouses-item__mail">info@neva.intercolor.ru</div>
+                    <div
+                        class="warehouses-item__field warehouses-item__name"
+                        title="Центральный">
+                        Центральный
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__city"
+                        title="Санкт-Петербург">
+                        Санкт-Петербург
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__phone"
+                        title="+7-812-325-37-53">
+                        +7-812-325-37-53
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__mail"
+                        title="info@neva.intercolor.ru">
+                        info@neva.intercolor.ru
+                    </div>
                     <button class="btn btn--text btn--dark">Посмотреть товары</button>
                 </li>
                 <li class="list__item warehouses-item">
-                    <div class="warehouses-item__name">Центральный</div>
-                    <div class="warehouses-item__city">Санкт-Петербург</div>
-                    <div class="warehouses-item__phone">+7-812-325-37-53</div>
-                    <div class="warehouses-item__mail">info@neva.intercolor.ru</div>
+                    <div
+                        class="warehouses-item__field warehouses-item__name"
+                        title="Центральный">
+                        Центральный
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__city"
+                        title="Санкт-Петербург">
+                        Санкт-Петербург
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__phone"
+                        title="+7-812-325-37-53">
+                        +7-812-325-37-53
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__mail"
+                        title="info@neva.intercolor.ru">
+                        info@neva.intercolor.ru
+                    </div>
                     <button class="btn btn--text btn--dark">Посмотреть товары</button>
                 </li>
                 <li class="list__item warehouses-item">
-                    <div class="warehouses-item__name">Центральный</div>
-                    <div class="warehouses-item__city">Санкт-Петербург</div>
-                    <div class="warehouses-item__phone">+7-812-325-37-53</div>
-                    <div class="warehouses-item__mail">info@neva.intercolor.ru</div>
+                    <div
+                        class="warehouses-item__field warehouses-item__name"
+                        title="Центральный">
+                        Центральный
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__city"
+                        title="Санкт-Петербург">
+                        Санкт-Петербург
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__phone"
+                        title="+7-812-325-37-53">
+                        +7-812-325-37-53
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__mail"
+                        title="info@neva.intercolor.ru">
+                        info@neva.intercolor.ru
+                    </div>
                     <button class="btn btn--text btn--dark">Посмотреть товары</button>
                 </li>
                 <li class="list__item warehouses-item">
-                    <div class="warehouses-item__name">Центральный</div>
-                    <div class="warehouses-item__city">Санкт-Петербург</div>
-                    <div class="warehouses-item__phone">+7-812-325-37-53</div>
-                    <div class="warehouses-item__mail">info@neva.intercolor.ru</div>
+                    <div
+                        class="warehouses-item__field warehouses-item__name"
+                        title="Центральный">
+                        Центральный
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__city"
+                        title="Санкт-Петербург">
+                        Санкт-Петербург
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__phone"
+                        title="+7-812-325-37-53">
+                        +7-812-325-37-53
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__mail"
+                        title="info@neva.intercolor.ru">
+                        info@neva.intercolor.ru
+                    </div>
                     <button class="btn btn--text btn--dark">Посмотреть товары</button>
                 </li>
                 <li class="list__item warehouses-item">
-                    <div class="warehouses-item__name">Центральный</div>
-                    <div class="warehouses-item__city">Санкт-Петербург</div>
-                    <div class="warehouses-item__phone">+7-812-325-37-53</div>
-                    <div class="warehouses-item__mail">info@neva.intercolor.ru</div>
+                    <div
+                        class="warehouses-item__field warehouses-item__name"
+                        title="Центральный">
+                        Центральный
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__city"
+                        title="Санкт-Петербург">
+                        Санкт-Петербург
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__phone"
+                        title="+7-812-325-37-53">
+                        +7-812-325-37-53
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__mail"
+                        title="info@neva.intercolor.ru">
+                        info@neva.intercolor.ru
+                    </div>
                     <button class="btn btn--text btn--dark">Посмотреть товары</button>
                 </li>
                 <li class="list__item warehouses-item">
-                    <div class="warehouses-item__name">Центральный</div>
-                    <div class="warehouses-item__city">Санкт-Петербург</div>
-                    <div class="warehouses-item__phone">+7-812-325-37-53</div>
-                    <div class="warehouses-item__mail">info@neva.intercolor.ru</div>
-                    <button class="btn btn--text btn--dark">Посмотреть товары</button>
-                </li>
-                <li class="list__item warehouses-item">
-                    <div class="warehouses-item__name">Центральный</div>
-                    <div class="warehouses-item__city">Санкт-Петербург</div>
-                    <div class="warehouses-item__phone">+7-812-325-37-53</div>
-                    <div class="warehouses-item__mail">info@neva.intercolor.ru</div>
+                    <div
+                        class="warehouses-item__field warehouses-item__name"
+                        title="Центральный">
+                        Центральный
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__city"
+                        title="Санкт-Петербург">
+                        Санкт-Петербург
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__phone"
+                        title="+7-812-325-37-53">
+                        +7-812-325-37-53
+                    </div>
+                    <div
+                        class="warehouses-item__field warehouses-item__mail"
+                        title="info@neva.intercolor.ru">
+                        info@neva.intercolor.ru
+                    </div>
                     <button class="btn btn--text btn--dark">Посмотреть товары</button>
                 </li>
             </ul>
         </main>
 
-        <footer class="footer flex items-center justify-between">
-            <span class="footer__rights">© 2025 Магазин ГК «Интерколор»</span>
-            <div class="footer-buttons flex gap-2">
-                <a href="#" class="footer__btn label-1">О компании</a>
-                <a href="#" class="footer__btn label-1">Соглашение</a>
-                <a href="#" class="footer__btn label-1">Контакты</a>
+        <footer class="flex items-center justify-between width-full">
+            <span>© 2025 Магазин ГК «Интерколор»</span>
+            <div class="flex gap-2">
+                <a href="#" class="no-underline label-1">О компании</a>
+                <a href="#" class="no-underline label-1">Соглашение</a>
+                <a href="#" class="no-underline label-1">Контакты</a>
             </div>
         </footer>
     </div>

@@ -24,7 +24,7 @@
 /* стили страниц или компонентов со страниц */
 @import url("pages/auth.css");
 @import url("components/sidebar.css");
-@import url("components/footer.css");
+@import url("pages/allcategories.css");
 
 /* вспомогательные классы как tailwind */
 @import url("utilities.css");

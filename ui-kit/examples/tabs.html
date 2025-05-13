@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tabs</title>
-    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="/ui-kit/css/main.css" />
   </head>
   <body style="background-color: #d5d5d5">
     <div
@@ -15,63 +15,143 @@
         padding: var(--spacing-4);
         align-items: center;
         width: 100%;
+        height: 150px;
       "
     >
-      <div class="tabs" role="tablist" aria-label="Product Tabs">
-        <button
-          id="tab-1"
-          role="tab"
-          aria-selected="true"
-          aria-controls="panel-1"
-          class="label-1"
-        >
-          В наличии на складах
-        </button>
-        <button
-          id="tab-2"
-          role="tab"
-          aria-selected="false"
-          aria-controls="panel-2"
-          tabindex="-1"
-          class="label-1"
-        >
-          Характеристики
-        </button>
-        <button
-          id="tab-3"
-          role="tab"
-          aria-selected="false"
-          aria-controls="panel-3"
-          tabindex="-1"
-          class="label-1"
-        >
-          Описание
-        </button>
-        <button
-          id="tab-4"
-          role="tab"
-          aria-selected="false"
-          aria-controls="panel-4"
-          tabindex="-1"
-          class="label-1"
-        >
-          Документация
-        </button>
-      </div>
+      <div class="flex column gap-4 width-full">
+        <div class="tabs" role="tablist" aria-label="Product Tabs">
+          <button
+            id="tab-1"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-1"
+            class="label-1"
+          >
+            В наличии на складах
+          </button>
+          <button
+            id="tab-2"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-2"
+            tabindex="-1"
+            class="label-1"
+          >
+            Характеристики
+          </button>
+          <button
+            id="tab-3"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-3"
+            tabindex="-1"
+            class="label-1"
+          >
+            Описание
+          </button>
+          <button
+            id="tab-4"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-4"
+            tabindex="-1"
+            class="label-1"
+          >
+            Документация
+          </button>
+        </div>
 
-      <div id="panel-1" role="tabpanel" aria-labelledby="tab-1">
-        Содержимое первой вкладки
-      </div>
-      <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
-        Содержимое второй вкладки
-      </div>
-      <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
-        Содержимое третьей вкладки
-      </div>
-      <div id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
-        Содержимое четвертой вкладки
+        <div
+          class="tabs__panel"
+          id="panel-1"
+          role="tabpanel"
+          aria-labelledby="tab-1"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+          molestie mi eu finibus placerat. Etiam in ante magna. Pellentesque
+          sapien orci, sagittis ut velit eu, tempor tempus elit. Quisque nisi
+          nisi, tempus sed vestibulum in, cursus vitae leo. Ut pellentesque
+          tempus sem, et gravida tellus fringilla id. Quisque ac diam venenatis
+          neque iaculis volutpat. Aliquam efficitur hendrerit ante sed gravida.
+          Duis vel augue a erat molestie faucibus. Donec pulvinar, odio at
+          tempus fringilla, sapien odio elementum velit, sit amet molestie dui
+          felis et lectus. Suspendisse rutrum odio porta lectus molestie, in
+          euismod lorem tincidunt. Cras vestibulum orci sed egestas malesuada.
+          Donec convallis nisl commodo mollis facilisis. Nunc non ex odio.
+          Vestibulum viverra nunc leo, non commodo nunc egestas sit amet.
+          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+          posuere cubilia curae; Donec finibus pharetra lacus, vitae consectetur
+          sapien efficitur ac. Vestibulum ut odio dolor. Phasellus commodo
+          aliquet felis eleifend sodales. Ut non convallis quam. Sed
+          pellentesque ultrices lectus id dignissim. Suspendisse bibendum vitae
+          enim ac aliquet. Suspendisse lectus risus, feugiat ac aliquam mollis,
+          interdum quis nibh. Quisque euismod gravida dapibus. Nam porta tortor
+          mi, id pharetra nisl fermentum sed. Curabitur elementum magna cursus
+          risus elementum pretium. Quisque ultrices magna nec felis vulputate
+          congue. Sed cursus, nisi at feugiat dictum, velit diam sodales ipsum,
+          at suscipit arcu massa in ex. Proin vitae sem id arcu consectetur
+          pulvinar porta in ex. Cras elementum viverra viverra. Etiam id massa
+          velit. In vitae euismod lorem. Quisque erat enim, suscipit at mollis
+          vitae, porttitor non tortor. Cras in rutrum magna, et blandit lacus.
+          Vestibulum pharetra eu nisl at dapibus. Mauris et vestibulum ante, vel
+          maximus ipsum. Nullam eget nulla turpis. Nulla cursus faucibus nulla,
+          nec eleifend justo tristique ut. Phasellus leo quam, sagittis et
+          turpis nec, tempus blandit ex. Nulla purus enim, porta quis metus nec,
+          cursus accumsan nibh. Donec dictum, leo vel vehicula ultricies, nunc
+          metus facilisis enim, sit amet vehicula sem purus ut erat. Integer
+          porttitor id quam eu placerat. Integer at nisl ut ex consequat
+          fringilla sit amet vel dolor. Aenean congue tortor ac libero eleifend
+          facilisis. Donec iaculis commodo semper. Cras ipsum neque, pulvinar et
+          lacinia at, pulvinar sed turpis. Donec gravida tellus sed feugiat
+          fringilla. Praesent molestie libero et elit cursus dignissim. Praesent
+          sit amet urna metus. In porta ullamcorper lorem, vitae gravida turpis
+          interdum eget. Vestibulum ac vestibulum nisl. Aliquam quis velit
+          egestas, suscipit leo sed, hendrerit metus. Aliquam urna eros,
+          porttitor quis tristique vel, varius sed nisi. Nam aliquam diam eu
+          vehicula malesuada. Sed mauris lacus, bibendum sit amet tempor ut,
+          finibus in mauris. Vestibulum quis purus nunc. Sed hendrerit dignissim
+          odio, a rutrum tellus molestie quis. Sed volutpat euismod lorem, non
+          consectetur risus gravida a. Integer nisi enim, imperdiet nec tellus
+          nec, scelerisque tincidunt turpis. Phasellus et dolor eget arcu rutrum
+          venenatis. Morbi quis elit id mauris bibendum aliquam. Sed sagittis
+          lorem augue, feugiat ornare enim gravida iaculis. Vestibulum ante
+          ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+          curae; Ut id neque a velit tristique hendrerit sit amet eget nibh.
+          Mauris nibh est, tincidunt sed lorem ac, aliquet rutrum urna. Ut
+          volutpat hendrerit rutrum. Suspendisse venenatis orci in tempus
+          luctus. Duis feugiat ante in sapien sagittis accumsan. Sed facilisis,
+          odio non ultricies maximus, turpis massa efficitur elit, vel tempor
+          elit purus eget libero. Sed vitae cursus turpis, sed eleifend nunc.
+        </div>
+        <div
+          class="tabs__panel"
+          id="panel-2"
+          role="tabpanel"
+          aria-labelledby="tab-2"
+          hidden
+        >
+          Содержимое второй вкладки
+        </div>
+        <div
+          class="tabs__panel"
+          id="panel-3"
+          role="tabpanel"
+          aria-labelledby="tab-3"
+          hidden
+        >
+          Содержимое третьей вкладки
+        </div>
+        <div
+          class="tabs__panel"
+          id="panel-4"
+          role="tabpanel"
+          aria-labelledby="tab-4"
+          hidden
+        >
+          Содержимое четвертой вкладки
+        </div>
       </div>
     </div>
-    <script src="../js/index.js" type="module"></script>
+    <script src="/ui-kit/js/index.js" type="module"></script>
   </body>
 </html>

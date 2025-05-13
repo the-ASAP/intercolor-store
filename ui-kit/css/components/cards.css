@@ -9,6 +9,7 @@
 }
 .card-thumb__img {
   width: var(--icon-40);
+  min-width: var(--icon-40);
   height: var(--icon-40);
   object-fit: cover;
 }

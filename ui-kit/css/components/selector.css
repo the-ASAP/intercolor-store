@@ -34,7 +34,7 @@
   transform: translateY(-50%);
   width: var(--icon-24);
   height: var(--icon-24);
-  background: url("../../assets/icons/arrow.svg");
+  background: url("/ui-kit/assets/icons/arrow.svg");
 }
 .selector__trigger--active::after {
   transform: rotate(180deg) translateY(50%);
@@ -76,7 +76,7 @@
   transform: translateY(-50%);
   width: var(--icon-24);
   height: var(--icon-24);
-  background: url("../../assets/icons/check.svg");
+  background: url("/ui-kit/assets/icons/check.svg");
 }
 .selector__option--disabled {
   color: var(--color-text-medium);
