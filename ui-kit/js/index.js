@@ -8,6 +8,7 @@ import { initSideSheets } from "./components/side-sheet.js";
 import { initAuth } from "./pages/auth.js";
 import { initSidebar } from "./components/sidebar.js";
 import { API_URL, AUTH_PATH } from "./config.js";
+import { initAllCategories } from "./pages/all_categories.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initSelectors();
@@ -19,4 +20,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initSideSheets();
   initAuth(API_URL, AUTH_PATH);
   initSidebar();
+  initAllCategories();
 });

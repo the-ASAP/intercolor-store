@@ -5,8 +5,8 @@ export function initCardGallery(root = document) {
     const navNext = gallery.querySelector(".card-gallery__nav_next");
     let idx = 0;
     const images = [
-      "../assets/images/productImg1.png",
-      "../assets/images/productImg2.png",
+      "/ui-kit/assets/images/productImg1.png",
+      "/ui-kit/assets/images/productImg2.png",
     ];
 
     function update() {

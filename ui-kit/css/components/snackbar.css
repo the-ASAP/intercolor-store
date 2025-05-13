@@ -4,7 +4,7 @@
   align-items: center;
   gap: var(--spacing-4);
   position: fixed;
-  top: 0%;
+  top: var(--spacing-5);
   right: 0%;
   padding: var(--spacing-4) var(--spacing-5);
   border-radius: var(--radius-large-2) 0 0 var(--radius-large-2);
