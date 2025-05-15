@@ -35,7 +35,7 @@ return function (RoutingConfigurator $routes)
 {
     $routes->get('/api/v1/catalog/', [GetCatalog::class, 'view']);
 
-    $routes->get('/api/v1/catalog/section/', [GetElementBySection::class, 'random']);
+    $routes->get('/api/v1/catalog/section/', [GetElementBySection::class, 'main']);
     $routes->get('/api/v1/catalog/section/{param}/', [GetElementBySection::class, 'view']);
     $routes->get('/api/v1/catalog/section/{param}/filter/', [GetElementBySection::class, 'filter']);
 

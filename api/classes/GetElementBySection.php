@@ -128,28 +128,11 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
     }
 
 
-    public function randomAction()
+    public function mainAction()
     {
         try
         {
             $limit = isset($_GET['limit']) ?? null;
-            $this->buildTree();
-
-            $sectionID = null;
-            while ($sectionID == null)
-            {
-                $sectionRand = array_rand($this->sectionTree);
-                $selectRand = $this->sectionTree[$sectionRand];
-                foreach ($selectRand['sections'] as $subSection)
-                {
-                    if (is_array($subSection['sections'])) continue;
-                    $sectionID = $subSection['id'];
-                }
-            }
-
-            $filter['IBLOCK_SECTION_ID'] = $sectionID;
-
-            $result['sections'] = $selectRand;
             $getElements = \Bitrix\Iblock\Elements\ElementServicecatalogTable::getList(
                 [
                     'select' => [
@@ -163,7 +146,9 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                         'CML2_MANUFACTURER',
                         'IBLOCK_SECTION_ID'
                     ],
-                    'filter' => $filter,
+                    'filter' => [
+                        'ACTIVE' => 'Y'
+                    ],
                     'limit' => $limit
                 ]
             )->fetchAll();
@@ -274,7 +259,7 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                 $searchSectionID = \Bitrix\Iblock\SectionTable::getList(
                     [
                         'select' => ['ID'],
-                        'filter' => ['NAME' => $param],
+                        'filter' => ['NAME' => $param . '%'],
                         'limit' => 1
                     ]
                 )->fetch();
