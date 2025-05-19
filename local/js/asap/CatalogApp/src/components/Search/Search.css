@@ -1,0 +1,8 @@
+.catalog-search {
+  display: flex;
+  gap: 16px;
+}
+
+.catalog-search__submit {
+  min-width: 212px;
+}

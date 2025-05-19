@@ -30,13 +30,13 @@ export class CatalogApp {
         };
       },
       methods: {
-        ...mapActions(useCatalogStore, ['fetchStore']),
+        ...mapActions(useCatalogStore, ['fetchCatalog']),
       },
       beforeCreate() {
-        this.$bitrix.Application.set(context);        
+        this.$bitrix.Application.set(context);
       },
       created() {
-        this.fetchStore();
+        this.fetchCatalog();
       },
       template: `<CatalogPage :params='params'/>`,
     });

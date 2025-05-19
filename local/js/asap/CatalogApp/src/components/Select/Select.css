@@ -1,0 +1,86 @@
+.v-select {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-large-2);
+  transition: all 0.3s ease-in-out;
+}
+
+.v-select--active {
+  box-shadow: 0px var(--spacing-1) var(--spacing-1) 0px rgba(0, 0, 0, 0.25);
+}
+
+.v-select--small {
+  max-width: 217px;
+}
+
+.v-select__trigger {
+  position: relative;
+  z-index: 2;
+  font-weight: var(--font-weight-regular);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  background-color: var(--color-bg-white);
+  border-radius: var(--radius-large-2);
+  transition: all 0.3s ease-in-out;
+}
+.v-select__trigger--active {
+  border-radius: var(--radius-large-2) var(--radius-large-2) 0 0;
+}
+.v-select__trigger::after {
+  content: '';
+  position: absolute;
+  right: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--icon-24);
+  height: var(--icon-24);
+  background: url('../../assets/icons/arrow.svg');
+}
+.v-select__trigger--active::after {
+  transform: rotate(180deg) translateY(50%);
+}
+
+.v-select__options {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: var(--color-bg-white);
+  border-bottom-left-radius: var(--radius-large-2);
+  border-bottom-right-radius: var(--radius-large-2);
+  box-shadow: 0px var(--spacing-1) var(--spacing-1) 0px rgba(0, 0, 0, 0.25);
+}
+
+.v-select__option {
+  position: relative;
+  border-top: var(--border-1) solid var(--color-stroke-light);
+  padding: var(--spacing-2) var(--spacing-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+.v-select__option--selected::after {
+  content: '';
+  position: absolute;
+  right: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--icon-24);
+  height: var(--icon-24);
+  background: url('../../assets/icons/check.svg');
+}
+
+/* Transition */
+.select-fade-slide-enter-active,
+.select-fade-slide-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.select-fade-slide-enter-from,
+.select-fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-50px);
+}

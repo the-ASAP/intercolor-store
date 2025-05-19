@@ -3,6 +3,7 @@
 define('VUEJS_DEBUG', true);
 \Bitrix\Main\UI\Extension::load('asap.CatalogApp');
 ?>
+<script src="/vendors/lodash.js"></script>
 
 <div id="catalog-section"></div>
 

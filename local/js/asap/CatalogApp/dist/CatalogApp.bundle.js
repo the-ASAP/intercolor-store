@@ -1,2 +1,299 @@
-!function(t,e,r){"use strict";function n(){/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */n=function(){return t};var t={},e=Object.prototype,r=e.hasOwnProperty,o=Object.defineProperty||function(t,e,r){t[e]=r.value},i="function"==typeof Symbol?Symbol:{},a=i.iterator||"@@iterator",c=i.asyncIterator||"@@asyncIterator",u=i.toStringTag||"@@toStringTag";function s(t,e,r){return Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}),t[e]}try{s({},"")}catch(t){s=function(t,e,r){return t[e]=r}}function l(t,e,r,n){var i=e&&e.prototype instanceof h?e:h,a=Object.create(i.prototype),c=new E(n||[]);return o(a,"_invoke",{value:j(t,r,c)}),a}function f(t,e,r){try{return{type:"normal",arg:t.call(e,r)}}catch(t){return{type:"throw",arg:t}}}t.wrap=l;var p={};function h(){}function d(){}function v(){}var y={};s(y,a,(function(){return this}));var g=Object.getPrototypeOf,b=g&&g(g(k([])));b&&b!==e&&r.call(b,a)&&(y=b);var m=v.prototype=h.prototype=Object.create(y);function w(t){["next","throw","return"].forEach((function(e){s(t,e,(function(t){return this._invoke(e,t)}))}))}function O(t,e){var n;o(this,"_invoke",{value:function(o,i){function a(){return new e((function(n,a){!function n(o,i,a,c){var u=f(t[o],t,i);if("throw"!==u.type){var s=u.arg,l=s.value;return l&&"object"==babelHelpers.typeof(l)&&r.call(l,"__await")?e.resolve(l.__await).then((function(t){n("next",t,a,c)}),(function(t){n("throw",t,a,c)})):e.resolve(l).then((function(t){s.value=t,a(s)}),(function(t){return n("throw",t,a,c)}))}c(u.arg)}(o,i,n,a)}))}return n=n?n.then(a,a):a()}})}function j(t,e,r){var n="suspendedStart";return function(o,i){if("executing"===n)throw new Error("Generator is already running");if("completed"===n){if("throw"===o)throw i;return S()}for(r.method=o,r.arg=i;;){var a=r.delegate;if(a){var c=P(a,r);if(c){if(c===p)continue;return c}}if("next"===r.method)r.sent=r._sent=r.arg;else if("throw"===r.method){if("suspendedStart"===n)throw n="completed",r.arg;r.dispatchException(r.arg)}else"return"===r.method&&r.abrupt("return",r.arg);n="executing";var u=f(t,e,r);if("normal"===u.type){if(n=r.done?"completed":"suspendedYield",u.arg===p)continue;return{value:u.arg,done:r.done}}"throw"===u.type&&(n="completed",r.method="throw",r.arg=u.arg)}}}function P(t,e){var r=e.method,n=t.iterator[r];if(void 0===n)return e.delegate=null,"throw"===r&&t.iterator.return&&(e.method="return",e.arg=void 0,P(t,e),"throw"===e.method)||"return"!==r&&(e.method="throw",e.arg=new TypeError("The iterator does not provide a '"+r+"' method")),p;var o=f(n,t.iterator,e.arg);if("throw"===o.type)return e.method="throw",e.arg=o.arg,e.delegate=null,p;var i=o.arg;return i?i.done?(e[t.resultName]=i.value,e.next=t.nextLoc,"return"!==e.method&&(e.method="next",e.arg=void 0),e.delegate=null,p):i:(e.method="throw",e.arg=new TypeError("iterator result is not an object"),e.delegate=null,p)}function x(t){var e={tryLoc:t[0]};1 in t&&(e.catchLoc=t[1]),2 in t&&(e.finallyLoc=t[2],e.afterLoc=t[3]),this.tryEntries.push(e)}function L(t){var e=t.completion||{};e.type="normal",delete e.arg,t.completion=e}function E(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(x,this),this.reset(!0)}function k(t){if(t){var e=t[a];if(e)return e.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var n=-1,o=function e(){for(;++n<t.length;)if(r.call(t,n))return e.value=t[n],e.done=!1,e;return e.value=void 0,e.done=!0,e};return o.next=o}}return{next:S}}function S(){return{value:void 0,done:!0}}return d.prototype=v,o(m,"constructor",{value:v,configurable:!0}),o(v,"constructor",{value:d,configurable:!0}),d.displayName=s(v,u,"GeneratorFunction"),t.isGeneratorFunction=function(t){var e="function"==typeof t&&t.constructor;return!!e&&(e===d||"GeneratorFunction"===(e.displayName||e.name))},t.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,v):(t.__proto__=v,s(t,u,"GeneratorFunction")),t.prototype=Object.create(m),t},t.awrap=function(t){return{__await:t}},w(O.prototype),s(O.prototype,c,(function(){return this})),t.AsyncIterator=O,t.async=function(e,r,n,o,i){void 0===i&&(i=Promise);var a=new O(l(e,r,n,o),i);return t.isGeneratorFunction(r)?a:a.next().then((function(t){return t.done?t.value:a.next()}))},w(m),s(m,u,"Generator"),s(m,a,(function(){return this})),s(m,"toString",(function(){return"[object Generator]"})),t.keys=function(t){var e=Object(t),r=[];for(var n in e)r.push(n);return r.reverse(),function t(){for(;r.length;){var n=r.pop();if(n in e)return t.value=n,t.done=!1,t}return t.done=!0,t}},t.values=k,E.prototype={constructor:E,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=void 0,this.done=!1,this.delegate=null,this.method="next",this.arg=void 0,this.tryEntries.forEach(L),!t)for(var e in this)"t"===e.charAt(0)&&r.call(this,e)&&!isNaN(+e.slice(1))&&(this[e]=void 0)},stop:function(){this.done=!0;var t=this.tryEntries[0].completion;if("throw"===t.type)throw t.arg;return this.rval},dispatchException:function(t){if(this.done)throw t;var e=this;function n(r,n){return a.type="throw",a.arg=t,e.next=r,n&&(e.method="next",e.arg=void 0),!!n}for(var o=this.tryEntries.length-1;o>=0;--o){var i=this.tryEntries[o],a=i.completion;if("root"===i.tryLoc)return n("end");if(i.tryLoc<=this.prev){var c=r.call(i,"catchLoc"),u=r.call(i,"finallyLoc");if(c&&u){if(this.prev<i.catchLoc)return n(i.catchLoc,!0);if(this.prev<i.finallyLoc)return n(i.finallyLoc)}else if(c){if(this.prev<i.catchLoc)return n(i.catchLoc,!0)}else{if(!u)throw new Error("try statement without catch or finally");if(this.prev<i.finallyLoc)return n(i.finallyLoc)}}}},abrupt:function(t,e){for(var n=this.tryEntries.length-1;n>=0;--n){var o=this.tryEntries[n];if(o.tryLoc<=this.prev&&r.call(o,"finallyLoc")&&this.prev<o.finallyLoc){var i=o;break}}i&&("break"===t||"continue"===t)&&i.tryLoc<=e&&e<=i.finallyLoc&&(i=null);var a=i?i.completion:{};return a.type=t,a.arg=e,i?(this.method="next",this.next=i.finallyLoc,p):this.complete(a)},complete:function(t,e){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&e&&(this.next=e),p},finish:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.finallyLoc===t)return this.complete(r.completion,r.afterLoc),L(r),p}},catch:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.tryLoc===t){var n=r.completion;if("throw"===n.type){var o=n.arg;L(r)}return o}}throw new Error("illegal catch attempt")},delegateYield:function(t,e,r){return this.delegate={iterator:k(t),resultName:e,nextLoc:r},"next"===this.method&&(this.arg=void 0),p}},t}var o=r.createPinia(),i=r.defineStore("catalog",{state:function(){return{query:"",products:[],filter:{availability:[],price:{min:0,max:1/0,ranges:[]},properties:[],delivery:[]},sort:"",pagination:{currentPage:1,totalPages:1},loading:!1}},getters:{sorted:function(){return console.log("computed"),this.products.slice().sort((function(t,e){return t.id-e.id}))}},actions:{send:function(){return console.log("send"),this.products.push({id:this.products.length,name:"товар".concat(this.products.length)})},fetchStore:function(){var t=this;return babelHelpers.asyncToGenerator(n().mark((function e(){return n().wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return console.log("fetch"),e.next=3,fetch("https://managers.intercolor.asap-lp.ru/api/v1/catalog/").then((function(t){return t.json()})).then((function(e){t.products=e.section[169].items}));case 3:case"end":return e.stop()}}),e)})))()}}});function a(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,n)}return r}function c(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?a(Object(r),!0).forEach((function(e){babelHelpers.defineProperty(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):a(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}var u={props:{params:{type:Object,default:function(){return{}}}},computed:c({},r.mapState(i,["products","sorted"])),methods:c({},r.mapActions(i,["send"])),template:'\n  <div v-for="{id, name} in products" :key="id">\n    <div>{{id}}</div>\n    <div>{{name}}</div>\n  </div>\n  <hr/>\n  <div v-for="{id, name} in sorted" :key="id">\n    <div>{{id}}</div>\n    <div>{{name}}</div>\n  </div>\n  <button @click="send">sendbtn</button>\n  '};function s(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,n)}return r}function l(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?s(Object(r),!0).forEach((function(e){babelHelpers.defineProperty(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):s(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function f(t,e,r){!function(t,e){if(e.has(t))throw new TypeError("Cannot initialize the same private elements twice on an object")}(t,e),e.set(t,r)}var p=new WeakMap,h=new WeakMap,d=function(){function t(e,r){babelHelpers.classCallCheck(this,t),f(this,p,{writable:!0,value:void 0}),f(this,h,{writable:!0,value:void 0}),this.rootNode=document.querySelector(e),babelHelpers.classPrivateFieldSet(this,h,r)}return babelHelpers.createClass(t,[{key:"init",value:function(){this.initApp()}},{key:"initApp",value:function(){var t=this;babelHelpers.classPrivateFieldSet(this,p,e.BitrixVue.createApp({name:"CatalogApp",components:{CatalogPage:u},data:function(){return{params:babelHelpers.classPrivateFieldGet(t,h)}},methods:l({},r.mapActions(i,["fetchStore"])),beforeCreate:function(){this.$bitrix.Application.set(t)},created:function(){this.fetchStore()},template:"<CatalogPage :params='params'/>"})),babelHelpers.classPrivateFieldGet(this,p).use(o),babelHelpers.classPrivateFieldGet(this,p).mount(this.rootNode)}}]),t}();t.CatalogApp=d}(this.BX=this.BX||{},BX.Vue3,BX.Vue3.Pinia);
+/* eslint-disable */
+(function (exports,ui_vue3,ui_vue3_pinia,lodash) {
+  'use strict';
+
+  function _regeneratorRuntime() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == babelHelpers["typeof"](value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+  var store = ui_vue3_pinia.createPinia();
+  var useCatalogStore = ui_vue3_pinia.defineStore('catalog', {
+    state: function state() {
+      return {
+        query: '',
+        products: [],
+        filter: {},
+        sorting: {},
+        sort: '',
+        pagination: {
+          currentPage: 1,
+          totalPages: 10
+        },
+        loading: false
+      };
+    },
+    getters: {
+      getParams: function getParams(state) {
+        return {
+          query: state.query,
+          sort: state.sort,
+          page: state.pagination.currentPage
+        };
+      }
+    },
+    actions: {
+      fetchCatalog: function fetchCatalog() {
+        var _arguments = arguments,
+          _this = this;
+        return babelHelpers.asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+          var params, _data$totalPages, _data$currentPage, url, responce, data;
+          return _regeneratorRuntime().wrap(function _callee$(_context) {
+            while (1) switch (_context.prev = _context.next) {
+              case 0:
+                params = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : _this.getParams;
+                _this.loading = true;
+                _context.prev = 2;
+                url = _this.buildUrl(params);
+                console.log(url);
+                _context.next = 7;
+                return fetch(url);
+              case 7:
+                responce = _context.sent;
+                _context.next = 10;
+                return responce.json();
+              case 10:
+                data = _context.sent;
+                _this.products = data.items;
+                _this.sorting = data.sorting;
+                _this.filter = data.filter;
+                _this.pagination.totalPages = (_data$totalPages = data.totalPages) !== null && _data$totalPages !== void 0 ? _data$totalPages : _this.pagination.totalPages;
+                _this.pagination.currentPage = (_data$currentPage = data.currentPage) !== null && _data$currentPage !== void 0 ? _data$currentPage : _this.pagination.currentPage;
+                console.log(data);
+                _context.next = 22;
+                break;
+              case 19:
+                _context.prev = 19;
+                _context.t0 = _context["catch"](2);
+                console.log(_context.t0);
+              case 22:
+                _context.prev = 22;
+                _this.loading = false;
+                return _context.finish(22);
+              case 25:
+              case "end":
+                return _context.stop();
+            }
+          }, _callee, null, [[2, 19, 22, 25]]);
+        }))();
+      },
+      buildUrl: function buildUrl(_ref) {
+        var query = _ref.query,
+          sort = _ref.sort,
+          page = _ref.page;
+        var params = new URLSearchParams();
+        if (query) params.append('q', query);
+        if (sort) params.append('sort', sort);
+        if (page) params.append('page', page);
+        return "https://managers.intercolor.asap-lp.ru/api/v1/catalog/section/?".concat(params.toString());
+      },
+      setQuery: function setQuery(query) {
+        if (this.query === query) return;
+        this.query = query;
+        this.pagination.currentPage = 1;
+        if (query) {
+          this.fetchCatalog();
+        }
+      },
+      setPage: function setPage(page) {
+        if (this.pagination.currentPage === page) return;
+        this.pagination.currentPage = page;
+        this.fetchCatalog();
+      },
+      setSort: function setSort(option) {
+        if (JSON.stringify(this.sort) === JSON.stringify(option)) return;
+        this.pagination.currentPage = 1;
+        this.sort = option.value;
+        this.fetchCatalog();
+      }
+    }
+  });
+
+  var Pagination = {
+    props: {
+      pagination: {
+        type: Object,
+        "default": function _default() {
+          return {};
+        }
+      }
+    },
+    emits: ['updatePage'],
+    methods: {
+      onChangePage: function onChangePage(page) {
+        if (page == 0 || page > this.pagination.totalPages || this.pagination.currentPage == page) return;
+        this.$emit('updatePage', page);
+      }
+    },
+    template: "\n    <nav>\n      <ul class=\"pagination__list\">\n        <li>\n          <button class=\"page-btn page-btn--first\" @click=\"onChangePage(1)\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M13.5 16L17.5 12L13.5 8\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M6.5 17L11.5 12L6.5 7\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </button>\n        </li>\n        <li>\n          <button class=\"page-btn page-btn--prev\" @click=\"onChangePage(pagination.currentPage - 1)\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M8 10L12 14L16 10\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </button>\n        </li>\n\n        <li v-for=\"page in 5\">\n          <button class=\"page-btn\" :class=\"{'page-btn--active': page == pagination.currentPage }\" @click=\"onChangePage(page)\">{{page}}</button>\n        </li>\n\n        <li>\n          <div class=\"page-btn--ellipsis\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M18.5027 18.5002C18.5027 18.7765 18.2788 19.0004 18.0025 19.0004C17.7263 19.0004 17.5023 18.7765 17.5023 18.5002C17.5023 18.224 17.7263 18 18.0025 18C18.2788 18 18.5027 18.224 18.5027 18.5002\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M12.5002 18.5002C12.5002 18.7765 12.2762 19.0004 12 19.0004C11.7237 19.0004 11.4998 18.7765 11.4998 18.5002C11.4998 18.224 11.7237 18 12 18C12.2762 18 12.5002 18.224 12.5002 18.5002\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M6.49773 18.5002C6.49773 18.7765 6.27378 19.0004 5.99752 19.0004C5.72127 19.0004 5.49731 18.7765 5.49731 18.5002C5.49731 18.224 5.72127 18 5.99752 18C6.27378 18 6.49773 18.224 6.49773 18.5002\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </div>\n        </li>\n\n        <li>\n          <button class=\"page-btn\" :class=\"{'page-btn--active': pagination.currentPage == pagination.totalPages }\" @click=\"onChangePage(pagination.totalPages)\">{{pagination.totalPages}}</button>\n        </li>\n\n        <li>\n          <button class=\"page-btn page-btn--next\" @click=\"onChangePage(pagination.currentPage + 1)\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M8 10L12 14L16 10\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </button>\n        </li>\n        <li>\n          <button class=\"page-btn page-btn--last\" @click=\"onChangePage(pagination.totalPages)\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M13.5 16L17.5 12L13.5 8\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M6.5 17L11.5 12L6.5 7\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </button>\n        </li>\n      </ul>\n    </nav>\n  "
+  };
+
+  var Select = {
+    props: {
+      sorting: {
+        type: Array,
+        "default": function _default() {
+          return [];
+        }
+      }
+    },
+    emits: ['updateSort'],
+    data: function data() {
+      return {
+        selectedOption: null,
+        optionOrder: null,
+        isOpen: false
+      };
+    },
+    computed: {
+      getOption: function getOption() {
+        return this.selectedOption || 'По умолчанию';
+      },
+      getOptionOrder: function getOptionOrder() {
+        return this.optionOrder == 'asc' ? 'rotate(-90)' : 'rotate(90)';
+      }
+    },
+    methods: {
+      toggleOption: function toggleOption(option) {
+        if (this.selectedOption == option.name) return;
+        this.selectedOption = option.name;
+        this.optionOrder = option.order;
+        this.$emit('updateSort', option);
+        this.isOpen = false;
+      },
+      toggleSelect: function toggleSelect() {
+        this.isOpen = !this.isOpen;
+      },
+      handleClickOutside: function handleClickOutside(event) {
+        if (!this.$refs.select.contains(event.target)) {
+          this.isOpen = false;
+        }
+      }
+    },
+    mounted: function mounted() {
+      document.addEventListener('click', this.handleClickOutside);
+    },
+    unmounted: function unmounted() {
+      document.removeEventListener('click', this.handleClickOutside);
+    },
+    template: "\n    <div class=\"v-select v-select--small\" :class=\"{'v-select--active': isOpen}\" ref=\"select\">\n      <button class=\"v-select__trigger\" :class=\"{'v-select__trigger--active': isOpen}\" aria-haspopup=\"listbox\" @click=\"toggleSelect\">\n        {{getOption}}\n        <svg\n          v-if=\"optionOrder\"\n          width=\"24\"\n          height=\"24\"\n          viewBox=\"0 0 24 24\"\n          fill=\"none\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n          :transform=\"getOptionOrder\"\n        >\n          <path\n            d=\"M19 12H5\"\n            stroke=\"currentColor\"\n            stroke-width=\"1.5\"\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n          />\n          <path\n            d=\"M14 17L19 12\"\n            stroke=\"currentColor\"\n            stroke-width=\"1.5\"\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n          />\n          <path\n            d=\"M14 7L19 12\"\n            stroke=\"currentColor\"\n            stroke-width=\"1.5\"\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n          />\n        </svg>\n      </button>\n      <Transition name=\"select-fade-slide\">\n        <ul v-show=\"isOpen\" class=\"v-select__options\" role=\"listbox\">\n          <li\n            class=\"v-select__option v-select__option--selected\"\n            role=\"option\"\n            data-value=\"\"\n            v-for=\"option in sorting\"\n            :key=\"option.value\"\n            @click=\"toggleOption(option)\"\n          >\n            {{option.name}}\n            <svg\n              v-if=\"option.order\"\n              width=\"24\"\n              height=\"24\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n              :transform=\"option.order == 'asc' ? 'rotate(-90)' : 'rotate(90)'\"\n            >\n              <path\n                d=\"M19 12H5\"\n                stroke=\"currentColor\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M14 17L19 12\"\n                stroke=\"currentColor\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M14 7L19 12\"\n                stroke=\"currentColor\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </li>\n        </ul>\n      </Transition>\n    </div>\n  "
+  };
+
+  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+  var ProductList = {
+    components: {
+      Pagination: Pagination,
+      Select: Select
+    },
+    computed: _objectSpread({}, ui_vue3_pinia.mapState(useCatalogStore, ['products', 'pagination', 'sorting'])),
+    methods: _objectSpread({}, ui_vue3_pinia.mapActions(useCatalogStore, ['setPage', 'setSort'])),
+    template: "\n    <div>\n      <div>\n        <h1>\u041A\u0430\u0442\u0430\u043B\u043E\u0433</h1>\n        <Select :sorting=\"sorting.sort\" @update-sort=\"setSort\" />\n      </div>\n      <div v-if=\"products.length\" class=\"product-list\">\n        <ul class=\"\">\n          <li v-for=\"product in products\" :key=\"product.id\" class=\"list__item product-item\">\n            <div class=\"product-item__info\">\n              <div class=\"card card-thumb\">\n                <img\n                  class=\"card-thumb__img\"\n                  :src=\"product.image\"\n                  alt=\"\"\n                />\n              </div>\n              <div>\n                <div class=\"product-item__title\">{{product.name}}</div>\n                <div class=\"product-item__sku caption\">\u0410\u0440\u0442. {{product.sku}}</div>\n              </div>\n            </div>\n\n            <div class=\"product-item__stock\">\n              <div class=\"product-item__stock-storage\">\n                <span class=\"caption\">\u041C\u043E\u0441\u043A\u0432\u0430:</span><span class=\"label-2\">116 000</span>\n              </div>\n              <div class=\"product-item__stock-storage\">\n                <span class=\"caption\">\u0421.\u041F\u0435\u0442\u0435\u0440\u0431:</span\n                ><span class=\"label-2\">116 000</span>\n              </div>\n            </div>\n\n            <div class=\"input-container input-container--quantity\">\n              <div class=\"input-field quantity-input\">\n                <button class=\"quantity-control\" data-action=\"minus\">\n                  <svg\n                    width=\"20\"\n                    height=\"20\"\n                    viewBox=\"0 0 20 20\"\n                    fill=\"none\"\n                    xmlns=\"http://www.w3.org/2000/svg\"\n                  >\n                    <path\n                      d=\"M5.28516 10H14.7132\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                  </svg>\n                </button>\n                <input type=\"number\" class=\"quantity-value\" value=\"100000\" />\n                <button class=\"quantity-control\" data-action=\"plus\">\n                  <svg\n                    width=\"20\"\n                    height=\"20\"\n                    viewBox=\"0 0 20 20\"\n                    fill=\"none\"\n                    xmlns=\"http://www.w3.org/2000/svg\"\n                  >\n                    <path\n                      d=\"M5.28516 10H14.7132\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                    <path\n                      d=\"M9.9992 5.28595V14.714\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                  </svg>\n                </button>\n              </div>\n            </div>\n\n            <div class=\"product-item__price number-1\">2 250 000 \u20BD</div>\n\n            <button class=\"btn btn--icon-only--large btn--dark\">\n              <svg\n                width=\"20\"\n                height=\"20\"\n                viewBox=\"0 0 24 24\"\n                fill=\"none\"\n                xmlns=\"http://www.w3.org/2000/svg\"\n              >\n                <path\n                  d=\"M5.96905 6.625L5.30205 3.625H3.37305\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  fill-rule=\"evenodd\"\n                  clip-rule=\"evenodd\"\n                  d=\"M7.73099 14.835L5.96899 6.625H18.627C19.264 6.625 19.738 7.212 19.605 7.835L18.103 14.835C18.004 15.296 17.597 15.625 17.125 15.625H8.70799C8.23699 15.625 7.82999 15.296 7.73099 14.835Z\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  d=\"M17.465 19.25C17.258 19.25 17.09 19.418 17.092 19.625C17.092 19.832 17.26 20 17.467 20C17.674 20 17.842 19.832 17.842 19.625C17.841 19.418 17.673 19.25 17.465 19.25\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  d=\"M8.85605 19.25C8.64905 19.25 8.48105 19.418 8.48305 19.625C8.48205 19.832 8.65005 20 8.85705 20C9.06405 20 9.23205 19.832 9.23205 19.625C9.23205 19.418 9.06405 19.25 8.85605 19.25\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n              </svg>\n            </button>\n          </li>\n        </ul>\n        <Pagination :pagination=\"pagination\" @update-page=\"setPage\"/>\n      </div>\n      <div v-else class=\"product-list-empty\">\n          \u041D\u0430\u0439\u0434\u0435\u043D\u043E 0 \u0442\u043E\u0432\u0430\u0440\u043E\u0432\n      </div>\n    </div>    \n  "
+  };
+
+  var Search = {
+    props: {
+      query: String
+    },
+    emits: ['updateQuery'],
+    data: function data() {
+      return {
+        searchQuery: ''
+      };
+    },
+    watch: {
+      searchQuery: function searchQuery() {
+        this.debouncedSearch();
+      }
+    },
+    methods: {
+      search: function search() {
+        if (this.searchQuery !== this.query) {
+          this.$emit('updateQuery', this.searchQuery);
+        }
+      }
+    },
+    created: function created() {
+      this.debouncedSearch = lodash.debounce(this.search, 300);
+    },
+    unmounted: function unmounted() {
+      this.debouncedSearch.cancel();
+    },
+    template: "\n    <div class=\"catalog-search\">\n      <input\n        type=\"search\"\n        class=\"catalog-search__input input-field input-search input-search--tall\"\n        v-model.trim=\"searchQuery\"\n      />\n      <button class=\"catalog-search__submit btn btn--dark btn--text--large\" @click=\"debouncedSearch\">\n        \u041D\u0430\u0439\u0442\u0438\n      </button>\n    </div>\n  "
+  };
+
+  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys$1(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+  var CatalogPage = {
+    props: {
+      params: {
+        type: Object,
+        "default": function _default() {
+          return {};
+        }
+      }
+    },
+    components: {
+      ProductList: ProductList,
+      Search: Search
+    },
+    computed: _objectSpread$1({}, ui_vue3_pinia.mapState(useCatalogStore, ['query'])),
+    methods: _objectSpread$1({}, ui_vue3_pinia.mapActions(useCatalogStore, ['setQuery'])),
+    template: "\n    <div class='catalog-page'>\n      <Search :query=\"query\" @update-query=\"setQuery\"/>\n      <ProductList />\n    </div>\n  "
+  };
+
+  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys$2(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+  function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
+  function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+  var _app = /*#__PURE__*/new WeakMap();
+  var _data = /*#__PURE__*/new WeakMap();
+  var CatalogApp = /*#__PURE__*/function () {
+    function CatalogApp(rootNode, data) {
+      babelHelpers.classCallCheck(this, CatalogApp);
+      _classPrivateFieldInitSpec(this, _app, {
+        writable: true,
+        value: void 0
+      });
+      _classPrivateFieldInitSpec(this, _data, {
+        writable: true,
+        value: void 0
+      });
+      this.rootNode = document.querySelector(rootNode);
+      babelHelpers.classPrivateFieldSet(this, _data, data);
+    }
+    babelHelpers.createClass(CatalogApp, [{
+      key: "init",
+      value: function init() {
+        this.initApp();
+      }
+    }, {
+      key: "initApp",
+      value: function initApp() {
+        var context = this;
+        babelHelpers.classPrivateFieldSet(this, _app, ui_vue3.BitrixVue.createApp({
+          name: 'CatalogApp',
+          components: {
+            CatalogPage: CatalogPage
+          },
+          data: function data() {
+            return {
+              params: babelHelpers.classPrivateFieldGet(context, _data)
+            };
+          },
+          methods: _objectSpread$2({}, ui_vue3_pinia.mapActions(useCatalogStore, ['fetchCatalog'])),
+          beforeCreate: function beforeCreate() {
+            this.$bitrix.Application.set(context);
+          },
+          created: function created() {
+            this.fetchCatalog();
+          },
+          template: "<CatalogPage :params='params'/>"
+        }));
+        babelHelpers.classPrivateFieldGet(this, _app).use(store);
+        babelHelpers.classPrivateFieldGet(this, _app).mount(this.rootNode);
+      }
+    }]);
+    return CatalogApp;
+  }();
+
+  exports.CatalogApp = CatalogApp;
+
+}((this.BX = this.BX || {}),BX.Vue3,BX.Vue3.Pinia,BX));
 //# sourceMappingURL=CatalogApp.bundle.js.map

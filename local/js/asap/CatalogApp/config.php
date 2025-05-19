@@ -11,6 +11,7 @@ return [
 		'main.polyfill.core',
 		'ui.vue3',
 		'ui.vue3.pinia',
+		'lodash',
 	],
 	'skip_core' => true,
 ];

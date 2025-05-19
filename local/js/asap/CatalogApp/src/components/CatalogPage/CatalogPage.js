@@ -1,5 +1,8 @@
 import { mapActions, mapState } from 'ui.vue3.pinia';
 import { useCatalogStore } from '../../store/store';
+import { ProductList } from '../ProductList/ProductList';
+import { Search } from '../Search/Search';
+import './CatalogPage.css';
 
 export const CatalogPage = {
   props: {
@@ -8,22 +11,20 @@ export const CatalogPage = {
       default: () => ({}),
     },
   },
+  components: {
+    ProductList,
+    Search,
+  },
   computed: {
-    ...mapState(useCatalogStore, ['products', 'sorted']),
+    ...mapState(useCatalogStore, ['query']),
   },
   methods: {
-    ...mapActions(useCatalogStore, ['send']),
+    ...mapActions(useCatalogStore, ['setQuery']),
   },
   template: `
-  <div v-for="{id, name} in products" :key="id">
-    <div>{{id}}</div>
-    <div>{{name}}</div>
-  </div>
-  <hr/>
-  <div v-for="{id, name} in sorted" :key="id">
-    <div>{{id}}</div>
-    <div>{{name}}</div>
-  </div>
-  <button @click="send">sendbtn</button>
+    <div class='catalog-page'>
+      <Search :query="query" @update-query="setQuery"/>
+      <ProductList />
+    </div>
   `,
 };
