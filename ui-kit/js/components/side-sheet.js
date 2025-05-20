@@ -20,6 +20,11 @@ export function initSideSheets(root = document) {
   root.querySelectorAll('[data-action="open-filters"]').forEach((btn) => {
     btn.addEventListener("click", () => openSheet("filters"));
   });
+  root
+    .querySelectorAll('[data-action="open-create--clients"]')
+    .forEach((btn) => {
+      btn.addEventListener("click", () => openSheet("create--clients"));
+    });
 
   if (overlay) {
     overlay.addEventListener("click", closeSheets);
