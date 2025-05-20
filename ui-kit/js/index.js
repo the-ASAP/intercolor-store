@@ -14,10 +14,12 @@ import {
   CATALOG_FILTERED_PATH,
 } from "./config.js";
 import { initAllCategories } from "./pages/all_categories.js";
+import { initClients } from "./pages/clients.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initAuth(API_URL, AUTH_PATH);
   initAllCategories(API_URL, CATALOG_PATH);
+  initClients();
   initSelectors();
   initQuantityInputs();
   initTabs();

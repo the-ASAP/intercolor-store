@@ -774,38 +774,63 @@
                         <label for="Индивидуальный предприниматель">Индивидуальный предприниматель</label>
                     </div>
                 </div>
-                <div class="input-container">
-                    <label class="input-label" id="TIN">ИНН*<input type="text" class="input-field" required />
+
+                <div class="input-container" data-field="inn">
+                    <label class="input-label">
+                        ИНН*
+                        <input
+                            id="inn-input"
+                            type="search"
+                            class="input-field"
+                            required
+                            placeholder="10 или 12 цифр"
+                            maxlength="12"
+                            inputmode="numeric" />
                     </label>
                 </div>
-                <div class="input-container">
-                    <label class="input-label" id="Abbreviated legal name">Сокращенное юридическое наименование*<input
+
+                <div class="input-container" data-field="fullName">
+                    <label class="input-label">
+                        Фамилия, имя, отчество*
+                        <input
+                            id="fullName-input"
                             type="text"
                             class="input-field"
                             required />
                     </label>
                 </div>
-                <div class="input-container">
-                    <label class="input-label" id="TIN">Рабочее наименование*<input
+
+                <div class="input-container" data-field="abbrName">
+                    <label class="input-label">
+                        Сокращенное юридическое наименование*
+                        <input
+                            id="abbrName-input"
                             type="text"
                             class="input-field"
                             required />
                     </label>
                 </div>
-                <div class="input-container">
-                    <label class="input-label" id="TIN">КПП*<input type="text" class="input-field" required />
+
+                <div class="input-container" data-field="businessName">
+                    <label class="input-label">
+                        Рабочее наименование*
+                        <input
+                            id="businessName-input"
+                            type="text"
+                            class="input-field"
+                            required />
                     </label>
                 </div>
-                <div class="input-container">
-                    <label class="input-label" id="TIN">Email*<input type="text" class="input-field" required />
+
+                <div class="input-container" data-field="kpp">
+                    <label class="input-label">
+                        КПП*
+                        <input id="kpp-input" type="text" class="input-field" required />
                     </label>
                 </div>
-                <div class="input-container">
-                    <label class="input-label" id="TIN">Адрес доставки*<input type="text" class="input-field" required />
-                    </label>
-                </div>
-                <div class="input-container">
-                    <label class="input-label" id="phone">Номер телефона*
+
+                <div class="input-container" data-field="phone">
+                    <label class="input-label">Номер телефона*
                         <div class="phone-input">
                             <img
                                 src="/ui-kit/assets/icons/ru.svg"
@@ -814,6 +839,20 @@
                             <span class="phone-prefix">+7</span>
                             <input type="tel" class="input-field phone-value" required />
                         </div>
+                    </label>
+                </div>
+
+                <div class="input-container" data-field="email">
+                    <label class="input-label">
+                        Email*
+                        <input type="email" class="input-field" required />
+                    </label>
+                </div>
+
+                <div class="input-container" data-field="address">
+                    <label class="input-label">
+                        Адрес доставки*
+                        <input type="text" class="input-field" required />
                     </label>
                 </div>
             </div>
@@ -825,7 +864,9 @@
                     type="submit">
                     Сохранить
                 </button>
-                <button class="btn btn--text btn--outline">Отменить</button>
+                <button type="reset" class="btn btn--text btn--outline">
+                    Отменить
+                </button>
             </footer>
         </form>
     </aside>

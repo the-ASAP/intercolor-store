@@ -40,3 +40,6 @@
 .overflow-hidden {
   overflow: hidden;
 }
+.hidden {
+  display: none;
+}
