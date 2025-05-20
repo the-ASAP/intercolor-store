@@ -728,57 +728,58 @@
         <form
             class="flex column gap-4"
             style="overflow: auto; flex: 1"
-            id="create-client-form">
+            id="client-form">
             <div class="side-sheet__body">
                 <div class="flex column gap-2">
                     <label class="input-label">Вид контрагента </label>
-                    <div class="flex items-center gap-2">
+                    <label class="flex items-center gap-2">
                         <input
                             name="client_type"
                             type="radio"
                             class="radio"
                             value="Физическое лицо"
                             checked />
-                        <label for="Физическое лицо">Физическое лицо</label>
-                    </div>
-                    <div class="flex items-center gap-2">
+                        Физическое лицо
+                    </label>
+                    <label class="flex items-center gap-2">
                         <input
                             name="client_type"
                             type="radio"
                             class="radio"
                             value="Юридическое лицо" />
-                        <label for="Юридическое лицо">Юридическое лицо</label>
-                    </div>
-                    <div class="flex items-center gap-2">
+                        Юридическое лицо
+                    </label>
+                    <label class="flex items-center gap-2">
                         <input
                             name="client_type"
                             type="radio"
                             class="radio"
                             value="Обособленное подразделение юр.лица" />
-                        <label for="Обособленное подразделение юр.лица">Обособленное подразделение юр.лица</label>
-                    </div>
-                    <div class="flex items-center gap-2">
+                        Обособленное подразделение юр.лица
+                    </label>
+                    <label class="flex items-center gap-2">
                         <input
                             name="client_type"
                             type="radio"
                             class="radio"
                             value="Юридическое лицо (нерезидент)" />
-                        <label for="Юридическое лицо (нерезидент)">Юридическое лицо (нерезидент)</label>
-                    </div>
-                    <div class="flex items-center gap-2">
+                        Юридическое лицо (нерезидент)
+                    </label>
+                    <label class="flex items-center gap-2">
                         <input
                             name="client_type"
                             type="radio"
                             class="radio"
                             value="Индивидуальный предприниматель" />
-                        <label for="Индивидуальный предприниматель">Индивидуальный предприниматель</label>
-                    </div>
+                        Индивидуальный предприниматель
+                    </label>
                 </div>
 
                 <div class="input-container" data-field="inn">
                     <label class="input-label">
                         ИНН*
                         <input
+                            name="inn"
                             id="inn-input"
                             type="search"
                             class="input-field"
@@ -793,6 +794,7 @@
                     <label class="input-label">
                         Фамилия, имя, отчество*
                         <input
+                            name="fullName"
                             id="fullName-input"
                             type="text"
                             class="input-field"
@@ -804,6 +806,7 @@
                     <label class="input-label">
                         Сокращенное юридическое наименование*
                         <input
+                            name="abbrName"
                             id="abbrName-input"
                             type="text"
                             class="input-field"
@@ -815,6 +818,7 @@
                     <label class="input-label">
                         Рабочее наименование*
                         <input
+                            name="businessName"
                             id="businessName-input"
                             type="text"
                             class="input-field"
@@ -825,7 +829,12 @@
                 <div class="input-container" data-field="kpp">
                     <label class="input-label">
                         КПП*
-                        <input id="kpp-input" type="text" class="input-field" required />
+                        <input
+                            name="kpp"
+                            id="kpp-input"
+                            type="text"
+                            class="input-field"
+                            required />
                     </label>
                 </div>
 
@@ -837,7 +846,11 @@
                                 alt="Флаг России"
                                 class="phone-flag" />
                             <span class="phone-prefix">+7</span>
-                            <input type="tel" class="input-field phone-value" required />
+                            <input
+                                name="phone"
+                                type="tel"
+                                class="input-field phone-value"
+                                required />
                         </div>
                     </label>
                 </div>
@@ -845,14 +858,14 @@
                 <div class="input-container" data-field="email">
                     <label class="input-label">
                         Email*
-                        <input type="email" class="input-field" required />
+                        <input name="email" type="email" class="input-field" required />
                     </label>
                 </div>
 
                 <div class="input-container" data-field="address">
                     <label class="input-label">
                         Адрес доставки*
-                        <input type="text" class="input-field" required />
+                        <input name="address" type="text" class="input-field" required />
                     </label>
                 </div>
             </div>

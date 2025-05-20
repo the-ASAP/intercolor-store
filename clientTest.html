@@ -816,12 +816,12 @@
       <form
         class="flex column gap-4"
         style="overflow: auto; flex: 1"
-        id="create-client-form"
+        id="client-form"
       >
         <div class="side-sheet__body">
           <div class="flex column gap-2">
             <label class="input-label">Вид контрагента </label>
-            <div class="flex items-center gap-2">
+            <label class="flex items-center gap-2">
               <input
                 name="client_type"
                 type="radio"
@@ -829,50 +829,44 @@
                 value="Физическое лицо"
                 checked
               />
-              <label for="Физическое лицо">Физическое лицо</label>
-            </div>
-            <div class="flex items-center gap-2">
+              Физическое лицо
+            </label>
+            <label class="flex items-center gap-2">
               <input
                 name="client_type"
                 type="radio"
                 class="radio"
                 value="Юридическое лицо"
               />
-              <label for="Юридическое лицо">Юридическое лицо</label>
-            </div>
-            <div class="flex items-center gap-2">
+              Юридическое лицо
+            </label>
+            <label class="flex items-center gap-2">
               <input
                 name="client_type"
                 type="radio"
                 class="radio"
                 value="Обособленное подразделение юр.лица"
               />
-              <label for="Обособленное подразделение юр.лица"
-                >Обособленное подразделение юр.лица</label
-              >
-            </div>
-            <div class="flex items-center gap-2">
+              Обособленное подразделение юр.лица
+            </label>
+            <label class="flex items-center gap-2">
               <input
                 name="client_type"
                 type="radio"
                 class="radio"
                 value="Юридическое лицо (нерезидент)"
               />
-              <label for="Юридическое лицо (нерезидент)"
-                >Юридическое лицо (нерезидент)</label
-              >
-            </div>
-            <div class="flex items-center gap-2">
+              Юридическое лицо (нерезидент)
+            </label>
+            <label class="flex items-center gap-2">
               <input
                 name="client_type"
                 type="radio"
                 class="radio"
                 value="Индивидуальный предприниматель"
               />
-              <label for="Индивидуальный предприниматель"
-                >Индивидуальный предприниматель</label
-              >
-            </div>
+              Индивидуальный предприниматель
+            </label>
           </div>
 
           <div class="input-container" data-field="inn">

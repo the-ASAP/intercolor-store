@@ -5,7 +5,7 @@ const INDIVIDUAL_TYPES = new Set([
 const INN_LEN = { IND: 12, LEG: 10 };
 
 export function initClientForm(root = document) {
-  const form = root.querySelector("#create-client-form");
+  const form = root.querySelector("#client-form");
   const innIn = form.querySelector("#inn-input");
   const fields = {
     kpp: form.querySelector("#kpp-input"),

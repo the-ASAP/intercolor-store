@@ -25,6 +25,7 @@
 @import url("pages/auth.css");
 @import url("components/sidebar.css");
 @import url("pages/allcategories.css");
+@import url("pages/client.css");
 
 /* вспомогательные классы как tailwind */
 @import url("utilities.css");
