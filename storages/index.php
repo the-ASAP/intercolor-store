@@ -1,4 +1,5 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/header.php'); ?>
+<h1>Склады</h1>
 
 <? $APPLICATION->IncludeComponent(
     "bitrix:catalog.store.list",

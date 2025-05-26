@@ -3,7 +3,7 @@ $arUrlRewrite = array(
     0 =>
     array(
         'CONDITION' => '#^/catalog/([\\w\\d_-]+)/([\\w\\d_-]+)/#',
-        'RULE' => 'ELEMENT_CODE=$1', 
+        'RULE' => 'ELEMENT_CODE=$1',
         'ID' => '',
         'PATH' => '/catalog/element.php',
         'SORT' => 100,
@@ -14,6 +14,23 @@ $arUrlRewrite = array(
         'RULE' => 'ELEMENT_CODE=$1',
         'ID' => '',
         'PATH' => '/directory/catalog/index.php',
+        'SORT' => 100,
+    ),
+    2 =>
+    array(
+        'CONDITION' => '#^/clients/([\\w\\d_-]+)/#',
+        'RULE' => '',
+        'ID' => 'bitrix:news.detail',
+        'PATH' => '/clients/client.php',
+        'SORT' => 100,
+    ),
+
+    3 =>
+    array(
+        'CONDITION' => '#^/clients/#',
+        'RULE' => '',
+        'ID' => 'bitrix:news.list',
+        'PATH' => '/clients/index.php',
         'SORT' => 100,
     ),
 );

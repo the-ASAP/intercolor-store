@@ -10,6 +10,10 @@
 </head>
 
 <body>
+	<? global $USER;
+	if ($USER->IsAdmin()): ?>
+		<div id="panel" style="position:fixed;top:0px; width:100%; z-index:9999;"><? $APPLICATION->ShowPanel(); ?></div>
+	<? endif; ?>
 	<? $APPLICATION->IncludeComponent(
 		"bitrix:menu",
 		"left_side",
@@ -29,7 +33,3 @@
 
 	<div class="content-wrapper">
 		<main>
-			<? global $USER;
-			if ($USER->IsAdmin()): ?>
-				<div id="panel"><? $APPLICATION->ShowPanel(); ?></div>
-			<? endif; ?>
