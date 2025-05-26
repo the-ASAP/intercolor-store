@@ -23,7 +23,12 @@ export const CatalogPage = {
     ...mapState(useCatalogStore, ['query', 'filter', 'sorting']),
   },
   methods: {
-    ...mapActions(useCatalogStore, ['setQuery', 'setSort', 'setFliters']),
+    ...mapActions(useCatalogStore, [
+      'setQuery',
+      'setSort',
+      'setFliters',
+      'clearFilters',
+    ]),
   },
   template: `
     <div class="catalog-page">
@@ -32,7 +37,7 @@ export const CatalogPage = {
         <h1>Каталог</h1>
         <Select :options="sorting.sort" @update-select="setSort"/>
       </div>
-      <Filter class="catalog-page__filter" :filters="filter.characteristics" @update-filters="setFliters"/>
+      <Filter class="catalog-page__filter" :filters="filter.characteristics" @update-filters="setFliters" clear-filters="clearFilters"/>
       <ProductList />
     </div>
   `,

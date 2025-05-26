@@ -11,7 +11,7 @@
         products: [],
         filter: {},
         filters: {
-          brands: {},
+          brands: [],
           delivery: ''
         },
         sorting: {},
@@ -85,11 +85,11 @@
         if (query) params.append('q', query);
         if (sort) params.append('sort', sort);
         if (page) params.append('page', page);
-        if (filters) {
-          var brands = Object.keys(filters === null || filters === void 0 ? void 0 : filters.brands).join(',');
+        if (filters.brands.length) {
+          var brands = filters.brands.join(',');
           params.append('brands', brands);
-          params.append('delivery', filters.delivery);
         }
+        if (filters.delivery) params.append('delivery', filters.delivery);
         return "https://managers.intercolor.asap-lp.ru/api/v1/catalog/section/?".concat(params.toString());
       },
       setQuery: function setQuery(query) {
@@ -119,6 +119,10 @@
         this.filters = filters;
         this.pagination.currentPage = 1;
         this.fetchCatalog();
+      },
+      clearFilters: function clearFilters() {
+        this.filters.brands = {};
+        this.filters.delivery = '';
       }
     }
   });
@@ -149,35 +153,35 @@
         }
       }
     },
-    emits: ['updateFilters'],
+    emits: ['updateFilters', 'clearFilters'],
     data: function data() {
       return {
         selectedFilters: {
-          brands: {},
+          brands: [],
           delivery: ''
         }
       };
     },
-    methods: {
-      onSelectFilter: function onSelectFilter(key, value) {
-        switch (key) {
-          case 'brands':
-            if (this.selectedFilters[key][value]) {
-              delete this.selectedFilters[key][value];
-            } else {
-              this.selectedFilters[key][value] = value;
-            }
-            break;
-          default:
-            this.selectedFilters[key] = value;
-            break;
-        }
-      },
-      applyFilters: function applyFilters() {
-        this.$emit('updateFilters', this.selectedFilters);
+    computed: {
+      filtersCount: function filtersCount() {
+        var count = 0;
+        var brands = this.selectedFilters.brands.length;
+        var delivery = this.selectedFilters.delivery ? 1 : 0;
+        count = brands + delivery;
+        return count;
       }
     },
-    template: "\n    <div class=\"filter\">\n      <a class=\"filter__all-category\" href=\"\">\n        <svg class=\"filter__all-category-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\">\n          <path d=\"M7.08301 5.00065H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 5.00065H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 10.0007H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 15.0007H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M7.08301 10.0007H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M7.08301 15.0007H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n        \u0412\u0441\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438\n      </a>\n      <Accordion class=\"filter__separator\">\n        <template #title>\n          <p>\u0411\u0440\u0435\u043D\u0434</p>\n        </template>\n        <template #content>\n          <div class=\"filter__group-container\">\n            <div class=\"v-checkbox\" v-for=\"filter in filters.manufacturer\" :key=\"filter.id\">\n              <label class=\"v-checkbox__label v-checkbox__input-wrap\">\n                <input class=\"v-checkbox__input\" type=\"checkbox\" name=\"brand\" :value=\"filter.name\" @change=\"onSelectFilter('brands', filter.name)\"/>\n                <svg class=\"v-checkbox__icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n                  <path d=\"M20 6.5L9 17.5L4 12.5\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n                </svg>\n                {{filter.name}}\n              </label>\n            </div>\n          </div>\n        </template>\n      </Accordion>\n      <Accordion class=\"filter__separator\">\n        <template #title>\n          <p>\u0421\u0440\u043E\u043A \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438</p>\n        </template>\n        <template #content>\n          <div class=\"filter__group-container\">\n            <div class=\"v-checkbox\" v-for=\"filter in filters.delivery\" :key=\"filter.id\">\n              <label class=\"v-checkbox__label v-checkbox__input-wrap\">\n                <input class=\"radio\" name=\"delivery\" type=\"radio\" :value=\"filter.value\" @change=\"onSelectFilter('delivery', filter.value)\"/>\n                {{filter.value}}\n              </label>\n            </div>\n          </div>          \n        </template>\n      </Accordion>\n      <div class=\"filter__buttons\">\n        <button class=\"btn btn--dark btn--text\" @click=\"applyFilters\">\n          \u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C          \n        </button>\n        <button class=\"filter__button-reset btn btn--text\">\n          \u0421\u0431\u0440\u043E\u0441\u0438\u0442\u044C\n        </button>\n      </div>\n    </div>\n  "
+    methods: {
+      applyFilters: function applyFilters() {
+        this.$emit('updateFilters', this.selectedFilters);
+      },
+      clearFilters: function clearFilters() {
+        this.selectedFilters.brands = [];
+        this.selectedFilters.delivery = '';
+        this.$emit('clearFilters');
+      }
+    },
+    template: "\n    <div class=\"filter\">\n      <a class=\"filter__all-category\" href=\"\">\n        <svg class=\"filter__all-category-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\">\n          <path d=\"M7.08301 5.00065H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 5.00065H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 10.0007H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 15.0007H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M7.08301 10.0007H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M7.08301 15.0007H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n        \u0412\u0441\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438\n      </a>\n      <Accordion class=\"filter__separator\">\n        <template #title>\n          <p>\u0411\u0440\u0435\u043D\u0434</p>\n        </template>\n        <template #content>\n          <div class=\"filter__group-container\">\n            <div class=\"v-checkbox\" v-for=\"filter in filters.manufacturer\" :key=\"filter.id\">\n              <label class=\"v-checkbox__label v-checkbox__input-wrap\">\n                <input class=\"v-checkbox__input\" type=\"checkbox\" name=\"brand\" :value=\"filter.name\" v-model=\"selectedFilters.brands\"/>\n                <svg class=\"v-checkbox__icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n                  <path d=\"M20 6.5L9 17.5L4 12.5\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n                </svg>\n                {{filter.name}}\n              </label>\n            </div>\n          </div>\n        </template>\n      </Accordion>\n      <Accordion class=\"filter__separator\">\n        <template #title>\n          <p>\u0421\u0440\u043E\u043A \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438</p>\n        </template>\n        <template #content>\n          <div class=\"filter__group-container\">\n            <div class=\"v-checkbox\" v-for=\"filter in filters.delivery\" :key=\"filter.id\">\n              <label class=\"v-checkbox__label v-checkbox__input-wrap\">\n                <input class=\"radio\" name=\"delivery\" type=\"radio\" :value=\"filter.value\" v-model=\"selectedFilters.delivery\"/>\n                {{filter.value}}\n              </label>\n            </div>\n          </div>          \n        </template>\n      </Accordion>\n      <div class=\"filter__buttons\">\n        <button class=\"btn btn--dark btn--text\" @click=\"applyFilters\">\n          \u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C\n          <span v-if=\"filtersCount\">({{filtersCount}})</span>          \n        </button>\n        <button class=\"filter__button-reset btn btn--text\" @click=\"clearFilters\">\n          \u0421\u0431\u0440\u043E\u0441\u0438\u0442\u044C\n        </button>\n      </div>\n    </div>\n  "
   };
 
   var Pagination = {
@@ -317,8 +321,8 @@
       }
     },
     computed: _objectSpread$1({}, ui_vue3_pinia.mapState(useCatalogStore, ['query', 'filter', 'sorting'])),
-    methods: _objectSpread$1({}, ui_vue3_pinia.mapActions(useCatalogStore, ['setQuery', 'setSort', 'setFliters'])),
-    template: "\n    <div class=\"catalog-page\">\n      <Search class=\"catalog-page__search\" :query=\"query\" @update-query=\"setQuery\"/>\n      <div class=\"catalog-page__header-container\">\n        <h1>\u041A\u0430\u0442\u0430\u043B\u043E\u0433</h1>\n        <Select :options=\"sorting.sort\" @update-select=\"setSort\"/>\n      </div>\n      <Filter class=\"catalog-page__filter\" :filters=\"filter.characteristics\" @update-filters=\"setFliters\"/>\n      <ProductList />\n    </div>\n  "
+    methods: _objectSpread$1({}, ui_vue3_pinia.mapActions(useCatalogStore, ['setQuery', 'setSort', 'setFliters', 'clearFilters'])),
+    template: "\n    <div class=\"catalog-page\">\n      <Search class=\"catalog-page__search\" :query=\"query\" @update-query=\"setQuery\"/>\n      <div class=\"catalog-page__header-container\">\n        <h1>\u041A\u0430\u0442\u0430\u043B\u043E\u0433</h1>\n        <Select :options=\"sorting.sort\" @update-select=\"setSort\"/>\n      </div>\n      <Filter class=\"catalog-page__filter\" :filters=\"filter.characteristics\" @update-filters=\"setFliters\" clear-filters=\"clearFilters\"/>\n      <ProductList />\n    </div>\n  "
   };
 
   function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
