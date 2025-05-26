@@ -1,23 +1,18 @@
 import { mapActions, mapState } from 'ui.vue3.pinia';
 import { useCatalogStore } from '../../store/store';
 import { Pagination } from '../Pagination/Pagination';
-import { Select } from '../Select/Select';
 import './ProductList.css';
 
 export const ProductList = {
-  components: { Pagination, Select },
+  components: { Pagination },
   computed: {
-    ...mapState(useCatalogStore, ['products', 'pagination', 'sorting']),
+    ...mapState(useCatalogStore, ['products', 'pagination']),
   },
   methods: {
-    ...mapActions(useCatalogStore, ['setPage', 'setSort']),
+    ...mapActions(useCatalogStore, ['setPage']),
   },
   template: `
-    <div>
-      <div>
-        <h1>Каталог</h1>
-        <Select :sorting="sorting.sort" @update-sort="setSort" />
-      </div>
+    <div>      
       <div v-if="products.length" class="product-list">
         <ul class="">
           <li v-for="product in products" :key="product.id" class="list__item product-item">

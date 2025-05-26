@@ -10,11 +10,14 @@
         query: '',
         products: [],
         filter: {},
+        filters: {
+          brands: {},
+          delivery: ''
+        },
         sorting: {},
         sort: '',
         pagination: {
-          currentPage: 1,
-          totalPages: 10
+          currentPage: 1
         },
         loading: false
       };
@@ -24,7 +27,8 @@
         return {
           query: state.query,
           sort: state.sort,
-          page: state.pagination.currentPage
+          page: state.pagination.currentPage,
+          filters: state.filters
         };
       }
     },
@@ -33,7 +37,7 @@
         var _arguments = arguments,
           _this = this;
         return babelHelpers.asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-          var params, _data$totalPages, _data$currentPage, url, responce, data;
+          var params, url, responce, data;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -53,34 +57,39 @@
                 _this.products = data.items;
                 _this.sorting = data.sorting;
                 _this.filter = data.filter;
-                _this.pagination.totalPages = (_data$totalPages = data.totalPages) !== null && _data$totalPages !== void 0 ? _data$totalPages : _this.pagination.totalPages;
-                _this.pagination.currentPage = (_data$currentPage = data.currentPage) !== null && _data$currentPage !== void 0 ? _data$currentPage : _this.pagination.currentPage;
+                _this.pagination = data.pagination;
                 console.log(data);
-                _context.next = 22;
+                _context.next = 21;
                 break;
-              case 19:
-                _context.prev = 19;
+              case 18:
+                _context.prev = 18;
                 _context.t0 = _context["catch"](2);
                 console.log(_context.t0);
-              case 22:
-                _context.prev = 22;
+              case 21:
+                _context.prev = 21;
                 _this.loading = false;
-                return _context.finish(22);
-              case 25:
+                return _context.finish(21);
+              case 24:
               case "end":
                 return _context.stop();
             }
-          }, _callee, null, [[2, 19, 22, 25]]);
+          }, _callee, null, [[2, 18, 21, 24]]);
         }))();
       },
       buildUrl: function buildUrl(_ref) {
         var query = _ref.query,
           sort = _ref.sort,
-          page = _ref.page;
+          page = _ref.page,
+          filters = _ref.filters;
         var params = new URLSearchParams();
         if (query) params.append('q', query);
         if (sort) params.append('sort', sort);
         if (page) params.append('page', page);
+        if (filters) {
+          var brands = Object.keys(filters === null || filters === void 0 ? void 0 : filters.brands).join(',');
+          params.append('brands', brands);
+          params.append('delivery', filters.delivery);
+        }
         return "https://managers.intercolor.asap-lp.ru/api/v1/catalog/section/?".concat(params.toString());
       },
       setQuery: function setQuery(query) {
@@ -97,13 +106,79 @@
         this.fetchCatalog();
       },
       setSort: function setSort(option) {
-        if (JSON.stringify(this.sort) === JSON.stringify(option)) return;
+        if (this.sort === option.name) return;
         this.pagination.currentPage = 1;
-        this.sort = option.value;
+        this.sort = option.name;
+        this.fetchCatalog();
+      },
+      setFliters: function setFliters(filters) {
+        // if (JSON.stringify(this.filters) === JSON.stringify(filters)) {
+        //   return;
+        // }
+        console.log('setFliters', filters);
+        this.filters = filters;
+        this.pagination.currentPage = 1;
         this.fetchCatalog();
       }
     }
   });
+
+  var Accordion = {
+    data: function data() {
+      return {
+        isOpen: true
+      };
+    },
+    methods: {
+      toggleAccordeon: function toggleAccordeon() {
+        this.isOpen = !this.isOpen;
+      }
+    },
+    template: "\n    <div class=\"accordion\" :class=\"{'accordion--active': isOpen}\">\n      <div class=\"accordion__header\" @click=\"toggleAccordeon\">\n        <slot name=\"title\"/>\n        <svg class=\"accordion__icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n          <path d=\"M8 10L12 14L16 10\" stroke=\"#323232\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </div>\n      <div class=\"accordion__container\">\n        <slot name=\"content\"/>        \n      </div>\n    </div>\n  "
+  };
+
+  var Filter = {
+    components: {
+      Accordion: Accordion
+    },
+    props: {
+      filters: {
+        type: Object,
+        "default": function _default() {
+          return {};
+        }
+      }
+    },
+    emits: ['updateFilters'],
+    data: function data() {
+      return {
+        selectedFilters: {
+          brands: {},
+          delivery: ''
+        }
+      };
+    },
+    methods: {
+      onSelectFilter: function onSelectFilter(key, value) {
+        switch (key) {
+          case 'brands':
+            if (this.selectedFilters[key][value]) {
+              delete this.selectedFilters[key][value];
+            } else {
+              this.selectedFilters[key][value] = value;
+            }
+            break;
+          default:
+            this.selectedFilters[key] = value;
+            break;
+        }
+      },
+      applyFilters: function applyFilters() {
+        this.$emit('updateFilters', this.selectedFilters);
+      }
+    },
+    template: "\n    <div class=\"filter\">\n      <a class=\"filter__all-category\" href=\"\">\n        <svg class=\"filter__all-category-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\">\n          <path d=\"M7.08301 5.00065H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 5.00065H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 10.0007H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M2.91699 15.0007H3.75033\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M7.08301 10.0007H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M7.08301 15.0007H17.083\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n        \u0412\u0441\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438\n      </a>\n      <Accordion class=\"filter__separator\">\n        <template #title>\n          <p>\u0411\u0440\u0435\u043D\u0434</p>\n        </template>\n        <template #content>\n          <div class=\"filter__group-container\">\n            <div class=\"v-checkbox\" v-for=\"filter in filters.manufacturer\" :key=\"filter.id\">\n              <label class=\"v-checkbox__label v-checkbox__input-wrap\">\n                <input class=\"v-checkbox__input\" type=\"checkbox\" name=\"brand\" :value=\"filter.name\" @change=\"onSelectFilter('brands', filter.name)\"/>\n                <svg class=\"v-checkbox__icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n                  <path d=\"M20 6.5L9 17.5L4 12.5\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n                </svg>\n                {{filter.name}}\n              </label>\n            </div>\n          </div>\n        </template>\n      </Accordion>\n      <Accordion class=\"filter__separator\">\n        <template #title>\n          <p>\u0421\u0440\u043E\u043A \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438</p>\n        </template>\n        <template #content>\n          <div class=\"filter__group-container\">\n            <div class=\"v-checkbox\" v-for=\"filter in filters.delivery\" :key=\"filter.id\">\n              <label class=\"v-checkbox__label v-checkbox__input-wrap\">\n                <input class=\"radio\" name=\"delivery\" type=\"radio\" :value=\"filter.value\" @change=\"onSelectFilter('delivery', filter.value)\"/>\n                {{filter.value}}\n              </label>\n            </div>\n          </div>          \n        </template>\n      </Accordion>\n      <div class=\"filter__buttons\">\n        <button class=\"btn btn--dark btn--text\" @click=\"applyFilters\">\n          \u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C          \n        </button>\n        <button class=\"filter__button-reset btn btn--text\">\n          \u0421\u0431\u0440\u043E\u0441\u0438\u0442\u044C\n        </button>\n      </div>\n    </div>\n  "
+  };
 
   var Pagination = {
     props: {
@@ -124,67 +199,15 @@
     template: "\n    <nav>\n      <ul class=\"pagination__list\">\n        <li>\n          <button class=\"page-btn page-btn--first\" @click=\"onChangePage(1)\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M13.5 16L17.5 12L13.5 8\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M6.5 17L11.5 12L6.5 7\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </button>\n        </li>\n        <li>\n          <button class=\"page-btn page-btn--prev\" @click=\"onChangePage(pagination.currentPage - 1)\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M8 10L12 14L16 10\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </button>\n        </li>\n\n        <li v-for=\"page in 5\">\n          <button class=\"page-btn\" :class=\"{'page-btn--active': page == pagination.currentPage }\" @click=\"onChangePage(page)\">{{page}}</button>\n        </li>\n\n        <li>\n          <div class=\"page-btn--ellipsis\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M18.5027 18.5002C18.5027 18.7765 18.2788 19.0004 18.0025 19.0004C17.7263 19.0004 17.5023 18.7765 17.5023 18.5002C17.5023 18.224 17.7263 18 18.0025 18C18.2788 18 18.5027 18.224 18.5027 18.5002\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M12.5002 18.5002C12.5002 18.7765 12.2762 19.0004 12 19.0004C11.7237 19.0004 11.4998 18.7765 11.4998 18.5002C11.4998 18.224 11.7237 18 12 18C12.2762 18 12.5002 18.224 12.5002 18.5002\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M6.49773 18.5002C6.49773 18.7765 6.27378 19.0004 5.99752 19.0004C5.72127 19.0004 5.49731 18.7765 5.49731 18.5002C5.49731 18.224 5.72127 18 5.99752 18C6.27378 18 6.49773 18.224 6.49773 18.5002\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </div>\n        </li>\n\n        <li>\n          <button class=\"page-btn\" :class=\"{'page-btn--active': pagination.currentPage == pagination.totalPages }\" @click=\"onChangePage(pagination.totalPages)\">{{pagination.totalPages}}</button>\n        </li>\n\n        <li>\n          <button class=\"page-btn page-btn--next\" @click=\"onChangePage(pagination.currentPage + 1)\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M8 10L12 14L16 10\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </button>\n        </li>\n        <li>\n          <button class=\"page-btn page-btn--last\" @click=\"onChangePage(pagination.totalPages)\">\n            <svg\n              width=\"20\"\n              height=\"20\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n            >\n              <path\n                d=\"M13.5 16L17.5 12L13.5 8\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M6.5 17L11.5 12L6.5 7\"\n                stroke=\"var(--color-stroke-dark)\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </button>\n        </li>\n      </ul>\n    </nav>\n  "
   };
 
-  var Select = {
-    props: {
-      sorting: {
-        type: Array,
-        "default": function _default() {
-          return [];
-        }
-      }
-    },
-    emits: ['updateSort'],
-    data: function data() {
-      return {
-        selectedOption: null,
-        optionOrder: null,
-        isOpen: false
-      };
-    },
-    computed: {
-      getOption: function getOption() {
-        return this.selectedOption || 'По умолчанию';
-      },
-      getOptionOrder: function getOptionOrder() {
-        return this.optionOrder == 'asc' ? 'rotate(-90)' : 'rotate(90)';
-      }
-    },
-    methods: {
-      toggleOption: function toggleOption(option) {
-        if (this.selectedOption == option.name) return;
-        this.selectedOption = option.name;
-        this.optionOrder = option.order;
-        this.$emit('updateSort', option);
-        this.isOpen = false;
-      },
-      toggleSelect: function toggleSelect() {
-        this.isOpen = !this.isOpen;
-      },
-      handleClickOutside: function handleClickOutside(event) {
-        if (!this.$refs.select.contains(event.target)) {
-          this.isOpen = false;
-        }
-      }
-    },
-    mounted: function mounted() {
-      document.addEventListener('click', this.handleClickOutside);
-    },
-    unmounted: function unmounted() {
-      document.removeEventListener('click', this.handleClickOutside);
-    },
-    template: "\n    <div class=\"v-select v-select--small\" :class=\"{'v-select--active': isOpen}\" ref=\"select\">\n      <button class=\"v-select__trigger\" :class=\"{'v-select__trigger--active': isOpen}\" aria-haspopup=\"listbox\" @click=\"toggleSelect\">\n        {{getOption}}\n        <svg\n          v-if=\"optionOrder\"\n          width=\"24\"\n          height=\"24\"\n          viewBox=\"0 0 24 24\"\n          fill=\"none\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n          :transform=\"getOptionOrder\"\n        >\n          <path\n            d=\"M19 12H5\"\n            stroke=\"currentColor\"\n            stroke-width=\"1.5\"\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n          />\n          <path\n            d=\"M14 17L19 12\"\n            stroke=\"currentColor\"\n            stroke-width=\"1.5\"\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n          />\n          <path\n            d=\"M14 7L19 12\"\n            stroke=\"currentColor\"\n            stroke-width=\"1.5\"\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n          />\n        </svg>\n      </button>\n      <Transition name=\"select-fade-slide\">\n        <ul v-show=\"isOpen\" class=\"v-select__options\" role=\"listbox\">\n          <li\n            class=\"v-select__option v-select__option--selected\"\n            role=\"option\"\n            data-value=\"\"\n            v-for=\"option in sorting\"\n            :key=\"option.value\"\n            @click=\"toggleOption(option)\"\n          >\n            {{option.name}}\n            <svg\n              v-if=\"option.order\"\n              width=\"24\"\n              height=\"24\"\n              viewBox=\"0 0 24 24\"\n              fill=\"none\"\n              xmlns=\"http://www.w3.org/2000/svg\"\n              :transform=\"option.order == 'asc' ? 'rotate(-90)' : 'rotate(90)'\"\n            >\n              <path\n                d=\"M19 12H5\"\n                stroke=\"currentColor\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M14 17L19 12\"\n                stroke=\"currentColor\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n              <path\n                d=\"M14 7L19 12\"\n                stroke=\"currentColor\"\n                stroke-width=\"1.5\"\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n              />\n            </svg>\n          </li>\n        </ul>\n      </Transition>\n    </div>\n  "
-  };
-
   function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
   var ProductList = {
     components: {
-      Pagination: Pagination,
-      Select: Select
+      Pagination: Pagination
     },
-    computed: _objectSpread({}, ui_vue3_pinia.mapState(useCatalogStore, ['products', 'pagination', 'sorting'])),
-    methods: _objectSpread({}, ui_vue3_pinia.mapActions(useCatalogStore, ['setPage', 'setSort'])),
-    template: "\n    <div>\n      <div>\n        <h1>\u041A\u0430\u0442\u0430\u043B\u043E\u0433</h1>\n        <Select :sorting=\"sorting.sort\" @update-sort=\"setSort\" />\n      </div>\n      <div v-if=\"products.length\" class=\"product-list\">\n        <ul class=\"\">\n          <li v-for=\"product in products\" :key=\"product.id\" class=\"list__item product-item\">\n            <div class=\"product-item__info\">\n              <div class=\"card card-thumb\">\n                <img\n                  class=\"card-thumb__img\"\n                  :src=\"product.image\"\n                  alt=\"\"\n                />\n              </div>\n              <div>\n                <div class=\"product-item__title\">{{product.name}}</div>\n                <div class=\"product-item__sku caption\">\u0410\u0440\u0442. {{product.sku}}</div>\n              </div>\n            </div>\n\n            <div class=\"product-item__stock\">\n              <div class=\"product-item__stock-storage\">\n                <span class=\"caption\">\u041C\u043E\u0441\u043A\u0432\u0430:</span><span class=\"label-2\">116 000</span>\n              </div>\n              <div class=\"product-item__stock-storage\">\n                <span class=\"caption\">\u0421.\u041F\u0435\u0442\u0435\u0440\u0431:</span\n                ><span class=\"label-2\">116 000</span>\n              </div>\n            </div>\n\n            <div class=\"input-container input-container--quantity\">\n              <div class=\"input-field quantity-input\">\n                <button class=\"quantity-control\" data-action=\"minus\">\n                  <svg\n                    width=\"20\"\n                    height=\"20\"\n                    viewBox=\"0 0 20 20\"\n                    fill=\"none\"\n                    xmlns=\"http://www.w3.org/2000/svg\"\n                  >\n                    <path\n                      d=\"M5.28516 10H14.7132\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                  </svg>\n                </button>\n                <input type=\"number\" class=\"quantity-value\" value=\"100000\" />\n                <button class=\"quantity-control\" data-action=\"plus\">\n                  <svg\n                    width=\"20\"\n                    height=\"20\"\n                    viewBox=\"0 0 20 20\"\n                    fill=\"none\"\n                    xmlns=\"http://www.w3.org/2000/svg\"\n                  >\n                    <path\n                      d=\"M5.28516 10H14.7132\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                    <path\n                      d=\"M9.9992 5.28595V14.714\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                  </svg>\n                </button>\n              </div>\n            </div>\n\n            <div class=\"product-item__price number-1\">2 250 000 \u20BD</div>\n\n            <button class=\"btn btn--icon-only--large btn--dark\">\n              <svg\n                width=\"20\"\n                height=\"20\"\n                viewBox=\"0 0 24 24\"\n                fill=\"none\"\n                xmlns=\"http://www.w3.org/2000/svg\"\n              >\n                <path\n                  d=\"M5.96905 6.625L5.30205 3.625H3.37305\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  fill-rule=\"evenodd\"\n                  clip-rule=\"evenodd\"\n                  d=\"M7.73099 14.835L5.96899 6.625H18.627C19.264 6.625 19.738 7.212 19.605 7.835L18.103 14.835C18.004 15.296 17.597 15.625 17.125 15.625H8.70799C8.23699 15.625 7.82999 15.296 7.73099 14.835Z\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  d=\"M17.465 19.25C17.258 19.25 17.09 19.418 17.092 19.625C17.092 19.832 17.26 20 17.467 20C17.674 20 17.842 19.832 17.842 19.625C17.841 19.418 17.673 19.25 17.465 19.25\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  d=\"M8.85605 19.25C8.64905 19.25 8.48105 19.418 8.48305 19.625C8.48205 19.832 8.65005 20 8.85705 20C9.06405 20 9.23205 19.832 9.23205 19.625C9.23205 19.418 9.06405 19.25 8.85605 19.25\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n              </svg>\n            </button>\n          </li>\n        </ul>\n        <Pagination :pagination=\"pagination\" @update-page=\"setPage\"/>\n      </div>\n      <div v-else class=\"product-list-empty\">\n          \u041D\u0430\u0439\u0434\u0435\u043D\u043E 0 \u0442\u043E\u0432\u0430\u0440\u043E\u0432\n      </div>\n    </div>    \n  "
+    computed: _objectSpread({}, ui_vue3_pinia.mapState(useCatalogStore, ['products', 'pagination'])),
+    methods: _objectSpread({}, ui_vue3_pinia.mapActions(useCatalogStore, ['setPage'])),
+    template: "\n    <div>      \n      <div v-if=\"products.length\" class=\"product-list\">\n        <ul class=\"\">\n          <li v-for=\"product in products\" :key=\"product.id\" class=\"list__item product-item\">\n            <div class=\"product-item__info\">\n              <div class=\"card card-thumb\">\n                <img\n                  class=\"card-thumb__img\"\n                  :src=\"product.image\"\n                  alt=\"\"\n                />\n              </div>\n              <div>\n                <div class=\"product-item__title\">{{product.name}}</div>\n                <div class=\"product-item__sku caption\">\u0410\u0440\u0442. {{product.sku}}</div>\n              </div>\n            </div>\n\n            <div class=\"product-item__stock\">\n              <div class=\"product-item__stock-storage\">\n                <span class=\"caption\">\u041C\u043E\u0441\u043A\u0432\u0430:</span><span class=\"label-2\">116 000</span>\n              </div>\n              <div class=\"product-item__stock-storage\">\n                <span class=\"caption\">\u0421.\u041F\u0435\u0442\u0435\u0440\u0431:</span\n                ><span class=\"label-2\">116 000</span>\n              </div>\n            </div>\n\n            <div class=\"input-container input-container--quantity\">\n              <div class=\"input-field quantity-input\">\n                <button class=\"quantity-control\" data-action=\"minus\">\n                  <svg\n                    width=\"20\"\n                    height=\"20\"\n                    viewBox=\"0 0 20 20\"\n                    fill=\"none\"\n                    xmlns=\"http://www.w3.org/2000/svg\"\n                  >\n                    <path\n                      d=\"M5.28516 10H14.7132\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                  </svg>\n                </button>\n                <input type=\"number\" class=\"quantity-value\" value=\"100000\" />\n                <button class=\"quantity-control\" data-action=\"plus\">\n                  <svg\n                    width=\"20\"\n                    height=\"20\"\n                    viewBox=\"0 0 20 20\"\n                    fill=\"none\"\n                    xmlns=\"http://www.w3.org/2000/svg\"\n                  >\n                    <path\n                      d=\"M5.28516 10H14.7132\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                    <path\n                      d=\"M9.9992 5.28595V14.714\"\n                      stroke=\"#323232\"\n                      stroke-width=\"1.5\"\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                    />\n                  </svg>\n                </button>\n              </div>\n            </div>\n\n            <div class=\"product-item__price number-1\">2 250 000 \u20BD</div>\n\n            <button class=\"btn btn--icon-only--large btn--dark\">\n              <svg\n                width=\"20\"\n                height=\"20\"\n                viewBox=\"0 0 24 24\"\n                fill=\"none\"\n                xmlns=\"http://www.w3.org/2000/svg\"\n              >\n                <path\n                  d=\"M5.96905 6.625L5.30205 3.625H3.37305\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  fill-rule=\"evenodd\"\n                  clip-rule=\"evenodd\"\n                  d=\"M7.73099 14.835L5.96899 6.625H18.627C19.264 6.625 19.738 7.212 19.605 7.835L18.103 14.835C18.004 15.296 17.597 15.625 17.125 15.625H8.70799C8.23699 15.625 7.82999 15.296 7.73099 14.835Z\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  d=\"M17.465 19.25C17.258 19.25 17.09 19.418 17.092 19.625C17.092 19.832 17.26 20 17.467 20C17.674 20 17.842 19.832 17.842 19.625C17.841 19.418 17.673 19.25 17.465 19.25\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n                <path\n                  d=\"M8.85605 19.25C8.64905 19.25 8.48105 19.418 8.48305 19.625C8.48205 19.832 8.65005 20 8.85705 20C9.06405 20 9.23205 19.832 9.23205 19.625C9.23205 19.418 9.06405 19.25 8.85605 19.25\"\n                  stroke=\"currentColor\"\n                  stroke-width=\"1.5\"\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                />\n              </svg>\n            </button>\n          </li>\n        </ul>\n        <Pagination :pagination=\"pagination\" @update-page=\"setPage\"/>\n      </div>\n      <div v-else class=\"product-list-empty\">\n          \u041D\u0430\u0439\u0434\u0435\u043D\u043E 0 \u0442\u043E\u0432\u0430\u0440\u043E\u0432\n      </div>\n    </div>    \n  "
   };
 
   var Search = {
@@ -218,9 +241,73 @@
     template: "\n    <div class=\"catalog-search\">\n      <input\n        type=\"search\"\n        class=\"catalog-search__input input-field input-search input-search--tall\"\n        v-model.trim=\"searchQuery\"\n      />\n      <button class=\"catalog-search__submit btn btn--dark btn--text--large\" @click=\"debouncedSearch\">\n        \u041D\u0430\u0439\u0442\u0438\n      </button>\n    </div>\n  "
   };
 
+  var Select = {
+    props: {
+      options: {
+        type: Array,
+        "default": function _default() {
+          return [];
+        }
+      }
+    },
+    emits: ['updateSelect'],
+    data: function data() {
+      return {
+        selectedOptionValue: null,
+        selectedOptionOrder: null,
+        selectedOptionName: null,
+        isOpen: false
+      };
+    },
+    computed: {
+      getOption: function getOption() {
+        return this.selectedOptionValue || 'По умолчанию';
+      }
+    },
+    methods: {
+      toggleOption: function toggleOption(option) {
+        if (this.selectedOptionName == option.name) {
+          this.isOpen = false;
+          return;
+        }
+        console.log(option);
+        this.selectedOptionName = option.name;
+        this.selectedOptionValue = option.value;
+        this.selectedOptionOrder = option.order;
+        this.$emit('updateSelect', option);
+        this.isOpen = false;
+      },
+      toggleSelect: function toggleSelect() {
+        this.isOpen = !this.isOpen;
+      },
+      getOrderType: function getOrderType() {
+        var order = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        return order === 'asc' ? 'v-select__order-icon--rotate' : '';
+      },
+      handleClickOutside: function handleClickOutside(event) {
+        if (!this.$refs.select.contains(event.target)) {
+          this.isOpen = false;
+        }
+      }
+    },
+    mounted: function mounted() {
+      document.addEventListener('click', this.handleClickOutside);
+    },
+    unmounted: function unmounted() {
+      document.removeEventListener('click', this.handleClickOutside);
+    },
+    template: "\n    <div class=\"v-select v-select--small\" :class=\"{'v-select--active': isOpen}\" ref=\"select\">\n      <button class=\"v-select__trigger\" :class=\"{'v-select__trigger--active': isOpen}\" aria-haspopup=\"listbox\" @click=\"toggleSelect\">\n        {{getOption}}\n        <svg v-if=\"selectedOptionOrder\" :class=\"getOrderType(selectedOptionOrder)\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n          <path d=\"M12 5V19\" stroke=\"#323232\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          <path d=\"M6.99902 9.99905L12 4.99805L17.001 9.99905\" stroke=\"#323232\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </button>\n      <Transition name=\"select-fade-slide\">\n        <ul v-show=\"isOpen\" class=\"v-select__options\" role=\"listbox\">\n          <li\n            class=\"v-select__option\"\n            :class=\"{'v-select__option--selected': selectedOptionName === option.name}\"\n            role=\"option\"\n            v-for=\"option in options\"\n            :key=\"option.name\"\n            @click=\"toggleOption(option)\"\n          >\n            {{option.value}}\n            <svg v-if=\"option.order\" :class=\"getOrderType(option.order)\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n              <path d=\"M12 5V19\" stroke=\"#323232\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n              <path d=\"M6.99902 9.99905L12 4.99805L17.001 9.99905\" stroke=\"#323232\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            </svg>            \n            <svg v-if=\"selectedOptionName === option.name\" class=\"v-select__active-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n              <path d=\"M20 6.5L9 17.5L4 12.5\" stroke=\"#323232\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            </svg>\n          </li>\n        </ul>\n      </Transition>\n    </div>\n  "
+  };
+
   function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
   function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys$1(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
   var CatalogPage = {
+    components: {
+      ProductList: ProductList,
+      Search: Search,
+      Filter: Filter,
+      Select: Select
+    },
     props: {
       params: {
         type: Object,
@@ -229,13 +316,9 @@
         }
       }
     },
-    components: {
-      ProductList: ProductList,
-      Search: Search
-    },
-    computed: _objectSpread$1({}, ui_vue3_pinia.mapState(useCatalogStore, ['query'])),
-    methods: _objectSpread$1({}, ui_vue3_pinia.mapActions(useCatalogStore, ['setQuery'])),
-    template: "\n    <div class='catalog-page'>\n      <Search :query=\"query\" @update-query=\"setQuery\"/>\n      <ProductList />\n    </div>\n  "
+    computed: _objectSpread$1({}, ui_vue3_pinia.mapState(useCatalogStore, ['query', 'filter', 'sorting'])),
+    methods: _objectSpread$1({}, ui_vue3_pinia.mapActions(useCatalogStore, ['setQuery', 'setSort', 'setFliters'])),
+    template: "\n    <div class=\"catalog-page\">\n      <Search class=\"catalog-page__search\" :query=\"query\" @update-query=\"setQuery\"/>\n      <div class=\"catalog-page__header-container\">\n        <h1>\u041A\u0430\u0442\u0430\u043B\u043E\u0433</h1>\n        <Select :options=\"sorting.sort\" @update-select=\"setSort\"/>\n      </div>\n      <Filter class=\"catalog-page__filter\" :filters=\"filter.characteristics\" @update-filters=\"setFliters\"/>\n      <ProductList />\n    </div>\n  "
   };
 
   function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }

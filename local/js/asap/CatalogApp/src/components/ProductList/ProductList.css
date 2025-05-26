@@ -1,7 +1,7 @@
 .product-list {
   padding: 16px;
-  background-color: var(--color-neutral-100);
   border-radius: var(--radius-large-3);
+  background-color: var(--color-neutral-100);
 }
 
 .product-list-empty {
@@ -9,6 +9,6 @@
   align-items: center;
   justify-content: center;
   padding: var(--spacing-6);
-  background-color: var(--color-neutral-100);
   border-radius: var(--radius-large-2);
+  background-color: var(--color-neutral-100);
 }

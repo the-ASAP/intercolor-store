@@ -1,0 +1,30 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.accordion--active .accordion__icon {
+  transform: rotate(180deg);
+}
+
+.accordion--active .accordion__container {
+  max-height: 100vh;
+}
+
+.accordion__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion__container {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.accordion__container,
+.accordion__icon {
+  transition: all 0.4s ease-in-out;
+}

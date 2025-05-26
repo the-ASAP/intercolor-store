@@ -1,3 +1,21 @@
 .catalog-page {
   display: grid;
+  grid-template-columns: min-content 1fr;
+  align-items: start;
+  gap: var(--spacing-5);
+}
+
+.catalog-page__search {
+  grid-column: 1/-1;
+}
+
+.catalog-page__header-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.catalog-page__filter {
+  min-width: 264px;
 }

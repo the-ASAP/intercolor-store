@@ -7,11 +7,14 @@ export const useCatalogStore = defineStore('catalog', {
     query: '',
     products: [],
     filter: {},
+    filters: {
+      brands: {},
+      delivery: '',
+    },
     sorting: {},
     sort: '',
     pagination: {
       currentPage: 1,
-      totalPages: 10,
     },
     loading: false,
   }),
@@ -21,6 +24,7 @@ export const useCatalogStore = defineStore('catalog', {
         query: state.query,
         sort: state.sort,
         page: state.pagination.currentPage,
+        filters: state.filters,
       };
     },
   },
@@ -37,10 +41,7 @@ export const useCatalogStore = defineStore('catalog', {
         this.products = data.items;
         this.sorting = data.sorting;
         this.filter = data.filter;
-        this.pagination.totalPages =
-          data.totalPages ?? this.pagination.totalPages;
-        this.pagination.currentPage =
-          data.currentPage ?? this.pagination.currentPage;
+        this.pagination = data.pagination;
 
         console.log(data);
       } catch (error) {
@@ -50,11 +51,16 @@ export const useCatalogStore = defineStore('catalog', {
       }
     },
 
-    buildUrl({ query, sort, page }) {
+    buildUrl({ query, sort, page, filters }) {
       const params = new URLSearchParams();
       if (query) params.append('q', query);
       if (sort) params.append('sort', sort);
       if (page) params.append('page', page);
+      if (filters) {
+        const brands = Object.keys(filters?.brands).join(',');
+        params.append('brands', brands);
+        params.append('delivery', filters.delivery);
+      }
       return `https://managers.intercolor.asap-lp.ru/api/v1/catalog/section/?${params.toString()}`;
     },
 
@@ -74,9 +80,19 @@ export const useCatalogStore = defineStore('catalog', {
     },
 
     setSort(option) {
-      if (JSON.stringify(this.sort) === JSON.stringify(option)) return;
+      if (this.sort === option.name) return;
       this.pagination.currentPage = 1;
-      this.sort = option.value;
+      this.sort = option.name;
+      this.fetchCatalog();
+    },
+
+    setFliters(filters) {
+      // if (JSON.stringify(this.filters) === JSON.stringify(filters)) {
+      //   return;
+      // }
+      console.log('setFliters', filters);
+      this.filters = filters;
+      this.pagination.currentPage = 1;
       this.fetchCatalog();
     },
   },

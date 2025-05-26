@@ -26,9 +26,11 @@
   border-radius: var(--radius-large-2);
   transition: all 0.3s ease-in-out;
 }
+
 .v-select__trigger--active {
   border-radius: var(--radius-large-2) var(--radius-large-2) 0 0;
 }
+
 .v-select__trigger::after {
   content: '';
   position: absolute;
@@ -39,6 +41,7 @@
   height: var(--icon-24);
   background: url('../../assets/icons/arrow.svg');
 }
+
 .v-select__trigger--active::after {
   transform: rotate(180deg) translateY(50%);
 }
@@ -63,15 +66,13 @@
   align-items: center;
   gap: var(--spacing-1);
 }
-.v-select__option--selected::after {
-  content: '';
-  position: absolute;
-  right: var(--spacing-3);
-  top: 50%;
-  transform: translateY(-50%);
-  width: var(--icon-24);
-  height: var(--icon-24);
-  background: url('../../assets/icons/check.svg');
+
+.v-select__order-icon--rotate {
+  transform: rotate(180deg);
+}
+
+.v-select__active-icon {
+  margin-left: auto;
 }
 
 /* Transition */

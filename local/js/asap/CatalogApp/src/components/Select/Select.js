@@ -2,40 +2,44 @@ import './Select.css';
 
 export const Select = {
   props: {
-    sorting: {
+    options: {
       type: Array,
       default: () => [],
     },
   },
-  emits: ['updateSort'],
+  emits: ['updateSelect'],
   data() {
     return {
-      selectedOption: null,
-      optionOrder: null,
+      selectedOptionValue: null,
+      selectedOptionOrder: null,
+      selectedOptionName: null,
       isOpen: false,
     };
   },
   computed: {
     getOption() {
-      return this.selectedOption || 'По умолчанию';
-    },
-    getOptionOrder() {
-      return this.optionOrder == 'asc' ? 'rotate(-90)' : 'rotate(90)';
+      return this.selectedOptionValue || 'По умолчанию';
     },
   },
   methods: {
     toggleOption(option) {
-      if (this.selectedOption == option.name) return;
-      this.selectedOption = option.name;
-      this.optionOrder = option.order;
-      this.$emit('updateSort', option);
+      if (this.selectedOptionName == option.name) {
+        this.isOpen = false;
+        return;
+      }
+      console.log(option);
+      this.selectedOptionName = option.name;
+      this.selectedOptionValue = option.value;
+      this.selectedOptionOrder = option.order;
+      this.$emit('updateSelect', option);
       this.isOpen = false;
     },
-
     toggleSelect() {
       this.isOpen = !this.isOpen;
     },
-
+    getOrderType(order = '') {
+      return order === 'asc' ? 'v-select__order-icon--rotate' : '';
+    },
     handleClickOutside(event) {
       if (!this.$refs.select.contains(event.target)) {
         this.isOpen = false;
@@ -45,7 +49,6 @@ export const Select = {
   mounted() {
     document.addEventListener('click', this.handleClickOutside);
   },
-
   unmounted() {
     document.removeEventListener('click', this.handleClickOutside);
   },
@@ -53,79 +56,28 @@ export const Select = {
     <div class="v-select v-select--small" :class="{'v-select--active': isOpen}" ref="select">
       <button class="v-select__trigger" :class="{'v-select__trigger--active': isOpen}" aria-haspopup="listbox" @click="toggleSelect">
         {{getOption}}
-        <svg
-          v-if="optionOrder"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          :transform="getOptionOrder"
-        >
-          <path
-            d="M19 12H5"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M14 17L19 12"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M14 7L19 12"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+        <svg v-if="selectedOptionOrder" :class="getOrderType(selectedOptionOrder)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5V19" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6.99902 9.99905L12 4.99805L17.001 9.99905" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
       <Transition name="select-fade-slide">
         <ul v-show="isOpen" class="v-select__options" role="listbox">
           <li
-            class="v-select__option v-select__option--selected"
+            class="v-select__option"
+            :class="{'v-select__option--selected': selectedOptionName === option.name}"
             role="option"
-            data-value=""
-            v-for="option in sorting"
-            :key="option.value"
+            v-for="option in options"
+            :key="option.name"
             @click="toggleOption(option)"
           >
-            {{option.name}}
-            <svg
-              v-if="option.order"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              :transform="option.order == 'asc' ? 'rotate(-90)' : 'rotate(90)'"
-            >
-              <path
-                d="M19 12H5"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M14 17L19 12"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M14 7L19 12"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+            {{option.value}}
+            <svg v-if="option.order" :class="getOrderType(option.order)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5V19" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.99902 9.99905L12 4.99805L17.001 9.99905" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+            <svg v-if="selectedOptionName === option.name" class="v-select__active-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6.5L9 17.5L4 12.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </li>
         </ul>
