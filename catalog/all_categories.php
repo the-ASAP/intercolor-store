@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Интерколор</title>
+    <title>Интерколор - Все категории</title>
     <link rel="stylesheet" href="/ui-kit/css/main.css" />
 </head>
 
@@ -315,147 +315,37 @@
 
     <div class="content-wrapper">
         <main>
-            <h1>Склады</h1>
-            <ul class="list warehouses-list">
-                <li class="list__item warehouses-item">
-                    <div
-                        class="warehouses-item__field warehouses-item__name"
-                        title="Центральный">
-                        Центральный
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__city"
-                        title="Санкт-Петербург">
-                        Санкт-Петербург
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__phone"
-                        title="+7-812-325-37-53">
-                        +7-812-325-37-53
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__mail"
-                        title="info@neva.intercolor.ru">
-                        info@neva.intercolor.ru
-                    </div>
-                    <button class="btn btn--text btn--dark">Посмотреть товары</button>
-                </li>
-                <li class="list__item warehouses-item">
-                    <div
-                        class="warehouses-item__field warehouses-item__name"
-                        title="Центральный">
-                        Центральный
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__city"
-                        title="Санкт-Петербург">
-                        Санкт-Петербург
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__phone"
-                        title="+7-812-325-37-53">
-                        +7-812-325-37-53
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__mail"
-                        title="info@neva.intercolor.ru">
-                        info@neva.intercolor.ru
-                    </div>
-                    <button class="btn btn--text btn--dark">Посмотреть товары</button>
-                </li>
-                <li class="list__item warehouses-item">
-                    <div
-                        class="warehouses-item__field warehouses-item__name"
-                        title="Центральный">
-                        Центральный
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__city"
-                        title="Санкт-Петербург">
-                        Санкт-Петербург
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__phone"
-                        title="+7-812-325-37-53">
-                        +7-812-325-37-53
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__mail"
-                        title="info@neva.intercolor.ru">
-                        info@neva.intercolor.ru
-                    </div>
-                    <button class="btn btn--text btn--dark">Посмотреть товары</button>
-                </li>
-                <li class="list__item warehouses-item">
-                    <div
-                        class="warehouses-item__field warehouses-item__name"
-                        title="Центральный">
-                        Центральный
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__city"
-                        title="Санкт-Петербург">
-                        Санкт-Петербург
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__phone"
-                        title="+7-812-325-37-53">
-                        +7-812-325-37-53
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__mail"
-                        title="info@neva.intercolor.ru">
-                        info@neva.intercolor.ru
-                    </div>
-                    <button class="btn btn--text btn--dark">Посмотреть товары</button>
-                </li>
-                <li class="list__item warehouses-item">
-                    <div
-                        class="warehouses-item__field warehouses-item__name"
-                        title="Центральный">
-                        Центральный
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__city"
-                        title="Санкт-Петербург">
-                        Санкт-Петербург
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__phone"
-                        title="+7-812-325-37-53">
-                        +7-812-325-37-53
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__mail"
-                        title="info@neva.intercolor.ru">
-                        info@neva.intercolor.ru
-                    </div>
-                    <button class="btn btn--text btn--dark">Посмотреть товары</button>
-                </li>
-                <li class="list__item warehouses-item">
-                    <div
-                        class="warehouses-item__field warehouses-item__name"
-                        title="Центральный">
-                        Центральный
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__city"
-                        title="Санкт-Петербург">
-                        Санкт-Петербург
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__phone"
-                        title="+7-812-325-37-53">
-                        +7-812-325-37-53
-                    </div>
-                    <div
-                        class="warehouses-item__field warehouses-item__mail"
-                        title="info@neva.intercolor.ru">
-                        info@neva.intercolor.ru
-                    </div>
-                    <button class="btn btn--text btn--dark">Посмотреть товары</button>
-                </li>
-            </ul>
+            <div class="flex gap-4">
+                <div class="input-container">
+                    <input
+                        type="search"
+                        class="input-field input-search input-search--tall" />
+                </div>
+                <button style="width: 212px" class="btn btn--dark btn--text--large">
+                    Найти
+                </button>
+            </div>
+            <div class="flex gap-6 items-center">
+                <h1>Каталог</h1>
+                <nav class="breadcrumbs">
+                    <ol class="breadcrumbs__list">
+                        <li class="breadcrumbs__item">
+                            <a href="index.php" class="caption">Весь каталог</a>
+                        </li>
+                        <li class="breadcrumbs__item breadcrumbs__item--current">
+                            <span class="caption">Все категории</span>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="all-categories" data-all-categories>
+                <nav
+                    class="all-categories__categories"
+                    data-all-categories-cats></nav>
+                <section
+                    class="all-categories__subcategories"
+                    data-all-categories-subcats></section>
+            </div>
         </main>
 
         <footer class="flex items-center justify-between width-full">

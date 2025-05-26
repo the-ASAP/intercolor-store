@@ -7,8 +7,11 @@
 .justify-between {
   justify-content: space-between;
 }
-.align-center {
+.items-center {
   align-items: center;
+}
+.items-end {
+  align-items: flex-end;
 }
 .gap-1 {
   gap: var(--spacing-1);
@@ -30,4 +33,10 @@
 }
 .width-full {
   width: 100%;
+}
+.no-underline {
+  text-decoration-line: none;
+}
+.overflow-hidden {
+  overflow: hidden;
 }

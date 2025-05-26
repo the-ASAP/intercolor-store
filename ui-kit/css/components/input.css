@@ -1,15 +1,12 @@
 .input-container {
+  width: 100%;
   position: relative;
-  width: 328px;
 }
 .input-container--quantity {
-  width: 150px;
+  width: 149px;
 }
 .input-container--number {
   width: 90px;
-}
-.input-container--search {
-  width: 368px;
 }
 
 .input-field {
@@ -36,12 +33,9 @@
 .input-label--disabled {
   color: var(--color-text-medium);
 }
-/* .input-field--disabled {
-  cursor: not-allowed;
-} */
 
 .input-search {
-  background-image: url("../../assets/icons/loupe.svg");
+  background-image: url("/ui-kit/assets/icons/loupe.svg");
   background-repeat: no-repeat;
   background-position: var(--spacing-4) center;
   background-size: var(--icon-24);

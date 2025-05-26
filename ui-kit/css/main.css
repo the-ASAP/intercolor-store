@@ -4,7 +4,7 @@
 /* сброс стилей и базовые стили*/
 @import url("base.css");
 
-/* стили компонентов */
+/* стили ui-kit компонентов */
 @import url("components/selector.css");
 @import url("components/input.css");
 @import url("components/checkbox.css");
@@ -20,6 +20,11 @@
 @import url("components/logo.css");
 @import url("components/list.css");
 @import url("components/side-sheet.css");
+
+/* стили страниц или компонентов со страниц */
+@import url("pages/auth.css");
+@import url("components/sidebar.css");
+@import url("pages/allcategories.css");
 
 /* вспомогательные классы как tailwind */
 @import url("utilities.css");

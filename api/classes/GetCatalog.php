@@ -6,6 +6,8 @@ use Faker\Provider\Lorem;
 
 class GetCatalog  extends \Bitrix\Main\Engine\Controller
 {
+    private $sectionTree;
+
     protected function getDefaultPreFilters()
     {
         return [];
@@ -25,100 +27,124 @@ class GetCatalog  extends \Bitrix\Main\Engine\Controller
         ];
     }
 
+    private function buildTree()
+    {
+        $IBLOCK_ID = 24;
+        $arFilter = array('IBLOCK_ID' => $IBLOCK_ID);
+        $rs_Section = \CIBlockSection::GetList(
+            array('DEPTH_LEVEL' => 'desc'),
+            $arFilter,
+            false,
+            array('ID', 'NAME', 'CODE', 'IBLOCK_SECTION_ID', 'DEPTH_LEVEL', 'SORT', 'ACTIVE')
+        );
+        $ar_SectionList = array();
+        $ar_DepthLavel = array();
+        while ($ar_Section = $rs_Section->GetNext(true, false))
+        {
+            $ar_SectionList[$ar_Section['ID']] = [
+                'id' => $ar_Section['ID'],
+                'name' => $ar_Section['NAME'],
+                'code' => $ar_Section['CODE'],
+                'parent' => $ar_Section['IBLOCK_SECTION_ID'],
+                'depth_level' => $ar_Section['DEPTH_LEVEL']
+            ];
+            $ar_DepthLavel[] = $ar_Section['DEPTH_LEVEL'];
+        }
+        $ar_DepthLavelResult = array_unique($ar_DepthLavel);
+        rsort($ar_DepthLavelResult);
+
+        $i_MaxDepthLevel = $ar_DepthLavelResult[0];
+
+        for ($i = $i_MaxDepthLevel; $i > 1; $i--)
+        {
+            foreach ($ar_SectionList as $i_SectionID => $ar_Value)
+            {
+                if ($ar_Value['depth_level'] == $i)
+                {
+                    $ar_SectionList[$ar_Value['parent']]['sections'][] = $ar_Value;
+                    unset($ar_SectionList[$i_SectionID]);
+                }
+            }
+        }
+        $this->sectionTree = $ar_SectionList;
+    }
+
+    private function getItems($section)
+    {
+        $items = \Bitrix\Iblock\Elements\ElementServicecatalogTable::getList(
+            [
+                'select' =>
+                [
+                    '*'
+                ],
+                'filter' =>
+                [
+                    '=ACTIVE' => 'Y',
+                    'IBLOCK_SECTION_ID' => $section,
+                    'IBLOCK_ID' => 24
+                ],
+                'limit' => 1
+            ]
+        )->fetchAll();
+        return $items;
+    }
 
     public function viewAction()
     {
 
-        $result =[];
-        $catalogStructure = \Bitrix\Iblock\SectionTable::getList(
-            [
-                'select' => [
-                    'ID',
-                    'NAME',
-                    'DEPTH_LEVEL',
-                    'IBLOCK_SECTION_ID',
-                    'CODE',
-                    'LEFT_MARGIN',
-                    'ITEM_NAME'=>'ELEMENTS.NAME',
-                    'ITEM_PREVIEW_TEXT'=>'ELEMENTS.PREVIEW_TEXT',
-                    'ITEM_ID'=>'ELEMENTS.ID',
-                    'ITEM_CODE'=>'ELEMENTS.CODE',
-                    'ITEM_PREVIEW_PICTURE'=>'ELEMENTS.PREVIEW_PICTURE',
-                ],
-                'filter' => [
-                    '=IBLOCK_ID' => 20,
-                    '=ACTIVE' => 'Y',
-                ],
-                'order' => [
-                    'SORT' => 'ASC'
-                ],
-                'runtime'=>
-                [
-                    'ELEMENTS'=>
-                    [
-                        'data_type'=>\Bitrix\Iblock\Elements\ElementServicecatalogTable::class,
-                        'reference' => [
-                            '=this.ID' => 'ref.IBLOCK_SECTION_ID',
-                            '=ref.ACTIVE' =>  new \Bitrix\Main\DB\SqlExpression('?', 'Y'),
-                            '=ref.IBLOCK_ID' => new \Bitrix\Main\DB\SqlExpression('?', 20),
-                        ],
-                        'join_type' => 'INNER',
-                    ]
-                ]
-            ]
-        )->fetchAll();
-
+        $result = [];
+        $this->buildTree();
         $filter = [
-            'characteristics'=>[
+            'characteristics' => [
                 [
-                    'color'=>[
-                        'name'=>'Цвет',
-                        'value'=>[
+                    'color' => [
+                        'name' => 'Цвет',
+                        'value' => [
                             [
-                                'id'=>1,
-                                'name'=>'Красный',
+                                'id' => 1,
+                                'name' => 'Красный',
                             ],
                             [
-                                'id'=>2,
-                                'name'=>'Синий',
+                                'id' => 2,
+                                'name' => 'Синий',
                             ],
                             [
-                                'id'=>3,
-                                'name'=>'Зеленый',
-                            ],
-                        ]
-                        ],
-                    'size'=>[
-                        'name'=>'Размер',
-                        'value'=>[
-                            [
-                                'id'=>1,
-                                'name'=>'Маленький',
-                            ],
-                            [
-                                'id'=>2,
-                                'name'=>'Средний',
-                            ],
-                            [
-                                'id'=>3,
-                                'name'=>'Большой',
+                                'id' => 3,
+                                'name' => 'Зеленый',
                             ],
                         ]
                     ],
-                    'material'=>[
-                        'name'=>'Материал',
-                        'value'=>[
+                    'size' => [
+                        'name' => 'Размер',
+                        'value' => [
                             [
-                                'id'=>1,
-                                'name'=>'Дерево',
+                                'id' => 1,
+                                'name' => 'Маленький',
                             ],
                             [
-                                'id'=>2,
-                                'name'=>'Металл',
+                                'id' => 2,
+                                'name' => 'Средний',
                             ],
                             [
-                                'id'=>3,
-                                'name'=>'Пластик',
+                                'id' => 3,
+                                'name' => 'Большой',
+                            ],
+                        ]
+                    ],
+                    'material' => [
+                        'name' => 'Материал',
+                        'value' => [
+                            [
+                                'id' => 1,
+                                'name' => 'Дерево',
+                            ],
+                            [
+                                'id' => 2,
+                                'name' => 'Металл',
+                            ],
+                            [
+                                'id' => 3,
+                                'name' => 'Пластик',
                             ],
                         ]
                     ],
@@ -144,73 +170,36 @@ class GetCatalog  extends \Bitrix\Main\Engine\Controller
             ]
 
         ];
-        foreach($catalogStructure as $struct)
-        {
-            $result['section'][$struct['IBLOCK_SECTION_ID']]['id'] = $struct['IBLOCK_SECTION_ID']??0;
-            $result['section'][$struct['IBLOCK_SECTION_ID']]['name'] = $struct['NAME'];
-            $result['section'][$struct['IBLOCK_SECTION_ID']]['code'] = $struct['CODE']?? \CUtil::translit($struct['NAME'], 'ru',
-                [
-                    'replace_space' => '-',
-                    'replace_other' => '-',
-                ]
-            );
-                $result['section'][$struct['IBLOCK_SECTION_ID']]['items'][] = [
-                'id' => $struct['ITEM_ID'],
-                'name' => $struct['ITEM_NAME'],
-                'preview' => $struct['ITEM_PREVIEW_TEXT'],
-                'code' => $struct['ITEM_CODE']?? \CUtil::translit($struct['ITEM_NAME'], 'ru',
-                    [
-                        'replace_space' => '-',
-                        'replace_other' => '-',
-                    ]
-                ),
-                'image' => \CFile::GetPath($struct['ITEM_PREVIEW_PICTURE']),
-                'price'=>10500,
-                'old_price'=>15000,
-                'total_count'=>15,
-                'stocks'=>[
-                    [
-                        'id'=>1,
-                        'name'=>'Склад 1',
-                        'count'=>10,
-                    ],
-                    [
-                        'id'=>2,
-                        'name'=>'Склад 2',
-                        'count'=>5,
-                    ],
-                ]
-            ];
-        }
-        $result['filter']=$filter;
-        $result['pagination'] =[
-            'page'=>1,
-            'itemsPerPage'=>10,
-            'total'=>100,
+        $result['sections'] = $this->sectionTree;
+        $result['filter'] = $filter;
+        $result['pagination'] = [
+            'page' => 1,
+            'itemsPerPage' => 10,
+            'total' => 100,
         ];
         $result['sorting'] = [
-            'sort'=>[
+            'sort' => [
                 [
-                    'value'=>'name',
-                    'name'=>'По имени',
+                    'value' => 'name',
+                    'name' => 'По имени',
                 ],
                 [
-                    'value'=>'price',
-                    'name'=>'По цене',
+                    'value' => 'price',
+                    'name' => 'По цене',
                 ],
                 [
-                    'value'=>'date',
-                    'name'=>'По дате',
+                    'value' => 'date',
+                    'name' => 'По дате',
                 ],
             ],
-            'order'=>[
+            'order' => [
                 [
-                    'id'=>'asc',
-                    'name'=>'По возрастанию',
+                    'id' => 'asc',
+                    'name' => 'По возрастанию',
                 ],
                 [
-                    'id'=>'desc',
-                    'name'=>'По убыванию',
+                    'id' => 'desc',
+                    'name' => 'По убыванию',
                 ],
             ]
         ];

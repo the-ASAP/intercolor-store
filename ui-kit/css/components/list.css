@@ -1,16 +1,7 @@
-.list_large {
-  width: 1088px;
+.list {
+  width: 100%;
+  overflow: auto;
 }
-.list_medium {
-  width: 800px;
-}
-.list_small {
-  width: 566px;
-}
-.cart-list {
-  width: 752px;
-}
-
 .list__item {
   justify-content: space-between;
   border-bottom: var(--border-1) solid var(--color-stroke-light);
@@ -20,7 +11,6 @@
   color: var(--color-text-dark-medium);
 }
 .product-item__stock {
-  min-width: 120px;
   gap: var(--spacing-1);
 }
 .product-item__stock-storage {
@@ -35,10 +25,11 @@
 .category-item {
   padding: var(--spacing-3) var(--spacing-4);
   gap: var(--spacing-1);
-  width: 536px;
 }
 .category-item:hover {
   background-color: var(--color-bg-light);
+  border-top-left-radius: var(--radius-large-2);
+  border-bottom-left-radius: var(--radius-large-2);
 }
 .category-item__sku {
   display: flex;
@@ -54,8 +45,10 @@
   padding: var(--spacing-2) 0;
 }
 
+.promotions-list {
+  gap: var(--spacing-2);
+}
 .promotions-item {
-  width: 1120px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,6 +60,13 @@
   gap: var(--spacing-4);
   padding: 0;
   text-decoration: none;
+}
+
+.promotion-list,
+.warehouses-list {
+  padding: var(--spacing-4);
+  background-color: var(--color-bg-white);
+  border-radius: var(--radius-large-3);
 }
 
 .orders-item {
@@ -84,7 +84,7 @@
   color: var(--color-text-dark-medium);
 }
 .cart-item__quantity {
-  width: 150px;
+  width: 149px;
   text-align: center;
 }
 
@@ -99,7 +99,8 @@
 .category-item,
 .description-list,
 .promotions-item__link,
-.cart-item__block {
+.cart-item__block,
+.promotions-list {
   display: flex;
   flex-direction: column;
 }
@@ -113,4 +114,46 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
+}
+
+.product-item,
+.warehouses-item,
+.cart-item {
+  display: grid;
+  align-items: center;
+}
+
+.product-item--catalog {
+  grid-template-columns:
+    minmax(0, 244fr) minmax(0, 119fr) minmax(0, 149fr) minmax(0, 115fr)
+    minmax(0, 40fr);
+}
+.product-item--similar {
+  grid-template-columns:
+    minmax(0, 244fr) minmax(0, 149fr) minmax(0, 76fr)
+    minmax(0, 40fr);
+}
+.product-item--promotion {
+  grid-template-columns: minmax(0, 616fr) minmax(0, 183fr) minmax(0, 193fr);
+  gap: var(--spacing-6);
+}
+.product-item--cart {
+  grid-template-columns:
+    minmax(0, 207fr) minmax(0, 124fr) minmax(0, 149fr) minmax(0, 42fr)
+    minmax(0, 130fr) minmax(0, 20fr);
+  gap: var(--spacing-4);
+}
+.warehouses-item {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--spacing-5);
+}
+
+.warehouses-item__field,
+.product-item__title,
+.cart-item__title,
+.orders-item__warehouse-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-width: 0;
 }

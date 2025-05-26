@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Input</title>
-    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="/ui-kit/css/main.css" />
   </head>
   <body style="background-color: #d5d5d5">
     <div
@@ -14,16 +14,17 @@
         gap: var(--spacing-4);
         padding: var(--spacing-4);
         align-items: center;
+        width: 100%;
       "
     >
       <!-- Логин/Поле ввода -->
-      <div class="input-container">
+      <div style="width: 328px" class="input-container">
         <label class="input-label"
           >Логин<input type="text" class="input-field" />
         </label>
       </div>
       <!-- Логин cо статусом ошибки -->
-      <div class="input-container">
+      <div style="width: 328px" class="input-container">
         <label class="input-label"
           >Логин<input
             type="text"
@@ -34,18 +35,18 @@
         <p class="caption input-error">Текст ошибки</p>
       </div>
       <!-- Логин disabled -->
-      <div class="input-container">
+      <div style="width: 328px" class="input-container">
         <label class="input-label--disabled"
           >Логин<input type="text" class="input-field input-field" readonly />
         </label>
       </div>
 
       <!-- Поиск -->
-      <div class="input-container input-container--search">
-        <input type="search" class="input-field input-search" value="Поиск" />
+      <div style="width: 368px" class="input-container">
+        <input type="search" class="input-field input-search" value="" />
       </div>
       <!-- Поиск с ошибкой -->
-      <div class="input-container input-container--search">
+      <div style="width: 368px" class="input-container">
         <input
           type="search"
           class="input-field input-field--error input-search"
@@ -53,7 +54,7 @@
         />
       </div>
       <!-- Поиск высокий -->
-      <div class="input-container input-container--search">
+      <div style="width: 368px" class="input-container">
         <input
           type="search"
           class="input-field input-search input-search--tall"
@@ -61,7 +62,7 @@
         />
       </div>
       <!-- Поиск с ошибкой высокий -->
-      <div class="input-container input-container--search">
+      <div style="width: 368px" class="input-container">
         <input
           type="search"
           class="input-field input-field--error input-search input-search--tall"
@@ -183,10 +184,10 @@
       </div>
 
       <!-- Телефон -->
-      <div class="input-container">
+      <div style="width: 328px" class="input-container">
         <div class="phone-input">
           <img
-            src="../assets/icons/ru.svg"
+            src="/ui-kit/assets/icons/ru.svg"
             alt="Флаг России"
             class="phone-flag"
           />
@@ -195,10 +196,10 @@
         </div>
       </div>
       <!-- Телефон с ошибкой -->
-      <div class="input-container">
+      <div style="width: 328px" class="input-container">
         <div class="phone-input phone-input--error">
           <img
-            src="../assets/icons/ru.svg"
+            src="/ui-kit/assets/icons/ru.svg"
             alt="Флаг России"
             class="phone-flag"
           />
@@ -212,6 +213,6 @@
       </div>
     </div>
 
-    <script src="../js/index.js" type="module"></script>
+    <script src="/ui-kit/js/index.js" type="module"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Side sheets</title>
-    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="/ui-kit/css/main.css" />
   </head>
   <body style="background-color: #d5d5d5">
     <div
@@ -14,6 +14,7 @@
         gap: var(--spacing-4);
         padding: var(--spacing-4);
         align-items: center;
+        width: 100%;
       "
     >
       <div class="sheet-overlay" data-overlay></div>
@@ -76,7 +77,7 @@
                 </button>
                 <div class="card card-wrapper">
                   <img
-                    src="../assets/images/productImg1.png"
+                    src="/ui-kit/assets/images/productImg1.png"
                     alt="Product view"
                     class="card-wrapper__image"
                   />
@@ -109,8 +110,8 @@
                     Шпатлёвка полиэфирная IQ GLASS со стекловолокном (1.8 кг,
                     вкл. отвердитель)
                   </h2>
-                  <div class="flex justify-between align-center">
-                    <div class="flex align-center gap-2">
+                  <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-2">
                       <span class="product-detail__sku label-1"
                         >Арт. 8-42100005</span
                       >
@@ -228,96 +229,128 @@
               </div>
             </div>
 
-            <div class="tabs" role="tablist" aria-label="Product Tabs">
-              <button
-                id="tab-1"
-                role="tab"
-                aria-selected="true"
-                aria-controls="panel-1"
-                class="label-1"
-              >
-                В наличии на складах
-              </button>
-              <button
-                id="tab-2"
-                role="tab"
-                aria-selected="false"
-                aria-controls="panel-2"
-                tabindex="-1"
-                class="label-1"
-              >
-                Характеристики
-              </button>
-              <button
-                id="tab-3"
-                role="tab"
-                aria-selected="false"
-                aria-controls="panel-3"
-                tabindex="-1"
-                class="label-1"
-              >
-                Описание
-              </button>
-              <button
-                id="tab-4"
-                role="tab"
-                aria-selected="false"
-                aria-controls="panel-4"
-                tabindex="-1"
-                class="label-1"
-              >
-                Документация
-              </button>
-            </div>
+            <div class="flex column gap-4 width-full">
+              <div class="tabs" role="tablist" aria-label="Product Tabs">
+                <button
+                  id="tab-1"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="panel-1"
+                  class="label-1"
+                >
+                  В наличии на складах
+                </button>
+                <button
+                  id="tab-2"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-2"
+                  tabindex="-1"
+                  class="label-1"
+                >
+                  Характеристики
+                </button>
+                <button
+                  id="tab-3"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-3"
+                  tabindex="-1"
+                  class="label-1"
+                >
+                  Описание
+                </button>
+                <button
+                  id="tab-4"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-4"
+                  tabindex="-1"
+                  class="label-1"
+                >
+                  Документация
+                </button>
+              </div>
 
-            <div id="panel-1" role="tabpanel" aria-labelledby="tab-1">
-              <ul class="list_small description-list">
-                <li class="list__item description-item">
-                  <span>Центральный</span>
-                  <span class="number-2">160 000</span>
-                </li>
-                <li class="list__item description-item">
-                  <span>Москва</span>
-                  <span class="number-2">160 000</span>
-                </li>
-                <li class="list__item description-item">
-                  <span>Центральный</span>
-                  <span class="number-2">160 000</span>
-                </li>
-                <li class="list__item description-item">
-                  <span>Санкт Петербург</span>
-                  <span class="number-2">160 000</span>
-                </li>
-                <li class="list__item description-item">
-                  <span>Центральный</span>
-                  <span class="number-2">160 000</span>
-                </li>
-              </ul>
-            </div>
-            <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
-              Содержимое второй вкладки
-            </div>
-            <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
-              Содержимое третьей вкладки
-            </div>
-            <div id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
-              Содержимое четвертой вкладки
+              <div
+                class="tabs__panel"
+                id="panel-1"
+                role="tabpanel"
+                aria-labelledby="tab-1"
+              >
+                <ul class="list description-list">
+                  <li class="list__item description-item">
+                    <span>Центральный</span>
+                    <span class="number-2">160 000</span>
+                  </li>
+                  <li class="list__item description-item">
+                    <span>Москва</span>
+                    <span class="number-2">160 000</span>
+                  </li>
+                  <li class="list__item description-item">
+                    <span>Центральный</span>
+                    <span class="number-2">160 000</span>
+                  </li>
+                  <li class="list__item description-item">
+                    <span>Санкт Петербург</span>
+                    <span class="number-2">160 000</span>
+                  </li>
+                  <li class="list__item description-item">
+                    <span>Центральный</span>
+                    <span class="number-2">160 000</span>
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="tabs__panel"
+                id="panel-2"
+                role="tabpanel"
+                aria-labelledby="tab-2"
+                hidden
+              >
+                Содержимое второй вкладки
+              </div>
+              <div
+                class="tabs__panel"
+                id="panel-3"
+                role="tabpanel"
+                aria-labelledby="tab-3"
+                hidden
+              >
+                Содержимое третьей вкладки
+              </div>
+              <div
+                class="tabs__panel"
+                id="panel-4"
+                role="tabpanel"
+                aria-labelledby="tab-4"
+                hidden
+              >
+                Содержимое четвертой вкладки
+              </div>
             </div>
           </section>
           <section class="product-detail__section gap-4">
             <h2 class="product-detail__similar">Аналогичные товары (27)</h2>
-            <ul class="list_small">
-              <li class="list__item product-item">
+            <ul class="list">
+              <li class="list__item product-item product-item--similar">
                 <div class="product-item__info">
                   <div class="card card-thumb">
                     <img
                       class="card-thumb__img"
-                      src="../assets/images/productImg2.png"
+                      src="/ui-kit/assets/images/productImg2.png"
                       alt="Превью productImg2"
                     />
                   </div>
-                  <div>
-                    <div class="product-item__title">Пистолет окрасоч …</div>
+                  <div class="overflow-hidden">
+                    <div
+                      class="product-item__title"
+                      title="Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
+                    мм)"
+                    >
+                      Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза
+                      1.7 мм)
+                    </div>
                     <div class="product-item__sku caption">Арт. 8-42100005</div>
                   </div>
                 </div>
@@ -416,17 +449,24 @@
                   </svg>
                 </button>
               </li>
-              <li class="list__item product-item">
+              <li class="list__item product-item product-item--similar">
                 <div class="product-item__info">
                   <div class="card card-thumb">
                     <img
                       class="card-thumb__img"
-                      src="../assets/images/productImg2.png"
+                      src="/ui-kit/assets/images/productImg2.png"
                       alt="Превью productImg2"
                     />
                   </div>
-                  <div>
-                    <div class="product-item__title">Пистолет окрасоч …</div>
+                  <div class="overflow-hidden">
+                    <div
+                      class="product-item__title"
+                      title="Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
+                    мм)"
+                    >
+                      Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза
+                      1.7 мм)
+                    </div>
                     <div class="product-item__sku caption">Арт. 8-42100005</div>
                   </div>
                 </div>
@@ -525,17 +565,24 @@
                   </svg>
                 </button>
               </li>
-              <li class="list__item product-item">
+              <li class="list__item product-item product-item--similar">
                 <div class="product-item__info">
                   <div class="card card-thumb">
                     <img
                       class="card-thumb__img"
-                      src="../assets/images/productImg2.png"
+                      src="/ui-kit/assets/images/productImg2.png"
                       alt="Превью productImg2"
                     />
                   </div>
-                  <div>
-                    <div class="product-item__title">Пистолет окрасоч …</div>
+                  <div class="overflow-hidden">
+                    <div
+                      class="product-item__title"
+                      title="Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
+                    мм)"
+                    >
+                      Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза
+                      1.7 мм)
+                    </div>
                     <div class="product-item__sku caption">Арт. 8-42100005</div>
                   </div>
                 </div>
@@ -634,17 +681,24 @@
                   </svg>
                 </button>
               </li>
-              <li class="list__item product-item">
+              <li class="list__item product-item product-item--similar">
                 <div class="product-item__info">
                   <div class="card card-thumb">
                     <img
                       class="card-thumb__img"
-                      src="../assets/images/productImg2.png"
+                      src="/ui-kit/assets/images/productImg2.png"
                       alt="Превью productImg2"
                     />
                   </div>
-                  <div>
-                    <div class="product-item__title">Пистолет окрасоч …</div>
+                  <div class="overflow-hidden">
+                    <div
+                      class="product-item__title"
+                      title="Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
+                    мм)"
+                    >
+                      Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза
+                      1.7 мм)
+                    </div>
                     <div class="product-item__sku caption">Арт. 8-42100005</div>
                   </div>
                 </div>
@@ -743,17 +797,24 @@
                   </svg>
                 </button>
               </li>
-              <li class="list__item product-item">
+              <li class="list__item product-item product-item--similar">
                 <div class="product-item__info">
                   <div class="card card-thumb">
                     <img
                       class="card-thumb__img"
-                      src="../assets/images/productImg2.png"
+                      src="/ui-kit/assets/images/productImg2.png"
                       alt="Превью productImg2"
                     />
                   </div>
-                  <div>
-                    <div class="product-item__title">Пистолет окрасоч …</div>
+                  <div class="overflow-hidden">
+                    <div
+                      class="product-item__title"
+                      title="Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
+                    мм)"
+                    >
+                      Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза
+                      1.7 мм)
+                    </div>
                     <div class="product-item__sku caption">Арт. 8-42100005</div>
                   </div>
                 </div>
@@ -852,17 +913,24 @@
                   </svg>
                 </button>
               </li>
-              <li class="list__item product-item">
+              <li class="list__item product-item product-item--similar">
                 <div class="product-item__info">
                   <div class="card card-thumb">
                     <img
                       class="card-thumb__img"
-                      src="../assets/images/productImg2.png"
+                      src="/ui-kit/assets/images/productImg2.png"
                       alt="Превью productImg2"
                     />
                   </div>
-                  <div>
-                    <div class="product-item__title">Пистолет окрасоч …</div>
+                  <div class="overflow-hidden">
+                    <div
+                      class="product-item__title"
+                      title="Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
+                    мм)"
+                    >
+                      Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза
+                      1.7 мм)
+                    </div>
                     <div class="product-item__sku caption">Арт. 8-42100005</div>
                   </div>
                 </div>
@@ -961,17 +1029,24 @@
                   </svg>
                 </button>
               </li>
-              <li class="list__item product-item">
+              <li class="list__item product-item product-item--similar">
                 <div class="product-item__info">
                   <div class="card card-thumb">
                     <img
                       class="card-thumb__img"
-                      src="../assets/images/productImg2.png"
+                      src="/ui-kit/assets/images/productImg2.png"
                       alt="Превью productImg2"
                     />
                   </div>
-                  <div>
-                    <div class="product-item__title">Пистолет окрасоч …</div>
+                  <div class="overflow-hidden">
+                    <div
+                      class="product-item__title"
+                      title="Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
+                    мм)"
+                    >
+                      Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза
+                      1.7 мм)
+                    </div>
                     <div class="product-item__sku caption">Арт. 8-42100005</div>
                   </div>
                 </div>
@@ -1300,6 +1375,6 @@
       <button data-action="open-detail">Открыть деталку</button>
       <button data-action="open-filters">Открыть фильтры</button>
     </div>
-    <script src="../js/index.js" type="module"></script>
+    <script src="/ui-kit/js/index.js" type="module"></script>
   </body>
 </html>
