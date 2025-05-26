@@ -3,12 +3,14 @@ export function initSidebar(root = document) {
   const toggleButton = root.querySelector(".toggle-button");
   const navBtnsText = root.querySelectorAll(".nav-btn span");
 
-  toggleButton.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed");
-    toggleButton.classList.toggle("rotated");
+  if (toggleButton) {
+    toggleButton.addEventListener("click", () => {
+      sidebar.classList.toggle("collapsed");
+      toggleButton.classList.toggle("rotated");
 
-    navBtnsText.forEach((text) => {
-      text.classList.toggle("hide");
+      navBtnsText.forEach((text) => {
+        text.classList.toggle("hide");
+      });
     });
-  });
+  }
 }

@@ -8,7 +8,12 @@
 .input-container--number {
   width: 90px;
 }
-
+.input-label {
+  color: var(--color-text-dark-medium);
+}
+.input-label--disabled {
+  color: var(--color-text-medium);
+}
 .input-field {
   padding: var(--spacing-2) var(--spacing-4);
   width: 100%;
@@ -25,13 +30,8 @@
   border-color: var(--color-stroke-error);
   color: var(--color-text-error);
 }
-
 .input-error {
   color: var(--color-text-error);
-}
-
-.input-label--disabled {
-  color: var(--color-text-medium);
 }
 
 .input-search {
