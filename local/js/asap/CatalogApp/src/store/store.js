@@ -8,7 +8,7 @@ export const useCatalogStore = defineStore('catalog', {
     products: [],
     filter: {},
     filters: {
-      brands: {},
+      brands: [],
       delivery: '',
     },
     sorting: {},
@@ -56,11 +56,11 @@ export const useCatalogStore = defineStore('catalog', {
       if (query) params.append('q', query);
       if (sort) params.append('sort', sort);
       if (page) params.append('page', page);
-      if (filters) {
-        const brands = Object.keys(filters?.brands).join(',');
+      if (filters.brands.length) {
+        const brands = filters.brands.join(',');
         params.append('brands', brands);
-        params.append('delivery', filters.delivery);
       }
+      if (filters.delivery) params.append('delivery', filters.delivery);
       return `https://managers.intercolor.asap-lp.ru/api/v1/catalog/section/?${params.toString()}`;
     },
 
@@ -94,6 +94,11 @@ export const useCatalogStore = defineStore('catalog', {
       this.filters = filters;
       this.pagination.currentPage = 1;
       this.fetchCatalog();
+    },
+
+    clearFilters() {
+      this.filters.brands = {};
+      this.filters.delivery = '';
     },
   },
 });
