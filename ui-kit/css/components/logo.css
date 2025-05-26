@@ -1,8 +1,8 @@
 .logo_full {
   width: 302px;
-  content: url("../../assets/logos/logo-full.png");
+  content: url("/ui-kit/assets/logos/logo-full.png");
 }
 .logo_cropped {
   width: 120px;
-  content: url("../../assets/logos/logo.png");
+  content: url("/ui-kit/assets/logos/logo.png");
 }

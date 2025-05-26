@@ -126,6 +126,72 @@ paths:
         "500":
           $ref: "#/components/responses/HTTPStatus500Response"
 
+  /v1/catalog/section/:
+    get:
+      tags:
+        - Catalog
+      summary: Запрос получения случайного раздела каталога
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: Количество элементов на странице
+          schema:
+            type: integer    
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: урл для редиректа пользователя по нему
+        "400":
+          $ref: "#/components/responses/HTTPStatus400Response"
+        "401":
+          $ref: "#/components/responses/HTTPStatus401Response"
+        "500":
+          $ref: "#/components/responses/HTTPStatus500Response"
+
+  /v1/catalog/section/{param}/filter/:
+    get:
+      tags:
+        - Catalog
+      summary: Запрос  получения каталога
+      parameters:
+        - name: param
+          in: path
+          required: true
+          description: ID или Символьный код раздела каталога
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: Количество элементов на странице
+          schema:
+            type: integer    
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: урл для редиректа пользователя по нему
+        "400":
+          $ref: "#/components/responses/HTTPStatus400Response"
+        "401":
+          $ref: "#/components/responses/HTTPStatus401Response"
+        "500":
+          $ref: "#/components/responses/HTTPStatus500Response"
+
   /v1/catalog/section/{param}/:
     get:
       tags:

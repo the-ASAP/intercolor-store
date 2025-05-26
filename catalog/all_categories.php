@@ -1,11 +1,10 @@
-<!-- одиночная акция -->
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Интерколор</title>
+    <title>Интерколор - Все категории</title>
     <link rel="stylesheet" href="/ui-kit/css/main.css" />
 </head>
 
@@ -316,216 +315,39 @@
 
     <div class="content-wrapper">
         <main>
-            <div class="flex justify-between">
-                <div class="flex items-end gap-6">
-                    <h1 id="title">Акционное предложение 1</h1>
-                    <nav class="breadcrumbs">
-                        <ol class="breadcrumbs__list">
-                            <li class="breadcrumbs__item">
-                                <a href="/sale" class="caption">Акции</a>
-                            </li>
-                            <li class="breadcrumbs__item breadcrumbs__item--current">
-                                <span class="caption">Акционное предложение 1</span>
-                            </li>
-                        </ol>
-                    </nav>
+            <div class="flex gap-4">
+                <div class="input-container">
+                    <input
+                        type="search"
+                        class="input-field input-search input-search--tall" />
                 </div>
-
-                <div class="promotion-products-view flex gap-2">
-                    <button class="btn btn--icon-only--medium btn--light">
-                        <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M19 7C19 8.10457 18.1046 9 17 9C15.8954 9 15 8.10457 15 7C15 5.89543 15.8954 5 17 5C18.1046 5 19 5.89543 19 7Z"
-                                fill="#323232" />
-                            <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M9 7C9 8.10457 8.10457 9 7 9C5.89543 9 5 8.10457 5 7C5 5.89543 5.89543 5 7 5C8.10457 5 9 5.89543 9 7Z"
-                                fill="#323232" />
-                            <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M19 16C19 17.1046 18.1046 18 17 18C15.8954 18 15 17.1046 15 16C15 14.8954 15.8954 14 17 14C18.1046 14 19 14.8954 19 16Z"
-                                fill="#323232" />
-                            <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M9 16C9 17.1046 8.10457 18 7 18C5.89543 18 5 17.1046 5 16C5 14.8954 5.89543 14 7 14C8.10457 14 9 14.8954 9 16Z"
-                                fill="#323232" />
-                        </svg>
-                    </button>
-                    <button class="btn btn--icon-only--medium btn--non-active">
-                        <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4 6H20"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round" />
-                            <path
-                                d="M4 12H20"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round" />
-                            <path
-                                d="M4 18H20"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round" />
-                        </svg>
-                    </button>
-                </div>
+                <button
+                    style="min-width: 212px"
+                    class="btn btn--dark btn--text--large">
+                    Найти
+                </button>
             </div>
-
-            <div class="flex items-center justify-between">
-                <div class="flex gap-4">
-                    <span class="badge badge--dark">До 20 апреля 2025</span>
-                    <span class="badge badge--light">Код акции</span>
-                    <span class="badge badge--light">Вид акции</span>
-                </div>
-                <div class="flex gap-4">
-                    <div class="input-container input-container--quantity">
-                        <div class="input-field quantity-input">
-                            <button class="quantity-control" data-action="minus">
-                                <svg
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 20 20"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M5.28516 10H14.7132"
-                                        stroke="#323232"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                            <input type="number" class="quantity-value" value="5" />
-                            <button class="quantity-control" data-action="plus">
-                                <svg
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 20 20"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M5.28516 10H14.7132"
-                                        stroke="#323232"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path
-                                        d="M9.9992 5.28595V14.714"
-                                        stroke="#323232"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <button class="btn btn--text btn--dark">Добавить в корзину</button>
-                </div>
+            <div class="flex gap-6 items-center">
+                <h1>Каталог</h1>
+                <nav class="breadcrumbs">
+                    <ol class="breadcrumbs__list">
+                        <li class="breadcrumbs__item">
+                            <a href="index.php" class="caption">Весь каталог</a>
+                        </li>
+                        <li class="breadcrumbs__item breadcrumbs__item--current">
+                            <span class="caption">Все категории</span>
+                        </li>
+                    </ol>
+                </nav>
             </div>
-
-            <ul class="list promotion-list">
-                <li class="list__item product-item product-item--promotion">
-                    <div class="product-item__info">
-                        <div class="card card-thumb">
-                            <img
-                                class="card-thumb__img"
-                                src="/ui-kit/assets/images/productImg2.png"
-                                alt="Превью productImg2" />
-                        </div>
-                        <div class="overflow-hidden">
-                            <div
-                                class="product-item__title"
-                                title="
-                Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7 мм)">
-                                Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
-                                мм)
-                            </div>
-                            <div class="product-item__sku caption">Арт. 8-42100005</div>
-                        </div>
-                    </div>
-
-                    <div class="product-item__stock">
-                        <span class="label-1">Склад г. Москва: 116 000 шт </span>
-                        <span class="label-1">Склад г. Москва: 116 000 шт </span>
-                    </div>
-
-                    <div class="product-item__price">
-                        <div class="number-1">250 000 ₽</div>
-                        <div class="number-3 product-item__price_old">250 000 ₽</div>
-                    </div>
-                </li>
-                <li class="list__item product-item product-item--promotion">
-                    <div class="product-item__info">
-                        <div class="card card-thumb">
-                            <img
-                                class="card-thumb__img"
-                                src="/ui-kit/assets/images/productImg2.png"
-                                alt="Превью productImg2" />
-                        </div>
-                        <div class="overflow-hidden">
-                            <div
-                                class="product-item__title"
-                                title="
-                Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7 мм)">
-                                Пистолет окрасочный универсальный HUBERTH LVMP R600 (дюза 1.7
-                                мм)
-                            </div>
-                            <div class="product-item__sku caption">Арт. 8-42100005</div>
-                        </div>
-                    </div>
-
-                    <div class="product-item__stock">
-                        <span class="label-1">Склад г. Москва: 116 000 шт </span>
-                        <span class="label-1">Склад г. Москва: 116 000 шт </span>
-                    </div>
-
-                    <div class="product-item__price">
-                        <div class="number-1">250 000 ₽</div>
-                        <div class="number-3 product-item__price_old">250 000 ₽</div>
-                    </div>
-                </li>
-                <li class="list__item product-item product-item--promotion">
-                    <div class="product-item__info">
-                        <div class="card card-thumb">
-                            <img
-                                class="card-thumb__img"
-                                src="/ui-kit/assets/images/productImg2.png"
-                                alt="Превью productImg2" />
-                        </div>
-                        <div class="overflow-hidden">
-                            <div class="product-item__title" title="Пис">Пис</div>
-                            <div class="product-item__sku caption">Арт. 8-42</div>
-                        </div>
-                    </div>
-
-                    <div class="product-item__stock">
-                        <span class="label-1">Склад г. Уфа: 1 шт</span>
-                        <span class="label-1">Склад г. Пермь: 1 шт</span>
-                    </div>
-
-                    <div class="product-item__price">
-                        <div class="number-1">1000 ₽</div>
-                        <div class="number-3 product-item__price_old">1000 ₽</div>
-                    </div>
-                </li>
-            </ul>
+            <div class="all-categories" data-all-categories>
+                <nav
+                    class="all-categories__categories"
+                    data-all-categories-cats></nav>
+                <section
+                    class="all-categories__subcategories"
+                    data-all-categories-subcats></section>
+            </div>
         </main>
 
         <footer class="flex items-center justify-between width-full">
