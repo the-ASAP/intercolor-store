@@ -22,8 +22,8 @@
 @import url("components/side-sheet.css");
 
 /* стили страниц или компонентов со страниц */
-@import url("pages/auth.css");
 @import url("components/sidebar.css");
+@import url("pages/auth.css");
 @import url("pages/allcategories.css");
 @import url("pages/client.css");
 

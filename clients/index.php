@@ -317,13 +317,43 @@
 
     <div class="content-wrapper">
         <main>
-            <div class="flex items-center justify-between">
+            <div class="flex gap-4">
+                <div class="input-container">
+                    <input
+                        type="search"
+                        class="input-field input-search input-search--tall" />
+                </div>
+                <button
+                    style="min-width: 212px"
+                    class="btn btn--dark btn--text--large">
+                    Найти
+                </button>
+            </div>
+            <div class="flex items-center gap-5">
                 <h1>Клиенты</h1>
                 <button
                     data-action="open-create--clients"
-                    style="width: 200px"
-                    class="btn btn--text btn--dark">
-                    Добавить клиента
+                    class="btn btn--icon-only--large btn--dark rounded-full"
+                    aria-label="Add client">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.28516 10H14.7132"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M9.9992 5.28595V14.714"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
                 </button>
             </div>
 
@@ -728,6 +758,7 @@
         <form
             class="flex column gap-4"
             style="overflow: auto; flex: 1"
+            data-form-mode="create"
             id="client-form">
             <div class="side-sheet__body">
                 <div class="flex column gap-2">
@@ -790,36 +821,36 @@
                     </label>
                 </div>
 
-                <div class="input-container" data-field="fullName">
+                <div class="input-container" data-field="full_name">
                     <label class="input-label">
                         Фамилия, имя, отчество*
                         <input
-                            name="fullName"
-                            id="fullName-input"
+                            name="full_name"
+                            id="fullname-input"
                             type="text"
                             class="input-field"
                             required />
                     </label>
                 </div>
 
-                <div class="input-container" data-field="abbrName">
+                <div class="input-container" data-field="short_company_name">
                     <label class="input-label">
                         Сокращенное юридическое наименование*
                         <input
-                            name="abbrName"
-                            id="abbrName-input"
+                            name="short_company_name"
+                            id="shortcompanyname-input"
                             type="text"
                             class="input-field"
                             required />
                     </label>
                 </div>
 
-                <div class="input-container" data-field="businessName">
+                <div class="input-container" data-field="full_company_name">
                     <label class="input-label">
                         Рабочее наименование*
                         <input
-                            name="businessName"
-                            id="businessName-input"
+                            name="full_company_name"
+                            id="fullcompanyname-input"
                             type="text"
                             class="input-field"
                             required />
@@ -850,7 +881,8 @@
                                 name="phone"
                                 type="tel"
                                 class="input-field phone-value"
-                                required />
+                                required
+                                maxlength="10" />
                         </div>
                     </label>
                 </div>
@@ -862,10 +894,10 @@
                     </label>
                 </div>
 
-                <div class="input-container" data-field="address">
+                <div class="input-container" data-field="delivery_address">
                     <label class="input-label">
                         Адрес доставки*
-                        <input name="address" type="text" class="input-field" required />
+                        <input name="delivery_address" type="text" class="input-field" required />
                     </label>
                 </div>
             </div>
@@ -878,7 +910,7 @@
                     Сохранить
                 </button>
                 <button type="reset" class="btn btn--text btn--outline">
-                    Отменить
+                    Сбросить
                 </button>
             </footer>
         </form>

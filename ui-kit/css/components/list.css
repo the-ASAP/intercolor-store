@@ -70,10 +70,6 @@
   border-radius: var(--radius-large-3);
 }
 
-.client-item,
-.orders-item {
-  gap: var(--spacing-5);
-}
 .client-item__name,
 .orders-item__warehouse-name {
   flex: 1;
@@ -118,6 +114,11 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
+}
+
+.client-item,
+.orders-item {
+  gap: var(--spacing-5);
 }
 
 .product-item,
