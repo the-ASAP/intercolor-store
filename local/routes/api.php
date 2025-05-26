@@ -8,6 +8,10 @@ use Api\GetSaleElements;
 use Api\GetStoragesList;
 use Api\PostAuth;
 use Api\GetCatalog;
+use Api\PostCreateClient;
+use Api\PostEditClient;
+use Api\GetListClient;
+use Api\GetClient;
 
 header("Referrer-Policy: no-referrer-when-downgrade");
 header("Content-type: application/json");
@@ -21,11 +25,21 @@ header('Content-Type: application/json');
     [
         'Api\GetElementBySection' => '/api/classes/GetElementBySection.php',
         'Api\GetElementById' => '/api/classes/GetElementById.php',
+        'Api\GetCatalog' => '/api/classes/GetCatalog.php'
+        ,
         'Api\PostAuth' => '/api/classes/PostAuth.php',
+
         'Api\GetSaleList' => '/api/classes/GetSaleList.php',
-        'Api\GetCatalog' => '/api/classes/GetCatalog.php',
         'Api\GetSaleElements' => '/api/classes/GetSaleElements.php',
+
+        'Api\PostCreateClient' => '/api/classes/PostCreateClient.php',
+        'Api\PostEditClient' => '/api/classes/PostEditClient.php',
+        'Api\GetListClient' => '/api/classes/GetListClient.php',
+        'Api\GetClient' => '/api/classes/GetClient.php',
+
         'Api\GetStoragesList' => '/api/classes/GetStorageList.php',
+        'Api\GetStoragesList' => '/api/classes/GetStorageList.php',
+
         'Faker\Provider\Base' => '/api/classes/FakerBase.php',
         'Faker\Provider\Lorem' => '/api/classes/Faker.php',
     ]
@@ -48,4 +62,9 @@ return function (RoutingConfigurator $routes)
 
 
     $routes->post('/api/v1/auth/login', [PostAuth::class, 'login']);
+
+    $routes->get('/api/v1/clients/{id}/', [GetClient::class, 'view']);
+    $routes->get('/api/v1/clients/list', [GetListClient::class, 'view']);
+    $routes->post('/api/v1/client/add/', [PostCreateClient::class, 'create']);
+    $routes->post('/api/v1/client/{param}/edit/', [PostEditClient::class, 'edit']);
 };

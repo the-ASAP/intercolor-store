@@ -29,7 +29,7 @@ class GetCatalog  extends \Bitrix\Main\Engine\Controller
 
     private function buildTree()
     {
-        $IBLOCK_ID = 24;
+        $IBLOCK_ID = 20;
         $arFilter = array('IBLOCK_ID' => $IBLOCK_ID);
         $rs_Section = \CIBlockSection::GetList(
             array('DEPTH_LEVEL' => 'desc'),
@@ -69,140 +69,16 @@ class GetCatalog  extends \Bitrix\Main\Engine\Controller
         $this->sectionTree = $ar_SectionList;
     }
 
-    private function getItems($section)
-    {
-        $items = \Bitrix\Iblock\Elements\ElementServicecatalogTable::getList(
-            [
-                'select' =>
-                [
-                    '*'
-                ],
-                'filter' =>
-                [
-                    '=ACTIVE' => 'Y',
-                    'IBLOCK_SECTION_ID' => $section,
-                    'IBLOCK_ID' => 24
-                ],
-                'limit' => 1
-            ]
-        )->fetchAll();
-        return $items;
-    }
+  
 
     public function viewAction()
     {
 
         $result = [];
         $this->buildTree();
-        $filter = [
-            'characteristics' => [
-                [
-                    'color' => [
-                        'name' => 'Цвет',
-                        'value' => [
-                            [
-                                'id' => 1,
-                                'name' => 'Красный',
-                            ],
-                            [
-                                'id' => 2,
-                                'name' => 'Синий',
-                            ],
-                            [
-                                'id' => 3,
-                                'name' => 'Зеленый',
-                            ],
-                        ]
-                    ],
-                    'size' => [
-                        'name' => 'Размер',
-                        'value' => [
-                            [
-                                'id' => 1,
-                                'name' => 'Маленький',
-                            ],
-                            [
-                                'id' => 2,
-                                'name' => 'Средний',
-                            ],
-                            [
-                                'id' => 3,
-                                'name' => 'Большой',
-                            ],
-                        ]
-                    ],
-                    'material' => [
-                        'name' => 'Материал',
-                        'value' => [
-                            [
-                                'id' => 1,
-                                'name' => 'Дерево',
-                            ],
-                            [
-                                'id' => 2,
-                                'name' => 'Металл',
-                            ],
-                            [
-                                'id' => 3,
-                                'name' => 'Пластик',
-                            ],
-                        ]
-                    ],
-                ]
-            ],
-            'delivery' => [
-                [
-                    'id' => 1,
-                    'value' => '1 день',
-                ],
-                [
-                    'id' => 2,
-                    'value' => '2 дня',
-                ],
-                [
-                    'id' => 3,
-                    'value' => '2-5 дней',
-                ],
-                [
-                    'id' => 4,
-                    'value' => '5-10 дней',
-                ]
-            ]
-
-        ];
+        
         $result['sections'] = $this->sectionTree;
-        $result['filter'] = $filter;
-        $result['pagination'] = [
-            'page' => 1,
-            'itemsPerPage' => 10,
-            'total' => 100,
-        ];
-        $result['sorting'] = [
-            'sort' => [
-                [
-                    'value' => 'name',
-                    'name' => 'По имени',
-                ],
-                [
-                    'value' => 'price',
-                    'name' => 'По цене',
-                ],
-                [
-                    'value' => 'date',
-                    'name' => 'По дате',
-                ],
-            ],
-            'order' => [
-                [
-                    'id' => 'asc',
-                    'name' => 'По возрастанию',
-                ],
-                [
-                    'id' => 'desc',
-                    'name' => 'По убыванию',
-                ],
-            ]
-        ];
+    
         return new \Bitrix\Main\Engine\Response\Json($result);
     }
 }

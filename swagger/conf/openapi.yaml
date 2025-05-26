@@ -14,6 +14,8 @@ tags:
     description: Авторизации пользователя
   - name: User
     description: Текущий пользователь
+  - name: Клиенты
+    description: Клиенты
   - name: Catalog
     description: Катадог
   - name: Sale
@@ -138,6 +140,12 @@ paths:
           description: Количество элементов на странице
           schema:
             type: integer    
+        - name: page
+          in: query
+          required: false
+          description: Страница каталога
+          schema:
+            type: integer   
       responses:
         "200":
           description: OK
@@ -530,7 +538,267 @@ paths:
           $ref: "#/components/responses/HTTPStatus401Response"
         "500":
           $ref: "#/components/responses/HTTPStatus500Response"
-                                  
+
+  /v1/clients/list:
+    get:
+      summary: Получение списка клиентов
+      description: Возвращает список всех клиентов в системе
+      tags:
+        - Клиенты
+      responses:
+        '200':
+          description: Успешный ответ. Список клиентов.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 123
+                    client_type:
+                      type: string
+                      example: "юридическое лицо"
+                    inn:
+                      type: string
+                      example: "7701234567"
+                    full_name:
+                      type: string
+                      example: "Иванов Иван Иванович"
+                    phone:
+                      type: string
+                      example: "+7 (495) 123-45-67"
+                    kpp:
+                      type: string
+                      example: "770101001"
+                    email:
+                      type: string
+                      format: email
+                      example: "client@example.com"
+                    delivery_address:
+                      type: string
+                      example: "г. Москва, ул. Пушкина, д. 1"
+                    short_company_name:
+                      type: string
+                      example: "ООО Ромашка"
+                    full_company_name:
+                      type: string
+                      example: "Общество с ограниченной ответственностью Ромашка"
+
+  /v1/clients/{id}/:
+    get:
+      summary: Получение деталки клиентов
+      description: Возвращает данные клиента
+        - Клиенты
+      tags:
+        - Клиенты  
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID клиента
+          schema:
+            type: string        
+      responses:
+        '200':
+          description: Успешный ответ. Данные клиента.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 123
+                    client_type:
+                      type: string
+                      example: "юридическое лицо"
+                    inn:
+                      type: string
+                      example: "7701234567"
+                    full_name:
+                      type: string
+                      example: "Иванов Иван Иванович"
+                    phone:
+                      type: string
+                      example: "+7 (495) 123-45-67"
+                    kpp:
+                      type: string
+                      example: "770101001"
+                    email:
+                      type: string
+                      format: email
+                      example: "client@example.com"
+                    delivery_address:
+                      type: string
+                      example: "г. Москва, ул. Пушкина, д. 1"
+                    short_company_name:
+                      type: string
+                      example: "ООО Ромашка"
+                    full_company_name:
+                      type: string
+                      example: "Общество с ограниченной ответственностью Ромашка"                      
+
+  /v1/client/add/:
+    post:
+      summary: Добавление нового клиента
+      description: Добавляет нового клиента в систему
+      tags:
+        - Клиенты
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - client_type
+                - inn
+                - full_name
+                - phone
+                - kpp
+                - email
+                - delivery_address
+                - short_company_name
+                - full_company_name
+              properties:
+                client_type:
+                  type: string
+                  description: Тип клиента (например, физическое или юридическое лицо)
+                  example: "юридическое лицо"
+                inn:
+                  type: string
+                  description: ИНН клиента
+                  example: "7701234567"
+                full_name:
+                  type: string
+                  description: Полное имя (для физ. лица) или ФИО представителя
+                  example: "Иванов Иван Иванович"
+                phone:
+                  type: string
+                  description: Номер телефона клиента
+                  example: "+7 (495) 123-45-67"
+                kpp:
+                  type: string
+                  description: КПП (для юридических лиц)
+                  example: "770101001"
+                email:
+                  type: string
+                  format: email
+                  description: Электронная почта клиента
+                  example: "client@example.com"
+                delivery_address:
+                  type: string
+                  description: Адрес доставки
+                  example: "г. Москва, ул. Пушкина, д. 1"
+                short_company_name:
+                  type: string
+                  description: Сокращённое наименование юридического лица
+                  example: "ООО Ромашка"
+                full_company_name:
+                  type: string
+                  description: Полное наименование юридического лица
+                  example: "Общество с ограниченной ответственностью Ромашка"
+      responses:
+        '201':
+          description: Клиент успешно добавлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 123
+                  message:
+                    type: string
+                    example: Клиент успешно добавлен
+
+  /v1/client/{param}/edit/:
+    post:
+      summary: Редактирование клиента
+      description: Редактирование данных клиента
+      parameters:
+        - name: param
+          in: path
+          required: true
+          description: ID клиента
+          schema:
+            type: string
+      tags:
+        - Клиенты
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - client_type
+                - inn
+                - full_name
+                - phone
+                - kpp
+                - email
+                - delivery_address
+                - short_company_name
+                - full_company_name
+              properties:
+                client_type:
+                  type: string
+                  description: Тип клиента (например, физическое или юридическое лицо)
+                  example: "юридическое лицо"
+                inn:
+                  type: string
+                  description: ИНН клиента
+                  example: "7701234567"
+                full_name:
+                  type: string
+                  description: Полное имя (для физ. лица) или ФИО представителя
+                  example: "Иванов Иван Иванович"
+                phone:
+                  type: string
+                  description: Номер телефона клиента
+                  example: "+7 (495) 123-45-67"
+                kpp:
+                  type: string
+                  description: КПП (для юридических лиц)
+                  example: "770101001"
+                email:
+                  type: string
+                  format: email
+                  description: Электронная почта клиента
+                  example: "client@example.com"
+                delivery_address:
+                  type: string
+                  description: Адрес доставки
+                  example: "г. Москва, ул. Пушкина, д. 1"
+                short_company_name:
+                  type: string
+                  description: Сокращённое наименование юридического лица
+                  example: "ООО Ромашка"
+                full_company_name:
+                  type: string
+                  description: Полное наименование юридического лица
+                  example: "Общество с ограниченной ответственностью Ромашка"
+      responses:
+        '201':
+          description: Клиент успешно добавлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 123
+                  message:
+                    type: string
+                    example: Клиент успешно добавлен
 
 components:
   schemas:
