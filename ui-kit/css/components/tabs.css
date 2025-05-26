@@ -3,6 +3,10 @@
   gap: var(--spacing-4);
 }
 
+.tabs__panel {
+  overflow: auto;
+}
+
 .tabs [role="tab"] {
   position: relative;
   padding-bottom: var(--spacing-1);

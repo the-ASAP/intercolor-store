@@ -316,7 +316,442 @@
     <div class="content-wrapper">
         <main>
             <h1>Акции</h1>
-            <ul class="promotions-list">
+            <ul class="list promotions-list">
+                <li class="promotions-item">
+                    <a href="#" class="promotions-item__link" rel="noopener">
+                        <h2>Акционное предложение 1</h2>
+                        <div class="promotions-item__badges">
+                            <span class="badge badge--dark">До 20 апреля 2025</span>
+                            <span class="badge badge--info">Код акции</span>
+                        </div>
+                    </a>
+                    <div class="promotions-item__controllers">
+                        <div class="input-container input-container--quantity">
+                            <div class="input-field quantity-input">
+                                <button class="quantity-control" data-action="minus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <input type="number" class="quantity-value" value="5" />
+                                <button class="quantity-control" data-action="plus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M9.9992 5.28595V14.714"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn--icon-only--large btn--dark">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.96905 6.625L5.30205 3.625H3.37305"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.73099 14.835L5.96899 6.625H18.627C19.264 6.625 19.738 7.212 19.605 7.835L18.103 14.835C18.004 15.296 17.597 15.625 17.125 15.625H8.70799C8.23699 15.625 7.82999 15.296 7.73099 14.835Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M17.465 19.25C17.258 19.25 17.09 19.418 17.092 19.625C17.092 19.832 17.26 20 17.467 20C17.674 20 17.842 19.832 17.842 19.625C17.841 19.418 17.673 19.25 17.465 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M8.85605 19.25C8.64905 19.25 8.48105 19.418 8.48305 19.625C8.48205 19.832 8.65005 20 8.85705 20C9.06405 20 9.23205 19.832 9.23205 19.625C9.23205 19.418 9.06405 19.25 8.85605 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </li>
+                <li class="promotions-item">
+                    <a href="#" class="promotions-item__link" rel="noopener">
+                        <h2>Акционное предложение 1</h2>
+                        <div class="promotions-item__badges">
+                            <span class="badge badge--dark">До 20 апреля 2025</span>
+                            <span class="badge badge--info">Код акции</span>
+                        </div>
+                    </a>
+                    <div class="promotions-item__controllers">
+                        <div class="input-container input-container--quantity">
+                            <div class="input-field quantity-input">
+                                <button class="quantity-control" data-action="minus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <input type="number" class="quantity-value" value="5" />
+                                <button class="quantity-control" data-action="plus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M9.9992 5.28595V14.714"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn--icon-only--large btn--dark">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.96905 6.625L5.30205 3.625H3.37305"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.73099 14.835L5.96899 6.625H18.627C19.264 6.625 19.738 7.212 19.605 7.835L18.103 14.835C18.004 15.296 17.597 15.625 17.125 15.625H8.70799C8.23699 15.625 7.82999 15.296 7.73099 14.835Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M17.465 19.25C17.258 19.25 17.09 19.418 17.092 19.625C17.092 19.832 17.26 20 17.467 20C17.674 20 17.842 19.832 17.842 19.625C17.841 19.418 17.673 19.25 17.465 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M8.85605 19.25C8.64905 19.25 8.48105 19.418 8.48305 19.625C8.48205 19.832 8.65005 20 8.85705 20C9.06405 20 9.23205 19.832 9.23205 19.625C9.23205 19.418 9.06405 19.25 8.85605 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </li>
+                <li class="promotions-item">
+                    <a href="#" class="promotions-item__link" rel="noopener">
+                        <h2>Акционное предложение 1</h2>
+                        <div class="promotions-item__badges">
+                            <span class="badge badge--dark">До 20 апреля 2025</span>
+                            <span class="badge badge--info">Код акции</span>
+                        </div>
+                    </a>
+                    <div class="promotions-item__controllers">
+                        <div class="input-container input-container--quantity">
+                            <div class="input-field quantity-input">
+                                <button class="quantity-control" data-action="minus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <input type="number" class="quantity-value" value="5" />
+                                <button class="quantity-control" data-action="plus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M9.9992 5.28595V14.714"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn--icon-only--large btn--dark">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.96905 6.625L5.30205 3.625H3.37305"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.73099 14.835L5.96899 6.625H18.627C19.264 6.625 19.738 7.212 19.605 7.835L18.103 14.835C18.004 15.296 17.597 15.625 17.125 15.625H8.70799C8.23699 15.625 7.82999 15.296 7.73099 14.835Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M17.465 19.25C17.258 19.25 17.09 19.418 17.092 19.625C17.092 19.832 17.26 20 17.467 20C17.674 20 17.842 19.832 17.842 19.625C17.841 19.418 17.673 19.25 17.465 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M8.85605 19.25C8.64905 19.25 8.48105 19.418 8.48305 19.625C8.48205 19.832 8.65005 20 8.85705 20C9.06405 20 9.23205 19.832 9.23205 19.625C9.23205 19.418 9.06405 19.25 8.85605 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </li>
+                <li class="promotions-item">
+                    <a href="#" class="promotions-item__link" rel="noopener">
+                        <h2>Акционное предложение 1</h2>
+                        <div class="promotions-item__badges">
+                            <span class="badge badge--dark">До 20 апреля 2025</span>
+                            <span class="badge badge--info">Код акции</span>
+                        </div>
+                    </a>
+                    <div class="promotions-item__controllers">
+                        <div class="input-container input-container--quantity">
+                            <div class="input-field quantity-input">
+                                <button class="quantity-control" data-action="minus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <input type="number" class="quantity-value" value="5" />
+                                <button class="quantity-control" data-action="plus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M9.9992 5.28595V14.714"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn--icon-only--large btn--dark">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.96905 6.625L5.30205 3.625H3.37305"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.73099 14.835L5.96899 6.625H18.627C19.264 6.625 19.738 7.212 19.605 7.835L18.103 14.835C18.004 15.296 17.597 15.625 17.125 15.625H8.70799C8.23699 15.625 7.82999 15.296 7.73099 14.835Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M17.465 19.25C17.258 19.25 17.09 19.418 17.092 19.625C17.092 19.832 17.26 20 17.467 20C17.674 20 17.842 19.832 17.842 19.625C17.841 19.418 17.673 19.25 17.465 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M8.85605 19.25C8.64905 19.25 8.48105 19.418 8.48305 19.625C8.48205 19.832 8.65005 20 8.85705 20C9.06405 20 9.23205 19.832 9.23205 19.625C9.23205 19.418 9.06405 19.25 8.85605 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </li>
+                <li class="promotions-item">
+                    <a href="#" class="promotions-item__link" rel="noopener">
+                        <h2>Акционное предложение 1</h2>
+                        <div class="promotions-item__badges">
+                            <span class="badge badge--dark">До 20 апреля 2025</span>
+                            <span class="badge badge--info">Код акции</span>
+                        </div>
+                    </a>
+                    <div class="promotions-item__controllers">
+                        <div class="input-container input-container--quantity">
+                            <div class="input-field quantity-input">
+                                <button class="quantity-control" data-action="minus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <input type="number" class="quantity-value" value="5" />
+                                <button class="quantity-control" data-action="plus">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.28516 10H14.7132"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M9.9992 5.28595V14.714"
+                                            stroke="#323232"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn--icon-only--large btn--dark">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.96905 6.625L5.30205 3.625H3.37305"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M7.73099 14.835L5.96899 6.625H18.627C19.264 6.625 19.738 7.212 19.605 7.835L18.103 14.835C18.004 15.296 17.597 15.625 17.125 15.625H8.70799C8.23699 15.625 7.82999 15.296 7.73099 14.835Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M17.465 19.25C17.258 19.25 17.09 19.418 17.092 19.625C17.092 19.832 17.26 20 17.467 20C17.674 20 17.842 19.832 17.842 19.625C17.841 19.418 17.673 19.25 17.465 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M8.85605 19.25C8.64905 19.25 8.48105 19.418 8.48305 19.625C8.48205 19.832 8.65005 20 8.85705 20C9.06405 20 9.23205 19.832 9.23205 19.625C9.23205 19.418 9.06405 19.25 8.85605 19.25"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </li>
                 <li class="promotions-item">
                     <a href="#" class="promotions-item__link" rel="noopener">
                         <h2>Акционное предложение 1</h2>
@@ -842,12 +1277,12 @@
             </ul>
         </main>
 
-        <footer class="footer flex items-center justify-between">
-            <span class="footer__rights">© 2025 Магазин ГК «Интерколор»</span>
-            <div class="footer-buttons flex gap-2">
-                <a href="#" class="footer__btn label-1">О компании</a>
-                <a href="#" class="footer__btn label-1">Соглашение</a>
-                <a href="#" class="footer__btn label-1">Контакты</a>
+        <footer class="flex items-center justify-between width-full">
+            <span>© 2025 Магазин ГК «Интерколор»</span>
+            <div class="flex gap-2">
+                <a href="#" class="no-underline label-1">О компании</a>
+                <a href="#" class="no-underline label-1">Соглашение</a>
+                <a href="#" class="no-underline label-1">Контакты</a>
             </div>
         </footer>
     </div>

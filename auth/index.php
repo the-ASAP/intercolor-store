@@ -9,15 +9,19 @@
 </head>
 
 <body>
-    <main class="container">
+    <main class="auth-container">
         <img alt="Интерколор лого" class="logo_full" />
 
-        <form class="flex column items-center gap-6" id="login-form">
+        <form
+            style="width: 328px"
+            class="flex column items-center gap-6"
+            id="login-form">
             <div class="login-form__intro flex column items-center gap-2">
                 <h1>Вход</h1>
                 <span>Введите свои данные для авторизации</span>
             </div>
-            <div class="login-form__inputs flex column items-center gap-4">
+            <div
+                class="login-form__inputs flex column items-center width-full gap-4">
                 <div class="input-container">
                     <label class="input-label" id="login">Логин<input type="text" class="input-field" required />
                     </label>
