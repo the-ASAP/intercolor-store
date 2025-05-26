@@ -34,7 +34,22 @@ html {
 body {
   background: var(--color-bg-light);
   color: var(--color-text-dark);
-  min-height: 100vh;
+  display: flex;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+  flex: 1;
+  overflow: auto;
 }
 
 h1 {

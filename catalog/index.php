@@ -1,6 +1,19 @@
-<?require($_SERVER['DOCUMENT_ROOT'].'/bitrix/header.php');?>
-<?$APPLICATION->SetTitle("Catalog");?>
+<? require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/header.php'); ?>
+<? $APPLICATION->SetTitle("Catalog");
+define('VUEJS_DEBUG', true);
+\Bitrix\Main\UI\Extension::load('asap.CatalogApp');
+?>
+<script src="/vendors/lodash.js"></script>
 
-Index goes here
+<div id="catalog-section"></div>
 
-<?require($_SERVER['DOCUMENT_ROOT'].'/bitrix/footer.php');?>
+<script type="text/javascript">
+  const CatalogApp = new BX.CatalogApp(
+    '#catalog-section', {
+      data: 'anyData',
+    }
+  );
+  CatalogApp.init();
+</script>
+
+<? require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/footer.php'); ?>
