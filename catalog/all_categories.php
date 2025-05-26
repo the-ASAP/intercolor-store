@@ -321,7 +321,9 @@
                         type="search"
                         class="input-field input-search input-search--tall" />
                 </div>
-                <button style="width: 212px" class="btn btn--dark btn--text--large">
+                <button
+                    style="min-width: 212px"
+                    class="btn btn--dark btn--text--large">
                     Найти
                 </button>
             </div>

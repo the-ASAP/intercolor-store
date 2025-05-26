@@ -50,7 +50,6 @@
   gap: var(--spacing-1);
   border-radius: var(--radius-large-2);
   text-decoration: none;
-  width: 353px;
 }
 .card-file__icon {
   width: var(--icon-40);
@@ -58,4 +57,10 @@
 }
 .card-file__name {
   font-weight: var(--font-weight-regular);
+}
+
+.card-block {
+  padding: var(--spacing-4);
+  background-color: var(--color-bg-white);
+  border-radius: var(--radius-large-3);
 }

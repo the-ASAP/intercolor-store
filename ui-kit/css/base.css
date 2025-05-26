@@ -95,9 +95,6 @@ label,
   font-weight: var(--font-text-label-weight);
   letter-spacing: var(--font-text-label-letter-spacing);
 }
-label {
-  color: var(--color-text-dark-medium);
-}
 .label-2 {
   font-weight: var(--font-weight-semibold);
 }
