@@ -2,6 +2,7 @@
 
 namespace Api;
 
+use CIBlockElement;
 use Exception;
 
 class GetElementBySection  extends \Bitrix\Main\Engine\Controller
@@ -26,10 +27,9 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
             ],
         ];
     }
-
     private function buildTree()
     {
-        $IBLOCK_ID = 24;
+        $IBLOCK_ID = 20;
         $arFilter = array('IBLOCK_ID' => $IBLOCK_ID);
         $rs_Section = \CIBlockSection::GetList(
             array('DEPTH_LEVEL' => 'desc'),
@@ -37,36 +37,36 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
             false,
             array('ID', 'NAME', 'CODE', 'IBLOCK_SECTION_ID', 'DEPTH_LEVEL', 'SORT', 'ACTIVE')
         );
-        $arSectionList = array();
-        $arDepthLevel = array();
-        while ($arSection = $rs_Section->GetNext(true, false))
+        $ar_SectionList = array();
+        $ar_DepthLavel = array();
+        while ($ar_Section = $rs_Section->GetNext(true, false))
         {
-            $arSectionList[$arSection['ID']] = [
-                'id' => $arSection['ID'],
-                'name' => $arSection['NAME'],
-                'code' => $arSection['CODE'],
-                'parent' => $arSection['IBLOCK_SECTION_ID'],
-                'depth_level' => $arSection['DEPTH_LEVEL']
+            $ar_SectionList[$ar_Section['ID']] = [
+                'id' => $ar_Section['ID'],
+                'name' => $ar_Section['NAME'],
+                'code' => $ar_Section['CODE'],
+                'parent' => $ar_Section['IBLOCK_SECTION_ID'],
+                'depth_level' => $ar_Section['DEPTH_LEVEL']
             ];
-            $arDepthLevel[] = $arSection['DEPTH_LEVEL'];
+            $ar_DepthLavel[] = $ar_Section['DEPTH_LEVEL'];
         }
-        $arDepthLevelResult = array_unique($arDepthLevel);
-        rsort($arDepthLevelResult);
+        $ar_DepthLavelResult = array_unique($ar_DepthLavel);
+        rsort($ar_DepthLavelResult);
 
-        $i_MaxDepthLevel = $arDepthLevelResult[0];
+        $i_MaxDepthLevel = $ar_DepthLavelResult[0];
 
         for ($i = $i_MaxDepthLevel; $i > 1; $i--)
         {
-            foreach ($arSectionList as $i_SectionID => $arValue)
+            foreach ($ar_SectionList as $i_SectionID => $ar_Value)
             {
-                if ($arValue['depth_level'] == $i)
+                if ($ar_Value['depth_level'] == $i)
                 {
-                    $arSectionList[$arValue['parent']]['sections'][] = $arValue;
-                    unset($arSectionList[$i_SectionID]);
+                    $ar_SectionList[$ar_Value['parent']]['sections'][] = $ar_Value;
+                    unset($ar_SectionList[$i_SectionID]);
                 }
             }
         }
-        $this->sectionTree = $arSectionList;
+        $this->sectionTree = $ar_SectionList;
     }
 
 
@@ -77,7 +77,7 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
             $limit = isset($_GET['limit']) ?? null;
             $filter = [
                 'ACTIVE' => 'Y',
-                'IBLOCK_ID' => 24,
+                'IBLOCK_ID' => 20,
             ];
 
             if (is_numeric($param))
@@ -132,8 +132,33 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
     {
         try
         {
-            $limit = isset($_GET['limit']) ?? null;
-            $getElements = \Bitrix\Iblock\Elements\ElementServicecatalogTable::getList(
+            $limit = $_GET['limit'] ?? 10;
+            $offset = $_GET['page'] * $limit;
+            $countElems = \Bitrix\Iblock\Elements\ElementkbTable::getList(
+                [
+                    'select' => [
+                        'ID'
+                    ],
+                    'filter'=>
+                    [
+                        'ACTIVE'=>'Y'
+                    ],
+                    'cache'=>
+                    [
+                        'ttl'=>120,
+                    ]
+
+                ])->fetchAll();
+
+            $pagination =
+            [
+                'currentPage'=>$_GET['page']??1,
+                'itemsPerPage'=>$limit,
+                'totalItems'=>count($countElems),
+                'totalPages'=>ceil( count($countElems)/$limit),
+            ];    
+
+            $getElements = \Bitrix\Iblock\Elements\ElementkbTable::getList(
                 [
                     'select' => [
                         'ID',
@@ -149,17 +174,45 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                     'filter' => [
                         'ACTIVE' => 'Y'
                     ],
-                    'limit' => $limit
+                    'limit' => $limit,
+                    'offset'=> $offset
                 ]
             )->fetchAll();
 
             $filterBrand = [];
+            $brands = \CIBlockElement::GetList(
+                [],
+                ['IBLOCK_ID'=>20,'ACTIVE'=>'Y'],
+                'PROPERTY_CML2_MANUFACTURER',
+                false,
+                ['ID', 'PROPERTY_CML2_MANUFACTURER']
+            );
+
+            while($brand = $brands->GetNext())
+            {
+                if(!empty($brand['PROPERTY_CML2_MANUFACTURER_VALUE'])){
+                $filterBrand[] = trim($brand['PROPERTY_CML2_MANUFACTURER_VALUE']);
+                }
+            }
+            $filterBrand = array_unique($filterBrand);
+            $remappedFilterBrand= [];
+            foreach($filterBrand as $key=>$item)
+            {   
+                $remappedFilterBrand[] =[
+                    'id'=>$key,
+                    'name'=>$item
+                ];
+            }
             foreach ($getElements as $arItem)
             {
-                $filterBrand[] = [
-                    $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_MANUFACTURER_VALUE'],
-                ];
-                $result['sections']['items'][] = [
+                if (!empty($arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_MANUFACTURER_VALUE']))
+                {
+                    $filterBrand[] = [
+                        'id' => ++$ic,
+                        'name' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_MANUFACTURER_VALUE'],
+                    ];
+                }
+                $result['items'][] = [
                     'id' => (int)$arItem['ID'],
                     'name' => (string)$arItem['NAME'],
                     'preview' => $arItem['PREVIEW_TEXT'],
@@ -173,12 +226,8 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
 
             $resultFilter = [
                 'characteristics' => [
-                    [
-                        'manufacturer' =>
-                        [
-                            $filterBrand
-                        ]
-                    ],
+                    'manufacturer' =>
+                    $remappedFilterBrand,
                     'delivery' => [
                         [
                             'id' => 1,
@@ -200,30 +249,28 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                 ]
             ];
             $result['filter'] = $resultFilter;
-            $result['pagination'] = [];
+            $result['pagination'] = $pagination;
             $result['sorting'] = [
                 'sort' => [
                     [
-                        'value' => 'name',
-                        'name' => 'По имени',
+                        'value' => 'По популярности',
+                        'name' => 'popular-asc',
+                        'order' => 'asc'
                     ],
                     [
-                        'value' => 'price',
-                        'name' => 'По цене',
+                        'value' => 'По популярности',
+                        'name' => 'popular-desc',
+                        'order' => 'desc'
                     ],
                     [
-                        'value' => 'date',
-                        'name' => 'По дате',
-                    ],
-                ],
-                'order' => [
-                    [
-                        'id' => 'asc',
-                        'name' => 'По возрастанию',
+                        'value' => 'По цене',
+                        'name' => 'price-asc',
+                        'order' => 'asc'
                     ],
                     [
-                        'id' => 'desc',
-                        'name' => 'По убыванию',
+                        'value' => 'По цене',
+                        'name' => 'price-desc',
+                        'order' => 'desc'
                     ],
                 ]
             ];
@@ -243,13 +290,13 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
             $result = [];
             if (ctype_digit(strval($param)))
             {
-                $searchSectionID =  \CIBlockSection::GetNavChain(24, $param);
+                $searchSectionID =  \CIBlockSection::GetNavChain(20, $param);
                 if ($searchSectionID->arResult[0]['DEPTH_LEVEL'] == 1)
                 {
                     $rsParentSection = \CIBlockSection::GetByID($param);
                     if ($arParentSection = $rsParentSection->GetNext())
                     {
-                        $arFilter = array('IBLOCK_ID' => 24, '>LEFT_MARGIN' => $arParentSection['LEFT_MARGIN'], '<RIGHT_MARGIN' => $arParentSection['RIGHT_MARGIN'], '>DEPTH_LEVEL' => $arParentSection['DEPTH_LEVEL']); // выберет потомков без учета активности
+                        $arFilter = array('IBLOCK_ID' => 20, '>LEFT_MARGIN' => $arParentSection['LEFT_MARGIN'], '<RIGHT_MARGIN' => $arParentSection['RIGHT_MARGIN'], '>=DEPTH_LEVEL' => $arParentSection['DEPTH_LEVEL']); // выберет потомков без учета активности
                         $searchSectionID = \CIBlockSection::GetList(array('left_margin' => 'asc'), $arFilter);
                     }
                 }
@@ -259,16 +306,17 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                 $searchSectionID = \Bitrix\Iblock\SectionTable::getList(
                     [
                         'select' => ['ID'],
-                        'filter' => ['NAME' => $param . '%'],
+                        'filter' => ['%NAME' => $param ],
                         'limit' => 1
                     ]
                 )->fetch();
                 $searchSectionID = $searchSectionID['ID'];
-                $searchSectionID = \CIBlockSection::GetNavChain(24, $searchSectionID);
+                $searchSectionID = \CIBlockSection::GetNavChain(20, $searchSectionID);
             }
             $latestSection = '';
             while ($arSection = $searchSectionID->GetNext())
             {
+
                 $arSectionList[$arSection['ID']] = [
                     'id' => $arSection['ID'],
                     'name' => $arSection['NAME'],
@@ -278,6 +326,11 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                 ];
                 $arDepthLevel[] = $arSection['DEPTH_LEVEL'];
             }
+            if (empty($arSectionList))
+            {
+                return new \Bitrix\Main\Engine\Response\Json(['status' => 'error', 'text' => 'Ошибка получения данных']);
+            }
+
             $arDepthLevelResult = array_unique($arDepthLevel);
             rsort($arDepthLevelResult);
 
