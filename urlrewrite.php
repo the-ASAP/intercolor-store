@@ -19,8 +19,8 @@ $arUrlRewrite = array(
     2 =>
     array(
         'CONDITION' => '#^/clients/([\\w\\d_-]+)/#',
-        'RULE' => '',
-        'ID' => 'bitrix:news.detail',
+        'RULE' => 'ELEMENT_ID=$1',
+        'ID' => '',
         'PATH' => '/clients/client.php',
         'SORT' => 100,
     ),

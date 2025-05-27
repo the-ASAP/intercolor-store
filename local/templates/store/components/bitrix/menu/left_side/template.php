@@ -1,5 +1,5 @@
 <nav class="nav-sidebar">
-    <img alt="Интерколор лого" class="logo_cropped" />
+    <img src="<?=SITE_TEMPLATE_PATH.'/images/logo.png'?>" alt="Интерколор лого" class="" />
 
     <ul class="nav-buttons">
         <li class="nav-item">

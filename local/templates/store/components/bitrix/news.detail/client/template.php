@@ -21,11 +21,13 @@ if (!$hlblock)
 $entity = HL\HighloadBlockTable::compileEntity($hlblock);
 $entityClass = $entity->getDataClass();
 
+$getID = explode('/', $_SERVER['REQUEST_URI']);
 // Добавление новой записи
 $result = $entityClass::getList([
     'select' => ['ID', 'UF_MOCK'],
-    'filter' => ['ID' => $_REQUEST['ID']]
+    'filter' => ['ID' => $getID[2]]
 ])->fetch();
+
 if ($result):
     $client = json_decode($result['UF_MOCK'], true);
 ?>
@@ -38,7 +40,7 @@ if ($result):
                         <a href="/clients" class="caption">Клиенты</a>
                     </li>
                     <li class="breadcrumbs__item breadcrumbs__item--current">
-                        <span class="caption">ООО Контрагент</span>
+                        <span class="caption"><?= $client['short_company_name'] ?? $client['full_name'] ?></span>
                     </li>
                 </ol>
             </nav>

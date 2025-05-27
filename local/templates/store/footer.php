@@ -8,6 +8,8 @@
 </footer>
 </main>
 </div>
+<script src="/ui-kit/js/index.js" type="module"></script>
+
 </body>
 
 </html>

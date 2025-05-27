@@ -157,7 +157,11 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                 'totalItems'=>count($countElems),
                 'totalPages'=>ceil( count($countElems)/$limit),
             ];    
-
+            $filter =['ACTIVE'=>'Y'];
+            if(!empty($_GET['brand']))
+            {
+                $filter= array_push($filter,['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_MANUFACTURER_VALUE' => $_GET['brand']]);
+            }
             $getElements = \Bitrix\Iblock\Elements\ElementkbTable::getList(
                 [
                     'select' => [
@@ -172,7 +176,7 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                         'IBLOCK_SECTION_ID'
                     ],
                     'filter' => [
-                        'ACTIVE' => 'Y'
+                        $filter
                     ],
                     'limit' => $limit,
                     'offset'=> $offset
@@ -197,7 +201,7 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
             $filterBrand = array_unique($filterBrand);
             $remappedFilterBrand= [];
             foreach($filterBrand as $key=>$item)
-            {   
+            {       
                 $remappedFilterBrand[] =[
                     'id'=>$key,
                     'name'=>$item
@@ -217,7 +221,7 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                     'name' => (string)$arItem['NAME'],
                     'preview' => $arItem['PREVIEW_TEXT'],
                     'parent' =>  $arItem['IBLOCK_SECTION_ID'],
-                    'image' => $arItem['PREVIEW_PICTURE'],
+                    'image' =>  'https://managers.intercolor.asap-lp.ru/local/templates/store/images/logo.png',
                     'sku' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_ARTICLE_VALUE'],
                     'unit' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_BASE_UNIT_VALUE'],
                     'brand' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_MANUFACTURER_VALUE'],

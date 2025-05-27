@@ -26,25 +26,24 @@ $entityClass = $entity->getDataClass();
 $result = $entityClass::getList([
     'select' => ['ID', 'UF_MOCK'],
 ])->fetchAll();
-
 ?>
 <ul class="list client-list">
     <?php
 
-    $fields = json_decode($item['UF_MOCK'], true);
     if (!empty($result))
     {
-        $ret = [];
         foreach ($result as $item)
-            $fields = json_decode($item['UF_MOCK'], true);
         {
+         
+            $fields = json_decode($item['UF_MOCK'], true);
+        
     ?>
             <li class="list__item client-item">
                 <div class="client-item__name"><?= $fields['full_name'] ?></div>
                 <div class="client-item__type"><?= $fields['client_type'] ?></div>
                 <div class="client-item__phone"><?= $fields['phone']; ?></div>
                 <div class="client-item__mail"><?= $fields['email'] ?></div>
-                <a href="/clients/<?= $item['ID'] ?>" class="btn btn--icon-only--large btn--dark">
+                <a href="/clients/<?= $item['ID'] ?>/" class="btn btn--icon-only--large btn--dark">
                     <svg
                         width="20"
                         height="20"
