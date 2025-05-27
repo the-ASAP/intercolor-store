@@ -55,14 +55,6 @@ body {
   overflow: initial;
 }
 
-.content-wrapper--catalog {
-  padding-bottom: 0;
-}
-
-.content-wrapper--catalog main {
-  overflow: initial;
-}
-
 main {
   display: flex;
   flex-direction: column;
