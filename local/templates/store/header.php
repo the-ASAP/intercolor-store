@@ -31,5 +31,10 @@
 		)
 	); ?>
 
-	<div class="content-wrapper">
-		<main>
+	<? if (strpos($APPLICATION->GetCurPage(), 'catalog') == FALSE): ?>
+		<div class="content-wrapper">
+		<? else: ?>
+			<div class="content-wrapper content-wrapper--catalog">
+
+			<? endif; ?>
+			<main>

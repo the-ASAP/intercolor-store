@@ -133,34 +133,66 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
         try
         {
             $limit = $_GET['limit'] ?? 10;
-            $offset = $_GET['page'] * $limit;
+            $offset = ($_GET['page'] - 1) * $limit;
             $countElems = \Bitrix\Iblock\Elements\ElementkbTable::getList(
                 [
                     'select' => [
                         'ID'
                     ],
-                    'filter'=>
+                    'filter' =>
                     [
-                        'ACTIVE'=>'Y'
+                        'ACTIVE' => 'Y'
                     ],
-                    'cache'=>
+                    'cache' =>
                     [
-                        'ttl'=>120,
+                        'ttl' => 120,
                     ]
 
-                ])->fetchAll();
+                ]
+            )->fetchAll();
 
             $pagination =
-            [
-                'currentPage'=>$_GET['page']??1,
-                'itemsPerPage'=>$limit,
-                'totalItems'=>count($countElems),
-                'totalPages'=>ceil( count($countElems)/$limit),
-            ];    
-            $filter =['ACTIVE'=>'Y'];
-            if(!empty($_GET['brand']))
+                [
+                    'currentPage' => $_GET['page'] ?? 1,
+                    'itemsPerPage' => $limit,
+                    'totalItems' => count($countElems),
+                    'totalPages' => ceil(count($countElems) / $limit),
+                ];
+            $filter = ['ACTIVE' => 'Y'];
+            if (!empty($_GET['brand']))
             {
-                $filter= array_push($filter,['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_MANUFACTURER_VALUE' => $_GET['brand']]);
+                $filter = array_push($filter, ['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_MANUFACTURER_VALUE' => $_GET['brand']]);
+            }
+            if (!empty($_GET['q']))
+            {
+                \Bitrix\Main\Loader::includeModule('search');
+                //$filter = array_push($filter, ['NAME' => $_GET['q']]);
+                $obSearch = new \CSearch;
+                $obSearch->Search(
+                    array(
+                        "QUERY" => $_GET['q'],
+                        "SITE_ID" => 's2',
+                        "MODULE_ID" => 'iblock',
+                    ),
+                    [
+                        'CUSTOM_RANK' => 'DESC',
+                        'TITLE' => 'ASC',
+                    ]
+                );
+                $preItems = [];
+                $obSearch->NavStart();
+                while ($arSearch = $obSearch->Fetch())
+                {
+                    $preItems[] = $arSearch['ITEM_ID'];
+                }
+                $filter =  ['ID' => $preItems];
+                $pagination =
+                    [
+                        'currentPage' => $_GET['page'] ?? 1,
+                        'itemsPerPage' => $limit,
+                        'totalItems' => count($preItems),
+                        'totalPages' => ceil(count($preItems) / $limit),
+                    ];
             }
             $getElements = \Bitrix\Iblock\Elements\ElementkbTable::getList(
                 [
@@ -179,32 +211,37 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                         $filter
                     ],
                     'limit' => $limit,
-                    'offset'=> $offset
+                    'offset' => $offset,
+                    'order' => [
+                        'ID' => 'DESC',
+                    ]
                 ]
             )->fetchAll();
+
 
             $filterBrand = [];
             $brands = \CIBlockElement::GetList(
                 [],
-                ['IBLOCK_ID'=>20,'ACTIVE'=>'Y'],
+                ['IBLOCK_ID' => 20, 'ACTIVE' => 'Y'],
                 'PROPERTY_CML2_MANUFACTURER',
                 false,
                 ['ID', 'PROPERTY_CML2_MANUFACTURER']
             );
 
-            while($brand = $brands->GetNext())
+            while ($brand = $brands->GetNext())
             {
-                if(!empty($brand['PROPERTY_CML2_MANUFACTURER_VALUE'])){
-                $filterBrand[] = trim($brand['PROPERTY_CML2_MANUFACTURER_VALUE']);
+                if (!empty($brand['PROPERTY_CML2_MANUFACTURER_VALUE']))
+                {
+                    $filterBrand[] = trim($brand['PROPERTY_CML2_MANUFACTURER_VALUE']);
                 }
             }
             $filterBrand = array_unique($filterBrand);
-            $remappedFilterBrand= [];
-            foreach($filterBrand as $key=>$item)
-            {       
-                $remappedFilterBrand[] =[
-                    'id'=>$key,
-                    'name'=>$item
+            $remappedFilterBrand = [];
+            foreach ($filterBrand as $key => $item)
+            {
+                $remappedFilterBrand[] = [
+                    'id' => $key,
+                    'name' => $item
                 ];
             }
             foreach ($getElements as $arItem)
@@ -221,7 +258,7 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                     'name' => (string)$arItem['NAME'],
                     'preview' => $arItem['PREVIEW_TEXT'],
                     'parent' =>  $arItem['IBLOCK_SECTION_ID'],
-                    'image' =>  'https://managers.intercolor.asap-lp.ru/local/templates/store/images/logo.png',
+                    'image' =>  'https://managers.intercolor.asap-lp.ru/local/templates/store/images/demo.jpg',
                     'sku' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_ARTICLE_VALUE'],
                     'unit' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_BASE_UNIT_VALUE'],
                     'brand' => $arItem['IBLOCK_ELEMENTS_ELEMENT_SERVICECATALOG_CML2_MANUFACTURER_VALUE'],
@@ -249,6 +286,13 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                             'id' => 4,
                             'value' => '5-10 дней',
                         ]
+                    ],
+                    'storages' => [
+                        [
+                            'id' => 1,
+                            'value' => 'Склад в Москве',
+                        ],
+
                     ]
                 ]
             ];
@@ -310,7 +354,7 @@ class GetElementBySection  extends \Bitrix\Main\Engine\Controller
                 $searchSectionID = \Bitrix\Iblock\SectionTable::getList(
                     [
                         'select' => ['ID'],
-                        'filter' => ['%NAME' => $param ],
+                        'filter' => ['%NAME' => $param],
                         'limit' => 1
                     ]
                 )->fetch();

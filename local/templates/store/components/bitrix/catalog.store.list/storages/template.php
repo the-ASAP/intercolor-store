@@ -10,7 +10,7 @@ if ($arResult['STORES']):
                 <div class="warehouses-item__field warehouses-item__city"><?= explode(',', $store['ADDRESS'])[0] ?></div>
                 <div class="warehouses-item__field warehouses-item__phone"><?= $store['PHONE']; ?></div>
                 <div class="warehouses-item__field warehouses-item__mail"><?= $arResult['EMAILS'][$store['ID']] ?></div>
-                <button class="btn btn--text btn--dark">Посмотреть товары</button>
+                <a href="/catalog/?storages='<?= explode(',', $store['ADDRESS'])[0]?>'" class="btn btn--text btn--dark">Посмотреть товары</a>
             </li>
         <?php endforeach; ?>
     </ul>
