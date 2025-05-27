@@ -97,7 +97,7 @@
 
 .filter__buttons {
   position: sticky;
-  bottom: -40px;
+  bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
