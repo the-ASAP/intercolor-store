@@ -15,6 +15,7 @@ export const Filter = {
   data() {
     return {
       selectedFilters: {
+        storages: [],
         brands: [],
         delivery: '',
       },
@@ -24,8 +25,9 @@ export const Filter = {
     filtersCount() {
       let count = 0;
       const brands = this.selectedFilters.brands.length;
+      const storages = this.selectedFilters.storages.length;
       const delivery = this.selectedFilters.delivery ? 1 : 0;
-      count = brands + delivery;
+      count = brands + delivery + storages;
       return count;
     },
   },
@@ -35,6 +37,7 @@ export const Filter = {
     },
     clearFilters() {
       this.selectedFilters.brands = [];
+      this.selectedFilters.storages = [];
       this.selectedFilters.delivery = '';
       this.$emit('clearFilters');
     },
@@ -52,6 +55,24 @@ export const Filter = {
         </svg>
         Все категории
       </a>
+      <Accordion class="filter__separator">
+        <template #title>
+          <p>Наличие на складах</p>
+        </template>
+        <template #content>
+          <div class="filter__group-container">
+            <div class="v-checkbox" v-for="filter in filters.storages" :key="filter.id">
+              <label class="v-checkbox__label v-checkbox__input-wrap">
+                <input class="v-checkbox__input" type="checkbox" name="brand" :value="filter.value" v-model="selectedFilters.storages"/>
+                <svg class="v-checkbox__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6.5L9 17.5L4 12.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {{filter.value}}
+              </label>
+            </div>
+          </div>
+        </template>
+      </Accordion>
       <Accordion class="filter__separator">
         <template #title>
           <p>Бренд</p>

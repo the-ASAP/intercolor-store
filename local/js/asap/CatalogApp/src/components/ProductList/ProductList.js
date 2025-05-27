@@ -14,8 +14,8 @@ export const ProductList = {
   template: `
     <div>      
       <div v-if="products.length" class="product-list">
-        <ul class="">
-          <li v-for="product in products" :key="product.id" class="list__item product-item">
+        <ul class="list">
+          <li v-for="product in products" :key="product.id" class="list__item product-item product-item--catalog">
             <div class="product-item__info">
               <div class="card card-thumb">
                 <img
@@ -24,7 +24,7 @@ export const ProductList = {
                   alt=""
                 />
               </div>
-              <div>
+              <div class="overflow-hidden">
                 <div class="product-item__title">{{product.name}}</div>
                 <div class="product-item__sku caption">Арт. {{product.sku}}</div>
               </div>
